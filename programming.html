@@ -699,7 +699,7 @@ out.dir &lt;-<span class="st"> &#39;many_datafiles/&#39;</span>
 
 <span class="co"># clean up folder before creating new files</span>
 <span class="kw">file.remove</span>(<span class="kw">list.files</span>(out.dir, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)) </code></pre></div>
-<pre><code>## logical(0)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set vec with filenames</span>
 file.names &lt;-<span class="st"> </span><span class="kw">paste0</span>(out.dir, pattern.name, <span class="kw">seq</span>(<span class="dv">1</span>,n.files), <span class="st">&#39;.csv&#39;</span>)
 

@@ -1484,7 +1484,7 @@ print(n.cran.packages)
 ## [1] 10456
 ```
 
-If asked about which mirror to use, simply select the one closest to you. Currently (2017-04-29 11:42:34), there are 10456 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
+If asked about which mirror to use, simply select the one closest to you. Currently (2017-04-29 12:36:25), there are 10456 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
 
 
 ```r
@@ -2045,9 +2045,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] -0.43537859  0.89668642  0.09542879  0.13218196
-##  [5]  1.82673411  0.67320179 -0.38857293 -0.48871124
-##  [9]  1.02654195 -0.28095263
+##  [1] -1.8799319 -0.1148159 -0.6507369  1.0514021 -0.6258052
+##  [6]  0.3325743  0.8398394 -0.4063544  1.4033053 -0.4286291
 ```
 
 In the previous code, we generated ten random numbers from a normal distribution, with mean zero and standard deviation equal to one.
@@ -2064,9 +2063,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] -0.54509807  1.82613902  3.68388975 -3.80532187
-##  [5] -1.21974016 -1.27284235 -0.80876437  0.02739372
-##  [9]  3.96496420  2.74083716
+##  [1]  0.2317127  3.3025020  0.5220954 -2.8104789 -4.4926980
+##  [6]  0.3918854 -0.8457268  1.0543341 -4.8963966  4.6503505
 ```
 
 Note that both functions, `rnorm` and `runif`, are limited to their respective distribution. An alternative and flexible way to generate random values is to use the `sample` function. It accepts any vector as input and returns a scrambled version of its elements. Its flexibility lies in the fact that the input vector can be anything. For example, if we wanted to create a random vector with elements taken from vector `c(0, 5, 15, 20, 25)`, we could do it as follows: \index{base!sample}
@@ -2084,7 +2082,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 20  5 25 15  0 10
+## [1] 20 10  0  5 15 25
 ```
 
 Function `sample` also allows the random selection of several elements. If we wanted to select randomly only one element of `my.vec`, we could write the code as:
@@ -2099,7 +2097,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 25
+## [1] 5
 ```
 
 If we wanted two random elements from `my.rnd.vec`:
@@ -2114,7 +2112,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1]  5 25
+## [1] 0 5
 ```
 
 It is also possible to select values from a smaller vector to create a larger vector. Consider the case where you have a vector with numbers `c(5, 10, 15)` and want to create a random vector with ten elements removed from that smaller vector. For that, we use option `replace = TRUE`.
@@ -2130,7 +2128,7 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] 10 15 15 15  5 15 10  5  5  5
+##  [1]  5  5  5 15  5 15 15  5 10 10
 ```
 
 Another important feature of `sample` is it works for any type of vector, not only for those of the `numeric` class. This means we can randomize any sort of object. Have a look:
@@ -4255,7 +4253,7 @@ print(Sys.time())
 ```
 
 ```
-## [1] "2017-04-29 11:42:38 BRT"
+## [1] "2017-04-29 12:36:29 BRT"
 ```
 
 Going further, based on these functions, we can write:
@@ -4270,7 +4268,7 @@ print(my.str)
 ```
 
 ```
-## [1] "This code was executed in 2017-04-29 11:42:38"
+## [1] "This code was executed in 2017-04-29 12:36:29"
 ```
 
 
@@ -8452,36 +8450,36 @@ print(my.l)
 ## [1] "EUR"
 ## 
 ## $timestamp
-## [1] "2017-04-29 11:45:19 BRT"
+## [1] "2017-04-29 12:39:17 BRT"
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
-##                      date    price    amount
-##    1: 2017-04-29 13:24:55 1206.724 0.2213194
-##    2: 2017-04-29 13:24:55 1202.974 0.3000000
-##    3: 2017-04-29 13:24:55 1202.974 0.5601000
-##    4: 2017-04-29 13:24:55 1202.641 0.8147513
-##    5: 2017-04-29 13:24:55 1202.634 0.2898000
-##   ---                                       
-##  996: 2017-04-29 14:44:05 1212.619 0.2619769
-##  997: 2017-04-29 14:44:05 1212.594 0.2380231
-##  998: 2017-04-29 14:44:30 1212.594 0.0599000
-##  999: 2017-04-29 14:45:07 1213.450 0.0349400
-## 1000: 2017-04-29 14:45:08 1212.594 0.0504000
+##                      date    price     amount
+##    1: 2017-04-29 14:18:48 1212.687 0.38960000
+##    2: 2017-04-29 14:18:48 1212.687 0.11988292
+##    3: 2017-04-29 14:18:56 1208.426 0.09936934
+##    4: 2017-04-29 14:18:57 1208.426 0.05248706
+##    5: 2017-04-29 14:19:07 1208.426 0.19491612
+##   ---                                        
+##  996: 2017-04-29 15:38:26 1213.733 0.33166506
+##  997: 2017-04-29 15:38:27 1213.733 0.02950019
+##  998: 2017-04-29 15:38:31 1212.000 0.06974336
+##  999: 2017-04-29 15:38:31 1211.050 0.25000000
+## 1000: 2017-04-29 15:38:31 1211.050 0.53119607
 ##                       tid type
 ##    1:                  NA  bid
-##    2:                  NA  ask
+##    2:                  NA  bid
 ##    3:                  NA  ask
 ##    4:                  NA  ask
 ##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  ask
-##  997:                  NA  ask
+##  996:                  NA  bid
+##  997:                  NA  bid
 ##  998:                  NA  ask
-##  999:                  NA  bid
-## 1000: 1493477108412396080  ask
+##  999:                  NA  ask
+## 1000: 1493480311685646701  ask
 ```
 
 The output of `market.api.process` is a `list` object with information about Bitcoin in the `'kraken'` market. The actual trades are available in the `trade` slot of `my.l`. Let's have a look at its content:
@@ -8492,20 +8490,20 @@ print(tail(my.l$trades))
 ```
 
 ```
-##                   date    price    amount
-## 1: 2017-04-29 14:43:56 1213.501 0.8761180
-## 2: 2017-04-29 14:44:05 1212.619 0.2619769
-## 3: 2017-04-29 14:44:05 1212.594 0.2380231
-## 4: 2017-04-29 14:44:30 1212.594 0.0599000
-## 5: 2017-04-29 14:45:07 1213.450 0.0349400
-## 6: 2017-04-29 14:45:08 1212.594 0.0504000
+##                   date    price     amount
+## 1: 2017-04-29 15:38:25 1213.732 0.16833494
+## 2: 2017-04-29 15:38:26 1213.733 0.33166506
+## 3: 2017-04-29 15:38:27 1213.733 0.02950019
+## 4: 2017-04-29 15:38:31 1212.000 0.06974336
+## 5: 2017-04-29 15:38:31 1211.050 0.25000000
+## 6: 2017-04-29 15:38:31 1211.050 0.53119607
 ##                    tid type
 ## 1:                  NA  bid
-## 2:                  NA  ask
-## 3:                  NA  ask
+## 2:                  NA  bid
+## 3:                  NA  bid
 ## 4:                  NA  ask
-## 5:                  NA  bid
-## 6: 1493477108412396080  ask
+## 5:                  NA  ask
+## 6: 1493480311685646701  ask
 ```
 
 It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its [website](https://github.com/jangorecki/Rbitcoin).
@@ -9372,7 +9370,7 @@ file.remove(list.files(out.dir, full.names = TRUE))
 ```
 
 ```
-## [1] TRUE
+## logical(0)
 ```
 
 ```r
@@ -12760,7 +12758,7 @@ print(my.garchfit)
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## <environment: 0x000000001b5e9bb8>
+## <environment: 0x000000000c5a19e8>
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -12788,7 +12786,7 @@ print(my.garchfit)
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Sat Apr 29 11:46:24 2017 by user: marcelo
+##  Sat Apr 29 12:40:22 2017 by user: marcelo
 ```
 
 The resulting parameters from the estimation are close to the values defined arbitrarily in the call to `garchSpec`. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function `summary` also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader. 
@@ -12870,7 +12868,7 @@ print(my.garchfit.sp500)
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Sat Apr 29 11:46:24 2017 by user: marcelo
+##  Sat Apr 29 12:40:23 2017 by user: marcelo
 ```
 
 As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for `ar1`, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.
@@ -14185,7 +14183,7 @@ print(eff.port)
 ## 0.1101 0.2608 0.4200 0.4200 
 ## 
 ## Description:
-##  Sat Apr 29 11:47:44 2017 by user: marcelo
+##  Sat Apr 29 12:40:44 2017 by user: marcelo
 ```
 
 Not surprisingly, the optimized portfolio invested a significant proportion in ^MXX. The American and Chinese market, with symbols ^GSPC and ^00001.SS, were left with approximately 10% of the portfolio. We can find out the exact sharpe ratio of this portfolio with the following code:

@@ -464,9 +464,8 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span cla
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] -0.43537859  0.89668642  0.09542879  0.13218196
-##  [5]  1.82673411  0.67320179 -0.38857293 -0.48871124
-##  [9]  1.02654195 -0.28095263</code></pre>
+<pre><code>##  [1] -1.8799319 -0.1148159 -0.6507369  1.0514021 -0.6258052
+##  [6]  0.3325743  0.8398394 -0.4063544  1.4033053 -0.4286291</code></pre>
 <p>In the previous code, we generated ten random numbers from a normal distribution, with mean zero and standard deviation equal to one.</p>
 <p>Function <code>runif</code> generates random values uniformly distributed between a maximum and a minimum value. It is commonly used to simulate probabilities with values between zero and one. Function <code>runif</code> has three input parameters: the desired number of random values, the minimum value, and maximum value. See the following example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a random vector with minimum and maximum</span>
@@ -474,9 +473,8 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">runif</span>(<span cla
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] -0.54509807  1.82613902  3.68388975 -3.80532187
-##  [5] -1.21974016 -1.27284235 -0.80876437  0.02739372
-##  [9]  3.96496420  2.74083716</code></pre>
+<pre><code>##  [1]  0.2317127  3.3025020  0.5220954 -2.8104789 -4.4926980
+##  [6]  0.3918854 -0.8457268  1.0543341 -4.8963966  4.6503505</code></pre>
 <p>Note that both functions, <code>rnorm</code> and <code>runif</code>, are limited to their respective distribution. An alternative and flexible way to generate random values is to use the <code>sample</code> function. It accepts any vector as input and returns a scrambled version of its elements. Its flexibility lies in the fact that the input vector can be anything. For example, if we wanted to create a random vector with elements taken from vector <code>c(0, 5, 15, 20, 25)</code>, we could do it as follows: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create sequence</span>
 my.vec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">25</span>, <span class="dt">by=</span><span class="dv">5</span>)
@@ -486,21 +484,21 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1] 20  5 25 15  0 10</code></pre>
+<pre><code>## [1] 20 10  0  5 15 25</code></pre>
 <p>Function <code>sample</code> also allows the random selection of several elements. If we wanted to select randomly only one element of <code>my.vec</code>, we could write the code as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sample one element of my.vec</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec, <span class="dt">size =</span> <span class="dv">1</span>)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1] 25</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>If we wanted two random elements from <code>my.rnd.vec</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sample one element of my.vec</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec, <span class="dt">size =</span> <span class="dv">2</span>)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1]  5 25</code></pre>
+<pre><code>## [1] 0 5</code></pre>
 <p>It is also possible to select values from a smaller vector to create a larger vector. Consider the case where you have a vector with numbers <code>c(5, 10, 15)</code> and want to create a random vector with ten elements removed from that smaller vector. For that, we use option <code>replace = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create vector</span>
 my.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>)
@@ -508,7 +506,7 @@ my.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 <span class="co"># sample</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> my.vec, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] 10 15 15 15  5 15 10  5  5  5</code></pre>
+<pre><code>##  [1]  5  5  5 15  5 15 15  5 10 10</code></pre>
 <p>Another important feature of <code>sample</code> is it works for any type of vector, not only for those of the <code>numeric</code> class. This means we can randomize any sort of object. Have a look:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example of sample with characters</span>
 <span class="kw">print</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;elem 1&#39;</span>,<span class="st">&#39;elem 2&#39;</span>,<span class="st">&#39;elem 3&#39;</span>), <span class="dv">1</span>))</code></pre></div>
@@ -1728,14 +1726,14 @@ my.day &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 <p>To find the current date and time, we use function <code>Sys.time</code>: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get time!</span>
 <span class="kw">print</span>(<span class="kw">Sys.time</span>())</code></pre></div>
-<pre><code>## [1] &quot;2017-04-29 11:42:38 BRT&quot;</code></pre>
+<pre><code>## [1] &quot;2017-04-29 12:36:29 BRT&quot;</code></pre>
 <p>Going further, based on these functions, we can write:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example of log message</span>
 my.str &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&#39;This code was executed in &#39;</span>, <span class="kw">Sys.time</span>())
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.str)</code></pre></div>
-<pre><code>## [1] &quot;This code was executed in 2017-04-29 11:42:38&quot;</code></pre>
+<pre><code>## [1] &quot;This code was executed in 2017-04-29 12:36:29&quot;</code></pre>
 </div>
 <div id="other-functions-for-manipulating-dates-and-time" class="section level3">
 <h3><span class="header-section-number">3.5.7</span> Other Functions for Manipulating Dates and Time</h3>
@@ -1942,6 +1940,18 @@ my.mat[<span class="dv">2</span>,<span class="dv">2</span>] &lt;-<span class="st
 <p>Freitas, Wilson. 2016. <em>Bizdays: Business Days Calculations and Utilities</em>. <a href="https://CRAN.R-project.org/package=bizdays" class="uri">https://CRAN.R-project.org/package=bizdays</a>.</p>
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//msperlin.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
             </section>
 
           </div>

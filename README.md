@@ -1,2 +1,0 @@
-# pafdR
-Book repository

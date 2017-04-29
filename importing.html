@@ -1159,52 +1159,52 @@ my.l &lt;-<span class="st"> </span><span class="kw">market.api.process</span>(<s
 ## [1] &quot;EUR&quot;
 ## 
 ## $timestamp
-## [1] &quot;2017-04-29 11:03:57 BRT&quot;
+## [1] &quot;2017-04-29 11:45:19 BRT&quot;
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
-##                      date    price     amount
-##    1: 2017-04-29 12:53:49 1203.000 0.31760000
-##    2: 2017-04-29 12:53:49 1203.000 1.06746000
-##    3: 2017-04-29 12:53:51 1204.549 0.01551121
-##    4: 2017-04-29 12:54:43 1203.123 0.16610000
-##    5: 2017-04-29 12:54:48 1204.548 0.10050000
-##   ---                                        
-##  996: 2017-04-29 14:03:46 1211.378 0.00900000
-##  997: 2017-04-29 14:03:46 1211.378 0.11733836
-##  998: 2017-04-29 14:03:48 1211.378 0.04280000
-##  999: 2017-04-29 14:03:51 1211.378 0.11733836
-## 1000: 2017-04-29 14:03:54 1211.378 0.06357188
+##                      date    price    amount
+##    1: 2017-04-29 13:24:55 1206.724 0.2213194
+##    2: 2017-04-29 13:24:55 1202.974 0.3000000
+##    3: 2017-04-29 13:24:55 1202.974 0.5601000
+##    4: 2017-04-29 13:24:55 1202.641 0.8147513
+##    5: 2017-04-29 13:24:55 1202.634 0.2898000
+##   ---                                       
+##  996: 2017-04-29 14:44:05 1212.619 0.2619769
+##  997: 2017-04-29 14:44:05 1212.594 0.2380231
+##  998: 2017-04-29 14:44:30 1212.594 0.0599000
+##  999: 2017-04-29 14:45:07 1213.450 0.0349400
+## 1000: 2017-04-29 14:45:08 1212.594 0.0504000
 ##                       tid type
-##    1:                  NA  ask
+##    1:                  NA  bid
 ##    2:                  NA  ask
-##    3:                  NA  bid
+##    3:                  NA  ask
 ##    4:                  NA  ask
-##    5:                  NA  bid
+##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  bid
+##  996:                  NA  ask
 ##  997:                  NA  ask
-##  998:                  NA  bid
-##  999:                  NA  ask
-## 1000: 1493474634698047989  ask</code></pre>
+##  998:                  NA  ask
+##  999:                  NA  bid
+## 1000: 1493477108412396080  ask</code></pre>
 <p>The output of <code>market.api.process</code> is a <code>list</code> object with information about Bitcoin in the <code>'kraken'</code> market. The actual trades are available in the <code>trade</code> slot of <code>my.l</code>. Let’s have a look at its content:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">tail</span>(my.l<span class="op">$</span>trades))</code></pre></div>
-<pre><code>##                   date    price     amount
-## 1: 2017-04-29 14:03:43 1211.378 0.04327290
-## 2: 2017-04-29 14:03:46 1211.378 0.00900000
-## 3: 2017-04-29 14:03:46 1211.378 0.11733836
-## 4: 2017-04-29 14:03:48 1211.378 0.04280000
-## 5: 2017-04-29 14:03:51 1211.378 0.11733836
-## 6: 2017-04-29 14:03:54 1211.378 0.06357188
+<pre><code>##                   date    price    amount
+## 1: 2017-04-29 14:43:56 1213.501 0.8761180
+## 2: 2017-04-29 14:44:05 1212.619 0.2619769
+## 3: 2017-04-29 14:44:05 1212.594 0.2380231
+## 4: 2017-04-29 14:44:30 1212.594 0.0599000
+## 5: 2017-04-29 14:45:07 1213.450 0.0349400
+## 6: 2017-04-29 14:45:08 1212.594 0.0504000
 ##                    tid type
-## 1:                  NA  ask
-## 2:                  NA  bid
+## 1:                  NA  bid
+## 2:                  NA  ask
 ## 3:                  NA  ask
-## 4:                  NA  bid
-## 5:                  NA  ask
-## 6: 1493474634698047989  ask</code></pre>
+## 4:                  NA  ask
+## 5:                  NA  bid
+## 6: 1493477108412396080  ask</code></pre>
 <p>It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its <a href="https://github.com/jangorecki/Rbitcoin">website</a>.</p>
 </div>
 <div id="other-packages" class="section level3">

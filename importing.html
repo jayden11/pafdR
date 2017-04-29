@@ -94,6 +94,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -328,7 +338,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-<li><a href="https://sites.google.com/view/pmfdr/home" target="blank">Book Companion Site</a></li>
+<li><a href="https://sites.google.com/view/pafdr/home" target="blank">Book Companion Site</a></li>
 
 </ul>
 
@@ -1159,52 +1169,52 @@ my.l &lt;-<span class="st"> </span><span class="kw">market.api.process</span>(<s
 ## [1] &quot;EUR&quot;
 ## 
 ## $timestamp
-## [1] &quot;2017-04-29 12:51:12 BRT&quot;
+## [1] &quot;2017-04-29 20:14:30 BRT&quot;
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-04-29 14:23:01 1214.130 0.08280759
-##    2: 2017-04-29 14:23:01 1214.130 0.39896416
-##    3: 2017-04-29 14:23:01 1214.130 0.02450127
-##    4: 2017-04-29 14:23:01 1214.171 0.01312275
-##    5: 2017-04-29 14:23:04 1214.489 0.08280973
+##    1: 2017-04-29 21:31:36 1214.882 0.02500000
+##    2: 2017-04-29 21:32:05 1214.882 0.05879558
+##    3: 2017-04-29 21:32:06 1214.800 0.17356766
+##    4: 2017-04-29 21:32:13 1213.036 0.01780000
+##    5: 2017-04-29 21:32:15 1213.037 0.18335965
 ##   ---                                        
-##  996: 2017-04-29 15:50:23 1214.989 0.02200000
-##  997: 2017-04-29 15:50:48 1214.989 0.10500000
-##  998: 2017-04-29 15:51:12 1212.550 0.00208028
-##  999: 2017-04-29 15:51:12 1211.640 0.40000000
-## 1000: 2017-04-29 15:51:12 1211.640 0.09791972
+##  996: 2017-04-29 23:14:08 1211.000 0.51904327
+##  997: 2017-04-29 23:14:10 1211.000 0.24552254
+##  998: 2017-04-29 23:14:17 1211.000 0.41615636
+##  999: 2017-04-29 23:14:17 1211.000 0.72236862
+## 1000: 2017-04-29 23:14:24 1211.000 0.03086871
 ##                       tid type
-##    1:                  NA  bid
+##    1:                  NA  ask
 ##    2:                  NA  ask
-##    3:                  NA  ask
-##    4:                  NA  bid
-##    5:                  NA  bid
+##    3:                  NA  bid
+##    4:                  NA  ask
+##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  bid
-##  997:                  NA  bid
+##  996:                  NA  ask
+##  997:                  NA  ask
 ##  998:                  NA  ask
 ##  999:                  NA  ask
-## 1000: 1493481072633953524  ask</code></pre>
+## 1000: 1493507664042481126  ask</code></pre>
 <p>The output of <code>market.api.process</code> is a <code>list</code> object with information about Bitcoin in the <code>'kraken'</code> market. The actual trades are available in the <code>trade</code> slot of <code>my.l</code>. Let’s have a look at its content:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">tail</span>(my.l<span class="op">$</span>trades))</code></pre></div>
-<pre><code>##                   date    price     amount
-## 1: 2017-04-29 15:50:08 1214.989 0.12570669
-## 2: 2017-04-29 15:50:23 1214.989 0.02200000
-## 3: 2017-04-29 15:50:48 1214.989 0.10500000
-## 4: 2017-04-29 15:51:12 1212.550 0.00208028
-## 5: 2017-04-29 15:51:12 1211.640 0.40000000
-## 6: 2017-04-29 15:51:12 1211.640 0.09791972
-##                    tid type
-## 1:                  NA  bid
-## 2:                  NA  bid
-## 3:                  NA  bid
-## 4:                  NA  ask
-## 5:                  NA  ask
-## 6: 1493481072633953524  ask</code></pre>
+<pre><code>##                   date price     amount                 tid
+## 1: 2017-04-29 23:14:08  1211 0.01064000                  NA
+## 2: 2017-04-29 23:14:08  1211 0.51904327                  NA
+## 3: 2017-04-29 23:14:10  1211 0.24552254                  NA
+## 4: 2017-04-29 23:14:17  1211 0.41615636                  NA
+## 5: 2017-04-29 23:14:17  1211 0.72236862                  NA
+## 6: 2017-04-29 23:14:24  1211 0.03086871 1493507664042481126
+##    type
+## 1:  ask
+## 2:  ask
+## 3:  ask
+## 4:  ask
+## 5:  ask
+## 6:  ask</code></pre>
 <p>It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its <a href="https://github.com/jangorecki/Rbitcoin">website</a>.</p>
 </div>
 <div id="other-packages" class="section level3">

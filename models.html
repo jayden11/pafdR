@@ -94,6 +94,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -328,7 +338,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-<li><a href="https://sites.google.com/view/pmfdr/home" target="blank">Book Companion Site</a></li>
+<li><a href="https://sites.google.com/view/pafdr/home" target="blank">Book Companion Site</a></li>
 
 </ul>
 
@@ -1465,7 +1475,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## &lt;environment: 0x0000000017c6e7d8&gt;
+## &lt;environment: 0x0000000004fad880&gt;
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -1493,7 +1503,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Sat Apr 29 12:52:17 2017 by user: marcelo</code></pre>
+##  Sat Apr 29 20:15:52 2017 by user: marcelo</code></pre>
 <p>The resulting parameters from the estimation are close to the values defined arbitrarily in the call to <code>garchSpec</code>. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function <code>summary</code> also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader.</p>
 <p>Now, as an example with real data, let’s estimate a Garch model for the SP500 index. The data is loaded from section <a href="models.html#arima-estimating">9.4.2</a>, so we can use it directly. First, let’s execute the LM Arch test <span class="citation">(Engle <a href="#ref-engle1982autoregressive">1982</a>; Tsay <a href="#ref-tsay2005analysis">2005</a>)</span> to verify if the returns of the market index have the Arch effect. Function <code>ArchTest</code> from <code>FinTS</code> <span class="citation">(Graves <a href="#ref-fints">2014</a>)</span> can perform this task.  </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FinTS)
@@ -1557,7 +1567,7 @@ my.garchfit.sp500 &lt;-<span class="st"> </span><span class="kw">garchFit</span>
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Sat Apr 29 12:52:17 2017 by user: marcelo</code></pre>
+##  Sat Apr 29 20:15:53 2017 by user: marcelo</code></pre>
 <p>As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for <code>ar1</code>, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.</p>
 </div>
 <div id="forecasting-garch-models" class="section level3">

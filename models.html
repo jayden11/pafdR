@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -407,7 +407,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span cl
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-480-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-479-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Clearly, there is a positive linear correlation; an upward straight line would be a good approximation for the relationship between these variables. We can check this result with the calculation of the correlation coefficient with command <code>cor(temp.df$x, temp.df$y)</code>. Here, the correlation between <code>y</code> and <code>x</code> is 0.901.</p>
 </div>
 <div id="estimating-ols" class="section level3">
@@ -597,7 +597,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-492-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-491-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows a clear linear tendency; the returns from the market index are a good predictor of the returns of the stock. Now, let’s estimate the linear model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># estimate beta model</span>
 my.beta.model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> my.df.asset, <span class="dt">formula =</span> ret <span class="op">~</span><span class="st"> </span>ret.sp500)
@@ -841,7 +841,7 @@ df =<span class="st"> </span><span class="kw">data.frame</span>(y, x)
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">seq_along</span>(y) ,<span class="dt">y=</span>y))
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-509-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-508-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Object <code>y</code> contains zeros and ones, as expected.</p>
 </div>
 <div id="estimating-a-glm-model" class="section level3">
@@ -1020,7 +1020,7 @@ sim.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span cl
 <span class="kw">print</span>(<span class="kw">str</span>(sim.df))</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
 ##  $ G    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
-##  $ dates: Date, format: &quot;2017-04-30&quot; ...
+##  $ dates: Date, format: &quot;2017-05-03&quot; ...
 ##  $ y    : num  -10.68 -11.55 -11.74 -9.84 -11.96 ...
 ##  $ x    : num  -0.212 -1.042 -1.153 0.322 -1.5 ...
 ## NULL</code></pre>
@@ -1032,7 +1032,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>G)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-516-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-515-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows the strong linear relationship shared between x and y in the different groups. If we estimated a linear model from this data, we would have to allow a different intercept for each group we find in column <code>cases</code>.</p>
 </div>
 <div id="estimating-panel-data-models" class="section level3">
@@ -1287,7 +1287,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span cl
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-530-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-529-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The graph shows a time series with an average close to zero and strong instability. These are typical properties of an Arima model.</p>
 </div>
 <div id="arima-estimating" class="section level3">
@@ -1452,7 +1452,7 @@ temp.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span c
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span class="kw">aes</span>(<span class="dt">x=</span>idx, <span class="dt">y=</span>sim.ret))
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-544-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-543-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The behaviour of the simulated series is similar to the return series of the stocks presented in chapter <a href="Figures.html#Figures">8</a>. It is difficult to set one apart from the other based solely on visual inspection. Unlike other models, where the instability is constant, a Garch model can portray a return series more realistically by assuming a time changing volatility.</p>
 </div>
 <div id="estimating-garch" class="section level3">
@@ -1475,7 +1475,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## &lt;environment: 0x0000000004fad880&gt;
+## &lt;environment: 0x00000000101cbe20&gt;
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -1503,7 +1503,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Sat Apr 29 20:15:52 2017 by user: marcelo</code></pre>
+##  Tue May 02 09:40:48 2017 by user: marcelo</code></pre>
 <p>The resulting parameters from the estimation are close to the values defined arbitrarily in the call to <code>garchSpec</code>. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function <code>summary</code> also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader.</p>
 <p>Now, as an example with real data, let’s estimate a Garch model for the SP500 index. The data is loaded from section <a href="models.html#arima-estimating">9.4.2</a>, so we can use it directly. First, let’s execute the LM Arch test <span class="citation">(Engle <a href="#ref-engle1982autoregressive">1982</a>; Tsay <a href="#ref-tsay2005analysis">2005</a>)</span> to verify if the returns of the market index have the Arch effect. Function <code>ArchTest</code> from <code>FinTS</code> <span class="citation">(Graves <a href="#ref-fints">2014</a>)</span> can perform this task.  </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FinTS)
@@ -1567,7 +1567,7 @@ my.garchfit.sp500 &lt;-<span class="st"> </span><span class="kw">garchFit</span>
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Sat Apr 29 20:15:53 2017 by user: marcelo</code></pre>
+##  Tue May 02 09:40:48 2017 by user: marcelo</code></pre>
 <p>As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for <code>ar1</code>, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.</p>
 </div>
 <div id="forecasting-garch-models" class="section level3">
@@ -1693,7 +1693,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Simulated time series&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-565-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-564-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>We can also look at the simulated states:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 df.to.plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> my.ms.simul<span class="op">@</span>dep, 
@@ -1704,7 +1704,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;Probability of state 1&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-566-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-565-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As expected, the model is switching from one state to the other. Either state is strongly predominant over time, but state one seems to have a longer duration than state two. This property is controlled by the transition probabilities set in object <code>P</code>.</p>
 </div>
 <div id="estimating-regime-switching-models" class="section level3">
@@ -1769,7 +1769,7 @@ my.MS.model &lt;-<span class="st"> </span><span class="kw">MS_Regress_Fit</span>
 ##      Expected duration of Regime #2: 4.81 time periods</code></pre>
 <p>The estimated coefficients are close to the ones from the simulation. The estimation recognized the parameters from the simulated data. The output object from <code>MS_Regress_Fit</code> can also be used with <code>plot</code> for a custom figure. Have a look.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(my.MS.model)   <span class="co"># plotting output</span></code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-569-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-568-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As an example with real data, let’s estimate the same markov regime switching model for the SP500 returns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read file</span>
 my.f &lt;-<span class="st"> &#39;data/SP500.csv&#39;</span>
@@ -1861,7 +1861,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df.to.plot,
 
 <span class="co"># plot it!</span>
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-573-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-572-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows how the price increases in state 1 and decreases in state 2. From 2013 to 2015, it is clearly a bull market trend for the SP500 prices.</p>
 </div>
 <div id="forecasting-regime-switching-models" class="section level3">
@@ -1960,7 +1960,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df.to.plot, <span
 <span class="st">  </span><span class="kw">geom_histogram</span>()
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-582-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-581-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>For the SP500 data, we find no negative value of beta. Given the market portfolio is built as an average of the stocks, not surprisingly, the average beta equals one.</p>
 <p>Another way of storing and managing several models is to use the capabilities of list-columns with <code>dplyr</code>. Look at the next example of code, where we replicate the previous procedure of estimating an Arima model for several stocks using functions from <code>dplyr</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)

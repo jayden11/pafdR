@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -640,7 +640,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.title=</span><span class="kw">element_blank</span>())
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-605-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-604-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The yearly returns of the different investments are mostly positive. It is interesting to see the impact of the 2008 financial crisis. All indices had an extreme loss of value at that year. However, in the following year, 2009, there was a systematic recovery for all stock markets in our sample. The figure also shows a clear correlation in between the indices. Let’s have a look at its correlation matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
 
@@ -704,7 +704,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,
                <span class="dt">legend.title =</span> <span class="kw">element_blank</span>())
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-608-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-607-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>It is interesting to see how an investment in ^MXX, the Mexican stock market index, provided the highest accumulated return in the period of 16 years. However, analyzing performance is not just about maximizing raw returns. We also need to understand the risk of theses investments and whether it is proportional to the returns.</p>
 <p>There are many ways we can quantify risk. In a simple analysis that is coherent to financial theory, risk can be represented as the standard deviation of annual returns. This measure of volatility quantifies the expected uncertainty about future returns. For example, if an asset always yields returns that are close to its average, it is reasonable to expect that future returns will also be close to the historical average. The certainty about future returns increases as the standard deviation of returns decreases.</p>
 <p>The following code will use object <code>my.ret</code> to calculate the average and standard deviation of returns in the investments. We also add a column with the sharpe ratio, the average return divided by the standard deviation. This simple measure indicates how much return is provided by the asset for every unit of risk. The higher the sharpe ratio, the better the investment.</p>
@@ -739,7 +739,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
                   <span class="dt">label =</span> my.tab<span class="op">$</span>ticker)
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Risk&#39;</span>, <span class="dt">y=</span><span class="st">&#39;Expected Return&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-611-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-610-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The graph confirms the results about the high performance of the Mexican market. Its ticker, ^MXX, is located at the top left of the chart, with a high return and low risk. In the other side we have 000001.SS, the Chinese market index. It offers a higher average return but with excessive volatility.</p>
 <p>Now, let’s build a portfolio using the previous data. It makes sense to spread the total capital in different assets in order to obtain the benefits of diversification. Here, we want to find the portfolio weights that maximize our sharpe ratio. Package <code>fPortfolio</code> offer several functions for this purpose. First, we need to make sure that our matrix of returns is positive-definite and has no <code>NA</code> values. If this is not true, we won’t be able to run the optimization procedure. Let’s test it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(matrixcalc)
@@ -786,7 +786,7 @@ eff.port &lt;-<span class="st"> </span><span class="kw">tangencyPortfolio</span>
 ## 0.1101 0.2608 0.4200 0.4200 
 ## 
 ## Description:
-##  Sat Apr 29 20:16:15 2017 by user: marcelo</code></pre>
+##  Tue May 02 09:42:27 2017 by user: marcelo</code></pre>
 <p>Not surprisingly, the optimized portfolio invested a significant proportion in ^MXX. The American and Chinese market, with symbols ^GSPC and ^00001.SS, were left with approximately 10% of the portfolio. We can find out the exact sharpe ratio of this portfolio with the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get weights of efficient port</span>
 my.w &lt;-<span class="st"> </span>eff.port<span class="op">@</span>portfolio<span class="op">@</span>portfolio<span class="op">$</span>weights
@@ -812,7 +812,7 @@ my.pf &lt;-<span class="st"> </span><span class="kw">portfolioFrontier</span>(<s
                      <span class="dt">risk =</span> <span class="st">&#39;Sigma&#39;</span>, 
                      <span class="dt">twoAssets =</span> <span class="ot">FALSE</span>, 
                      <span class="dt">sharpeRatio =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-615-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-614-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows the investment opportunities of each stock individually and also the efficient frontier, the portfolios that offer the highest expected return for each value of risk. The efficient frontier represents the best possible investments in the mean/variance world. The red point to the left is the portfolio with the minimum variance. The blue point is the portfolio with highest sharpe ratio.</p>
 <p>The efficient frontier clearly shows how an investor can benefit from diversification. Every point in this curve has superior sharpe ratio than any other at the same level of risk. In other words, allocating all capital in ^FTSE or ^FCHI is a bad investment choice as better opportunities for the same level of risk are available. An investor should set a risk target and choose a portfolio from the efficient frontier.</p>
 <p>In this study we analyzed the historical performance of several international, dollar adjusted, market indices. Our results shows a strong correlation between the yearly returns of the different assets. We also find that the index with the best performance, measured by the sharpe ratio, is the Mexican stock index (<code>^MXX</code>). When building a optimized portfolio, we are able to marginally improve the sharpe ratio by investing 82% of the portfolio in <code>^MXX</code>, and the rest of capital split in SP500 (<code>^GSPC</code>) and the Chinese SSE Composite Index (<code>^000001.SS</code>). The efficient frontier shows exactly where an investor should allocate his capital for every value of risk. As for future performance, the big question is whether history will repeat itself and this optimized portfolio will continue to offer high returns for low risk. This clearly could be the question of another, more complex, research.</p>
@@ -1088,7 +1088,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(my.tab, <span cla
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>  <span class="fl">0.0</span>),<span class="dt">size=</span><span class="dv">1</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-631-1.png" width="60%" style="display: block; margin: auto;" /><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-631-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-630-1.png" width="60%" style="display: block; margin: auto;" /><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-630-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The visual results shows that the forecasting model has a relative good performance in forecasting direction of return. Out of 471 cases, 315 stocks (66.88%) presented a proportion of correct directional forecasts higher than 50%. While it is not a strong result, it is certainly not ignorable. However, when looking at excess return from the benchmark, only in 29.51% of the stocks we are able to find a positive excess return. While the model can predict the direction of the return, it mostly predicts small returns. In aggregate, the evidence that the model can outperform a simple <em>buy&amp;hold</em> strategy is weak.</p>
 <p>Let’s confirm this result using a formal test. In package <code>rugarch</code> (see section <a href="models.html#estimating-garch">9.5.2</a>) we find function <code>DACTest</code> that implements the directional accuracy test of <span class="citation">Pesaran and Timmermann (<a href="#ref-pesaran1992simple">1992</a>)</span> and the excess profitability test of <span class="citation">Anatolyev and Gerko (<a href="#ref-anatolyev2005trading">2005</a>)</span>. Its usage is straightforward, we input the forecasts in argument <code>forecast</code> and the real return values in <code>actual</code>. The choice of test is defined in input <code>test</code>. Let’s implement the test for all tickers.  </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.DAC.fct &lt;-<span class="st"> </span><span class="cf">function</span>(yhat, y, type.test) {
@@ -1125,14 +1125,14 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(my.tab, <span cla
 <span class="st">    </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>  <span class="fl">0.1</span>),<span class="dt">size=</span><span class="dv">1</span>)
 
 <span class="kw">print</span>(p)    </code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-633-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot histogram (AG)</span>
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(my.tab, <span class="kw">aes</span>(<span class="dt">x=</span>p.value.AG)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>  <span class="fl">0.1</span>),<span class="dt">size=</span><span class="dv">1</span>)
 
 <span class="kw">print</span>(p)    </code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-633-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The results in <code>my.tab</code> show that only in 50 stocks (out of 471) we reject the null hypothesis of no directional accuracy. As for the test of excess profit, we find that only in 62 cases the null hypothesis is rejected. We used a threshold value of 10% in both analysis. When looking at the whole dataset, the statistical evidence of directional predictability is very weak.</p>
 <p>The main results of the study are clear: <code>prophet</code> is particularly bad at point forecasts for returns but does a better job in directional predictions. Even though we find a positive correlation between forecast and real values, the formal Wald test clearly shows that the forecasting model is not able to provide an unbiased prediction of returns. In a trading setup, the results indicates that the model was not able to provide an over performance for the majority of the stocks. Both results were confirmed by formal statistical tests.</p>
 <p>In line with the previous example of research script, the R code presented here can be easily used in other setups. Changing the raw dataset is very simple: just set a new <code>dataframe</code> with columns <code>ret</code> and <code>ref.date</code>. You can investigate the same research hypothesis for other financial markets without much effort. Function <code>est.model.and.forecast</code> could also be changed for other forecasting models.</p>
@@ -1171,7 +1171,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">1</span>,<span class="dt">vjust=</span><span class="fl">0.5</span>))
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Tickers&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Number of trades&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-638-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-637-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>We can see that the six most traded assets in 2017-04-07 are VALE5, PETR4, JBSS3, ITUB4, BBAS3, BVMF3. A particular feature of the high frequency data from Brazil is that the liquidity is disperse and decreases rapidly across the assets. Even though we are only looking at trading data for one day, we can expect that the number of trades will also drop quickly in other time periods as well.</p>
 <p>From the programming side, object <code>df.tickers</code> is already sorted by the number of trades. So, in order to select the six most traded assets, we select the first six elements of <code>df.tickers$tickers</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n.assets &lt;-<span class="st"> </span><span class="dv">6</span>
@@ -1234,7 +1234,7 @@ p &lt;-<span class="st"> </span>p  <span class="op">+</span><span class="st"> </
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>InstrumentSymbol)
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;Number of Trades&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Time of Day&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-643-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-642-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Previous figure shows the number of trades as a function of the time of the day. As expected, we find that the intraday shape of liquidity follows a <em>U</em> pattern. That is, the number of trades rises in the beginning and ending of the day, with the smallest value around 13:15:00. Such a pattern is found for the great majority of the assets.</p>
 <p>This result is supported by previous findings in the literature <span class="citation">(Engle and Russell <a href="#ref-engle1998autoregressive">1998</a>,<span class="citation">Groß-Klußmann and Hautsch (<a href="#ref-gross2011machines">2011</a>)</span>)</span>. In the beginning of the trading day, a significant volume of overnight information is priced at the market, which justifies the increase of the number of trades. As for the end of the day, the higher volume of trades can be explained as an inventory strategy by the investors or market makers, which aims to finish the day with null portfolio positions in order to avoid the overnight risk. Since the decrease of portfolio size is achieved with more trades, we see a significant increase of negotiations at the end of the day.</p>
 </div>

@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -408,7 +408,7 @@ temp.df &lt;-<span class="st"> </span>my.df[my.df<span class="op">$</span>ticker
       <span class="dt">x =</span> ref.date, 
       <span class="dt">y =</span> price.adjusted, 
       <span class="dt">geom =</span> <span class="st">&#39;line&#39;</span>)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-448-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-447-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In the previous example, the name of the axis corresponds to the names of the columns in <code>temp.df</code>. If we want to customize it for a given text, we use arguments <code>xlab</code> and <code>ylab</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data =</span> temp.df, 
       <span class="dt">x =</span> ref.date, 
@@ -416,7 +416,7 @@ temp.df &lt;-<span class="st"> </span>my.df[my.df<span class="op">$</span>ticker
       <span class="dt">geom =</span> <span class="st">&#39;line&#39;</span>, 
       <span class="dt">xlab =</span> <span class="st">&#39;Dates&#39;</span>, 
       <span class="dt">ylab =</span> <span class="st">&#39;Adjusted closing prices&#39;</span>)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-449-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-448-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Notice how the horizontal axis of dates in the previous figures is formatted to show only the years. It adapts automatically according to the length of time in the plot. This only happened because the <code>ref.date</code> column is correctly defined as a <code>Date</code> object.</p>
 </div>
 <div id="using-ggplot" class="section level2">
@@ -429,9 +429,9 @@ temp.df &lt;-<span class="st"> </span>my.df[my.df<span class="op">$</span>ticker
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Dates&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Adjusted closing prices&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-450-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-449-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In using <code>ggplot</code>, it is always necessary to provide a <code>dataframe</code>. If you want to create figures from atomic vectors, you must allocate them to a <code>dataframe</code> first. After defining the data, we use function <code>aes</code> to set the aesthetics of the graph with the <em>x</em> and <em>y</em> coordinates. Here, we set the horizontal axis using column <code>date</code> and the vertical axis as prices (column <code>price.adjusted</code>). As we will soon see, it is possible to use other information in <code>aes</code>, such as colour and shapes.</p>
-<p>Once the data and axis are defined, we save it in object <code>p</code>. This object registers the current information as new layers are added with the <code>+</code> sign. The second line of the code, <code>p &lt;- p + geom_line()</code>, defines the type of figure. Here, we used function <code>geom_lines</code>, which is a simple line graph that connects the points. In <code>ggplot2</code>, the functions that define the geometric type begins with <code>geom_</code> character. So, using the <em>autocomplete</em> function of RStudio, you can see there a lot of options. We can use <code>stringr</code> to find the list of functions in <code>ggplot2</code>, version 2.2.1 (2017-04-29), that starts with <code>geom_</code>: </p>
+<p>Once the data and axis are defined, we save it in object <code>p</code>. This object registers the current information as new layers are added with the <code>+</code> sign. The second line of the code, <code>p &lt;- p + geom_line()</code>, defines the type of figure. Here, we used function <code>geom_lines</code>, which is a simple line graph that connects the points. In <code>ggplot2</code>, the functions that define the geometric type begins with <code>geom_</code> character. So, using the <em>autocomplete</em> function of RStudio, you can see there a lot of options. We can use <code>stringr</code> to find the list of functions in <code>ggplot2</code>, version 2.2.1 (2017-05-02), that starts with <code>geom_</code>: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(stringr)
 
@@ -483,7 +483,7 @@ temp.df &lt;-<span class="st"> </span>my.df[idx, ]</code></pre></div>
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Dates&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Adjusted closing prices&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-455-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-454-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>A difference from the previous examples is that we defined the colour of the lines using argument <code>colour</code> in <code>aes</code>. Each line colour is defined by the elements in column <code>ticker</code> of <code>temp.df</code>. The actual choices of colour, e.g., red, blue, and so on, is automatically defined by <code>ggplot</code>.</p>
 <p>Now, let’s use what we learned so far to create the current yield curve of the US market. The yield curve is one of the standard plots in finance, showing the market assessment of interest rates according to different time horizons. In the following code, we will first download the related data using package <code>ustyc</code>, structure and clean the raw data, and plot the yields for the last available date in 2016 using <code>ggplot2</code>. </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ustyc)
@@ -525,7 +525,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
               <span class="dt">title =</span> <span class="kw">paste0</span>(<span class="st">&#39;US Yield Curve (&#39;</span>,last.date,<span class="st">&#39;)&#39;</span> ))
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-456-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-455-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As expected, the current yield curve is upward rising, meaning the yield rate increases with the maturity of the debt. As an extension of the example, we can add some dynamic to the figure by using several dates. Have a look in the following code, where we use five yield curves covering the whole year of 2016.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set number of periods </span>
 n.periods &lt;-<span class="st"> </span><span class="dv">5</span>
@@ -551,7 +551,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
               <span class="dt">title =</span> <span class="st">&#39;US Yield Curve&#39;</span>)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-457-1.png" width="60%" style="display: block; margin: auto;" /> The US yield curve changed significantly in 2016. In empirical applications, the information in the US yield curve can be used as a benchmark for the calculation of cost of capital.</p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-456-1.png" width="60%" style="display: block; margin: auto;" /> The US yield curve changed significantly in 2016. In empirical applications, the information in the US yield curve can be used as a benchmark for the calculation of cost of capital.</p>
 <p>As another example of geometric shape in <code>ggplot</code>, let’s create a bar plot with the daily sharpe ratio, mean divided by standard deviation of returns, for 10 assets from the database, ordered from high to low. First, we need to calculate the sharpe ratio for each stock. This is easily done with <code>dplyr</code>. Once the data is available, we use <code>geom_bar</code> to create the bar figure. Notice input <code>x</code> in <code>aes</code> is set using <code>reorder(ticker, -sharpe.ratio)</code>. It forces the horizontal axis to display descending values of sharpe ratio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="co"># fix seed</span>
@@ -577,10 +577,10 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Tickers&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Daily Sharpe Ratio&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-458-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-457-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <div id="using-themes" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Using Themes</h3>
-<p>One way of customizing graphics in <code>ggplot2</code> is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package <code>ggplot</code> has a collection of functions for setting themes, and their name start with text <em>theme</em>. Next, we show the list of theme related functions in <code>ggplot</code>, version 2.2.1 (2017-04-29).</p>
+<p>One way of customizing graphics in <code>ggplot2</code> is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package <code>ggplot</code> has a collection of functions for setting themes, and their name start with text <em>theme</em>. Next, we show the list of theme related functions in <code>ggplot</code>, version 2.2.1 (2017-05-02).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(stringr)
 
@@ -607,12 +607,12 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-460-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-459-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As you can see, the new theme was a white background and a frame box. You can try other themes on your computer and see which one you like the most. You can also create your own theme. Have a look at <span class="citation">Wickham (<a href="#ref-wickham2009ggplot2">2009</a>)</span> for instructions on this specific task.</p>
 <p>In the previous example, notice how the structure of the figure has changed, but not the colours of the lines. These selection of the colours follows a cycle. When the whole sequence of colours ends, it restarts. Sometimes, especially in the submission to scientific journals, it is expected that all figures have a grey theme; they must be in black and white. We can use function <code>scale_colour_grey</code> to set a colour cycle between white and black in our previous figure: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_colour_grey</span>(<span class="dt">start =</span> <span class="fl">0.0</span>, <span class="dt">end =</span> <span class="fl">0.6</span>)
 <span class="kw">print</span>(p)  </code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-461-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-460-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The lines of the plot are now in grey. The inputs <code>start</code> and <code>end</code> at <code>scale_color_grey</code> set the minimum and maximum of “whiteness”. So, never use <code>end=1</code> with a white background. Otherwise, some lines will will not be visible.</p>
 </div>
 <div id="creating-panels-with-facet_wrap" class="section level3">
@@ -635,7 +635,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>ticker)
     
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-462-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-461-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Using panels is recommended when the data of the groups are similar and tend to agglomerate. This makes it difficult to analyze the differences between the groups in a single graphic. This is the case of stock returns of different assets. Consider the following example, where we create a panel for the returns of four randomly selected shares.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fix seed</span>
 <span class="kw">set.seed</span>(<span class="dv">25</span>)
@@ -652,12 +652,12 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>ticker)
     
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-463-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-462-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Notice how the vertical axis of the panels is fixed for all stocks, facilitating the visual analysis. We can also set the scales free by using option <code>scales='free'</code> in <code>facet_wrap</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>ticker, <span class="dt">scales =</span> <span class="st">&#39;free&#39;</span>)
     
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-464-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-463-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="using-pipelines-for-data-analysis-and-figures" class="section level2">
@@ -678,7 +678,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-465-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-464-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Notice how the previous code is self-contained, easy to read, and elegant. It goes from raw data to the plot, with no object created in the intermediate steps. Anyone can clearly see the steps taken to build the plot. Modifications in the data processing stage are also straightforward. One detail about using pipelines with <code>ggplot</code> is the steps in the plot creation are incremented with the <code>+</code> sign, not <code>%&gt;%</code>. From this section on, we will use the pipeline notation to simplify the code, whenever possible.</p>
 <p>We only scratched the surface of <code>ggplot2</code>. Many other aspects of the resulting figure can be controlled. Users with a specific need may consult the manual or the main reference of the package, <span class="citation">Wickham (<a href="#ref-wickham2009ggplot2">2009</a>)</span>. Forums and <em>mailing lists</em> are also a great source of information.</p>
 </div>
@@ -692,7 +692,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">25</span>)
   
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-466-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-465-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Here, we only need to define the <em>x</em> value, without the <em>y</em>. The size of the intervals in the histogram is defined by input <code>bins</code>.</p>
 <p>We can also use groups and facets as we did for point and line plots. Have a look.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fix seed</span>
@@ -708,7 +708,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>ticker)
   
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-467-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-466-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>A histogram with the empirical densities of the data can be created using function <code>geom_density</code>. While histograms built with <code>geom_histogram</code> count the number of times the data is located within an interval, a density histogram uses the relative frequency and interpolates the values, resulting in a more visually appealing representation of a distribution. See an example next.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(ticker <span class="op">%in%</span><span class="st"> </span>my.tickers) <span class="op">%&gt;%</span>
@@ -717,7 +717,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>ticker)
   
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-468-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-467-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The previous figure allows a clear visual comparison of the differences between the distributions of returns of the different stocks.</p>
 </div>
 <div id="creating-boxplot-figures" class="section level3">
@@ -735,7 +735,7 @@ p &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()
   
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-469-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-468-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As we can see from the previous figure, the stocks have different distributions for their prices. The middle line defines the median value, while the upper and lower lines of the box define the first and third quartile.</p>
 </div>
 <div id="creating-qq-plots" class="section level3">
@@ -757,7 +757,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
                  <span class="dt">dparams =</span> <span class="kw">c</span>(<span class="dt">mean=</span>my.mean, <span class="dt">sd=</span>my.sd))
   
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-470-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-469-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>In the previous code, we simulate random normal variables with mean 10 and standard deviation equal to 2. As you can see, the QQ plot is close to a straight line, meaning the empirical distribution of the simulated data is close to a Normal distribution. Since we used artificial data from the aforementioned distribution, this result is not surprising!</p>
 <p>Now, let’s try it for our dataset of stock’s returns. We will randomly select 4 stocks, create a new column, called <code>norm.ret</code>, with the normalized values of the returns. The normalization procedure works as follows; we subtract the mean for each return and divide the result by the standard deviations. This procedure must be executed on an individual basis for each stock. After that, we compare the resulting distribution against a standard Normal with mean zero and deviation equal to 1. The following code does this operation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fix seed</span>
@@ -799,7 +799,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>ticker)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-471-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-470-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As you can see, the result is not visually similar to the result found for the simulated distribution. In the extreme values of the normalized returns distributions, we see a higher proportion of cases, when comparing to the theoretical distribution. Such a result is well-known and called <em>fat tails</em>. This means the Normal distribution does a bad job describing empirical returns from the stock market. This issue is particularly important in the calculation of risk estimates, where a <em>fat tail</em> will underestimate the likelihood of an extreme loss.</p>
 </div>
 </div>

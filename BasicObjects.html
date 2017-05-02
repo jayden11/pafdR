@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -474,9 +474,9 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span cla
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] -1.05717780 -0.44919098 -0.85058029  0.29563103
-##  [5] -0.29629763  1.46760255 -1.23243144  0.21971427
-##  [9] -0.33177326  0.03488436</code></pre>
+<pre><code>##  [1] -0.37548146  0.57717796 -1.39909754 -1.44309871
+##  [5] -0.58557126 -0.68627459 -0.21716947 -0.54703890
+##  [9] -0.07401291  0.66687729</code></pre>
 <p>In the previous code, we generated ten random numbers from a normal distribution, with mean zero and standard deviation equal to one.</p>
 <p>Function <code>runif</code> generates random values uniformly distributed between a maximum and a minimum value. It is commonly used to simulate probabilities with values between zero and one. Function <code>runif</code> has three input parameters: the desired number of random values, the minimum value, and maximum value. See the following example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a random vector with minimum and maximum</span>
@@ -484,9 +484,8 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">runif</span>(<span cla
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] -0.39977410 -3.46496359  0.04204952 -0.23783488
-##  [5] -0.56861381  4.09161444  0.34029470 -3.73211934
-##  [9]  0.93849517 -2.73209066</code></pre>
+<pre><code>##  [1]  1.5088204 -0.9927420 -1.4895176 -1.3899624 -2.4444833
+##  [6]  3.4736682  1.6509121 -0.1826302 -2.3791113  0.7972413</code></pre>
 <p>Note that both functions, <code>rnorm</code> and <code>runif</code>, are limited to their respective distribution. An alternative and flexible way to generate random values is to use the <code>sample</code> function. It accepts any vector as input and returns a scrambled version of its elements. Its flexibility lies in the fact that the input vector can be anything. For example, if we wanted to create a random vector with elements taken from vector <code>c(0, 5, 15, 20, 25)</code>, we could do it as follows: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create sequence</span>
 my.vec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">25</span>, <span class="dt">by=</span><span class="dv">5</span>)
@@ -496,21 +495,21 @@ my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1] 10 15  5  0 25 20</code></pre>
+<pre><code>## [1] 25  0 15  5 10 20</code></pre>
 <p>Function <code>sample</code> also allows the random selection of several elements. If we wanted to select randomly only one element of <code>my.vec</code>, we could write the code as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sample one element of my.vec</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec, <span class="dt">size =</span> <span class="dv">1</span>)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 25</code></pre>
 <p>If we wanted two random elements from <code>my.rnd.vec</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sample one element of my.vec</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(my.vec, <span class="dt">size =</span> <span class="dv">2</span>)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>## [1]  5 15</code></pre>
+<pre><code>## [1]  5 20</code></pre>
 <p>It is also possible to select values from a smaller vector to create a larger vector. Consider the case where you have a vector with numbers <code>c(5, 10, 15)</code> and want to create a random vector with ten elements removed from that smaller vector. For that, we use option <code>replace = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create vector</span>
 my.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>)
@@ -518,11 +517,11 @@ my.vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 <span class="co"># sample</span>
 my.rnd.vec &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> my.vec, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 <span class="kw">print</span>(my.rnd.vec)</code></pre></div>
-<pre><code>##  [1] 15 10  5  5 15  5 15 15 15  5</code></pre>
+<pre><code>##  [1] 10  5 10 10 10  5  5  5 10 10</code></pre>
 <p>Another important feature of <code>sample</code> is it works for any type of vector, not only for those of the <code>numeric</code> class. This means we can randomize any sort of object. Have a look:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example of sample with characters</span>
 <span class="kw">print</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&#39;elem 1&#39;</span>,<span class="st">&#39;elem 2&#39;</span>,<span class="st">&#39;elem 3&#39;</span>), <span class="dv">1</span>))</code></pre></div>
-<pre><code>## [1] &quot;elem 1&quot;</code></pre>
+<pre><code>## [1] &quot;elem 3&quot;</code></pre>
 <p>At this point, it is important to acknowledge that <strong>the generation of random values in R is not entirely random!</strong> Internally, the computer chooses values from a queue. Each time functions, such as <code>rnorm</code>, <code>runif</code>, and <code>sample</code>, are called in the code, the computer chooses a different place in this queue according to various parameters, such as time itself. The practical effect is that the chosen values from the queue are unpredictable from the user point of view.</p>
 <p>However, you can select set the place in the queue of random values using function <code>set.seed</code>. In practical terms, the result is that all numbers and random selections will be the same in every code execution. Using <code>set.seed</code> is strongly recommended for the reproducibility of codes involving randomness. We will use this function throughout the book, so anyone can replicate the results from the code. See the following example. </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set seed with integer 10</span>
@@ -1734,18 +1733,18 @@ my.day &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.day)</code></pre></div>
-<pre><code>## [1] &quot;2017-04-29&quot;</code></pre>
+<pre><code>## [1] &quot;2017-05-02&quot;</code></pre>
 <p>To find the current date and time, we use function <code>Sys.time</code>: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get time!</span>
 <span class="kw">print</span>(<span class="kw">Sys.time</span>())</code></pre></div>
-<pre><code>## [1] &quot;2017-04-29 20:11:47 BRT&quot;</code></pre>
+<pre><code>## [1] &quot;2017-05-02 09:37:41 BRT&quot;</code></pre>
 <p>Going further, based on these functions, we can write:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example of log message</span>
 my.str &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&#39;This code was executed in &#39;</span>, <span class="kw">Sys.time</span>())
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.str)</code></pre></div>
-<pre><code>## [1] &quot;This code was executed in 2017-04-29 20:11:47&quot;</code></pre>
+<pre><code>## [1] &quot;This code was executed in 2017-05-02 09:37:41&quot;</code></pre>
 </div>
 <div id="other-functions-for-manipulating-dates-and-time" class="section level3">
 <h3><span class="header-section-number">3.5.7</span> Other Functions for Manipulating Dates and Time</h3>

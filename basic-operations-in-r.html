@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -383,7 +383,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p><strong>decimal:</strong> Following an international notation, the decimal point in R is defined by the period symbol (.), as in <code>2.5</code> and not comma, as in <code>2,5</code>. In some countries, this might not be the case. This difference can create a lot of confusion and errors at the beginning. Some software, such as Microsoft Excel, does the conversion automatically when the data is imported. This, however, is generally an exception. As a general rule of using R, only use commas to separate the inputs of a function. Under no circumstances should the comma symbol be used as the decimal point separator. Always give priority to the international format because it will be compatible with the vast majority of data. Other researchers may experience some difficulty in understanding your code if you use your local notation for the decimal. </p></li>
 <li><p><strong>Latin characters:</strong> Due to its international standard, R has problems understanding Latin characters, such as the cedilla and accents. If you can avoid it, do not use these characters in the names of your variables or files. In character objects (text), you can use them without problems as long as the encoding is correctly specified (e.g. UTF-8, Latin1). Given that, it is recommended that the R code be written in the English language. This automatically eliminates the use of Latin characters and facilitates the usability of the code by people outside of your country.   </p></li>
-<li><p><strong>date format:</strong> Dates in R are formatted according to the <code>YYYY-MM-DD</code> pattern, where <code>YYYY</code> is the year in four numbers, <code>MM</code> is the month and <code>DD</code> is the day. An example is 2017-04-29. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. </p></li>
+<li><p><strong>date format:</strong> Dates in R are formatted according to the <code>YYYY-MM-DD</code> pattern, where <code>YYYY</code> is the year in four numbers, <code>MM</code> is the month and <code>DD</code> is the day. An example is 2017-05-02. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. </p></li>
 </ul>
 <p>If you want to learn more about your local format in R, use the following command by typing it in the prompt and pressing enter:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.localeconv</span>()</code></pre></div>
@@ -1022,8 +1022,8 @@ n.cran.packages &lt;-<span class="st"> </span><span class="kw">nrow</span>(df.cr
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(n.cran.packages)</code></pre></div>
-<pre><code>## [1] 10459</code></pre>
-<p>If asked about which mirror to use, simply select the one closest to you. Currently (2017-04-29 20:11:44), there are 10459 packages available on the CRAN servers. We can see some details of the first three packages in <code>df.cran.pkgs</code> with function <code>print</code> and some indexing: </p>
+<pre><code>## [1] 10471</code></pre>
+<p>If asked about which mirror to use, simply select the one closest to you. Currently (2017-05-02 09:37:37), there are 10471 packages available on the CRAN servers. We can see some details of the first three packages in <code>df.cran.pkgs</code> with function <code>print</code> and some indexing: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print information about the first three packages</span>
 <span class="kw">print</span>(df.cran.pkgs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ])</code></pre></div>
 <pre><code>##        Package  Version Priority
@@ -1065,8 +1065,8 @@ n.local.packages &lt;-<span class="st"> </span><span class="kw">nrow</span>(<spa
 
 <span class="co"># print it </span>
 <span class="kw">print</span>(n.local.packages)</code></pre></div>
-<pre><code>## [1] 359</code></pre>
-<p>In this case, the computer on which the book was written has 359 packages currently installed. This value is probably different from yours. Give it a try!</p>
+<pre><code>## [1] 364</code></pre>
+<p>In this case, the computer on which the book was written has 364 packages currently installed. This value is probably different from yours. Give it a try!</p>
 <div id="installing-packages-from-cran" class="section level3">
 <h3><span class="header-section-number">2.19.1</span> Installing Packages from CRAN</h3>
 <p>To install a package, simply use the command <code>install.packages</code>. You only need to do it once for each new package. As an example, we will install a package called <code>quantmod</code> that will be used in future chapters. </p>
@@ -1224,7 +1224,8 @@ my.dirs &lt;-<span class="st"> </span><span class="kw">list.dirs</span>(<span cl
 ## [15] &quot;./procmodelfindatar_ed_1_files&quot;
 ## [16] &quot;./Removed chapters&quot;            
 ## [17] &quot;./Scripts&quot;                     
-## [18] &quot;./tabs&quot;</code></pre>
+## [18] &quot;./tabs&quot;                        
+## [19] &quot;./XBRLcache&quot;</code></pre>
 <p>The command <code>list.dirs(recursive = F)</code> listed all directories of the current path without recursion. The output shows the directories that I have used to write this book. It includes the output directory of the book ( <code>./_book</code>), the directory with the data (<code>./data</code>), among others. In this same directory, you can find the chapters of the book, organized by files and based on the <em>RMarkdown</em> language (<code>.Rmd</code> file extension). To list only files with the extension <code>.Rmd</code>, we can use the <code>pattern</code> input in function <code>list.files</code> as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list all files with extension .Rmd</span>
 <span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;*.Rmd&quot;</span>)</code></pre></div>

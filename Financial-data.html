@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -473,21 +473,21 @@ my.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span cla
 <span class="co"># print result  </span>
 <span class="kw">print</span>(my.df)</code></pre></div>
 <pre><code>##      ref.date    prices   ticker
-## 1  2017-04-30 10.018746 Stock  A
-## 2  2017-05-01  9.834148 Stock  A
-## 3  2017-05-02  8.485561 Stock  A
-## 4  2017-05-03  7.977134 Stock  A
-## 5  2017-05-04  8.212097 Stock  A
-## 6  2017-04-30 20.779589 Stock  B
-## 7  2017-05-01 18.269256 Stock  B
-## 8  2017-05-02 17.604847 Stock  B
-## 9  2017-05-03 14.741115 Stock  B
-## 10 2017-05-04 14.363037 Stock  B
-## 11 2017-04-30 33.305339 Stock  C
-## 12 2017-05-01 35.822494 Stock  C
-## 13 2017-05-02 34.969082 Stock  C
-## 14 2017-05-03 38.422086 Stock  C
-## 15 2017-05-04 41.270661 Stock  C</code></pre>
+## 1  2017-05-03 10.018746 Stock  A
+## 2  2017-05-04  9.834148 Stock  A
+## 3  2017-05-05  8.485561 Stock  A
+## 4  2017-05-06  7.977134 Stock  A
+## 5  2017-05-07  8.212097 Stock  A
+## 6  2017-05-03 20.779589 Stock  B
+## 7  2017-05-04 18.269256 Stock  B
+## 8  2017-05-05 17.604847 Stock  B
+## 9  2017-05-06 14.741115 Stock  B
+## 10 2017-05-07 14.363037 Stock  B
+## 11 2017-05-03 33.305339 Stock  C
+## 12 2017-05-04 35.822494 Stock  C
+## 13 2017-05-05 34.969082 Stock  C
+## 14 2017-05-06 38.422086 Stock  C
+## 15 2017-05-07 41.270661 Stock  C</code></pre>
 <p>As mentioned before, using a matrix notation facilitates calculations for the portfolio. With that in mind, we will first transform the long <code>dataframe</code> in a <code>matrix</code> of prices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set price matrix</span>
 my.price.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(my.df<span class="op">$</span>prices, <span class="dt">nrow =</span> nT)
@@ -499,11 +499,11 @@ my.price.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(my.df<
 <span class="co"># print result</span>
 <span class="kw">print</span>(my.price.mat)</code></pre></div>
 <pre><code>##             Stock  A Stock  B Stock  C
-## 2017-04-30 10.018746 20.77959 33.30534
-## 2017-05-01  9.834148 18.26926 35.82249
-## 2017-05-02  8.485561 17.60485 34.96908
-## 2017-05-03  7.977134 14.74111 38.42209
-## 2017-05-04  8.212097 14.36304 41.27066</code></pre>
+## 2017-05-03 10.018746 20.77959 33.30534
+## 2017-05-04  9.834148 18.26926 35.82249
+## 2017-05-05  8.485561 17.60485 34.96908
+## 2017-05-06  7.977134 14.74111 38.42209
+## 2017-05-07  8.212097 14.36304 41.27066</code></pre>
 <p>Now, from the price matrix, we can calculate a return matrix using simple element by element operation with the whole matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apply return formula for each column</span>
 my.ret.mat &lt;-<span class="st"> </span>my.price.mat[<span class="dv">2</span><span class="op">:</span><span class="st"> </span><span class="kw">nrow</span>(my.price.mat)   , ]<span class="op">/</span>
@@ -512,10 +512,10 @@ my.ret.mat &lt;-<span class="st"> </span>my.price.mat[<span class="dv">2</span><
 <span class="co"># print it!</span>
 <span class="kw">print</span>(my.ret.mat)</code></pre></div>
 <pre><code>##               Stock  A    Stock  B    Stock  C
-## 2017-05-01 -0.01842525 -0.12080762  0.07557815
-## 2017-05-02 -0.13713305 -0.03636760 -0.02382336
-## 2017-05-03 -0.05991677 -0.16266727  0.09874447
-## 2017-05-04  0.02945451 -0.02564784  0.07413901</code></pre>
+## 2017-05-04 -0.01842525 -0.12080762  0.07557815
+## 2017-05-05 -0.13713305 -0.03636760 -0.02382336
+## 2017-05-06 -0.05991677 -0.16266727  0.09874447
+## 2017-05-07  0.02945451 -0.02564784  0.07413901</code></pre>
 <p>Finally, we use the weight vector in a <code>matrix</code> object to calculate the return of the portfolio over time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set weight of portfolio (evenly weighted)</span>
 w &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)
@@ -526,10 +526,10 @@ ret.port &lt;-<span class="st"> </span>my.ret.mat <span class="op">%*%</span><sp
 <span class="co"># print result</span>
 <span class="kw">print</span>(ret.port)</code></pre></div>
 <pre><code>##                   [,1]
-## 2017-05-01 -0.02121824
-## 2017-05-02 -0.06577467
-## 2017-05-03 -0.04127986
-## 2017-05-04  0.02598190</code></pre>
+## 2017-05-04 -0.02121824
+## 2017-05-05 -0.06577467
+## 2017-05-06 -0.04127986
+## 2017-05-07  0.02598190</code></pre>
 <p>Vector <code>ret.port</code> show the return an investor would receive if the total value of the portfolio is evenly divided between the stocks.</p>
 </div>
 </div>

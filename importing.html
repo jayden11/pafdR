@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -671,19 +671,19 @@ my.env &lt;-<span class="st"> </span><span class="kw">new.env</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print contents of MSFT</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(my.env<span class="op">$</span>MSFT))</code></pre></div>
 <pre><code>##            MSFT.Open MSFT.High MSFT.Low MSFT.Close
-## 2017-04-21     65.67     66.70    65.45      66.40
 ## 2017-04-24     67.48     67.66    67.10      67.53
 ## 2017-04-25     67.90     68.04    67.60      67.92
 ## 2017-04-26     68.08     68.31    67.62      67.83
 ## 2017-04-27     68.15     68.38    67.58      68.27
 ## 2017-04-28     68.91     69.14    67.69      68.46
+## 2017-05-01     68.68     69.55    68.50      69.41
 ##            MSFT.Volume MSFT.Adjusted
-## 2017-04-21    32390600         66.40
 ## 2017-04-24    29715500         67.53
 ## 2017-04-25    30087700         67.92
 ## 2017-04-26    25704400         67.83
 ## 2017-04-27    33464900         68.27
-## 2017-04-28    39423500         68.46</code></pre>
+## 2017-04-28    39423500         68.46
+## 2017-05-01    31789300         69.41</code></pre>
 <p>The previous code downloads data for all tickers in <code>my.tickers</code>. The resulting <code>dataframe</code> objects are available in environment <code>my.env</code>, and we can access them using operator <code>$</code>. There are easier ways of organizing financial data for several tickers, as we will soon learn. Ideally, we should have all stocks in a long <code>dataframe</code>.</p>
 </div>
 <div id="package-batchgetsymbols" class="section level3">
@@ -714,33 +714,33 @@ l.out &lt;-<span class="st"> </span><span class="kw">BatchGetSymbols</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print result of download process</span>
 <span class="kw">print</span>(l.out<span class="op">$</span>df.control)</code></pre></div>
 <pre><code>##   ticker   src download.status total.obs
-## 1   MSFT yahoo              OK        21
-## 2  GOOGL yahoo              OK        21
-## 3    JPM yahoo              OK        21
-## 4     GE yahoo              OK        21
+## 1   MSFT yahoo              OK        20
+## 2  GOOGL yahoo              OK        20
+## 3    JPM yahoo              OK        20
+## 4     GE yahoo              OK        20
 ##   perc.benchmark.dates threshold.decision
 ## 1                    1               KEEP
 ## 2                    1               KEEP
 ## 3                    1               KEEP
 ## 4                    1               KEEP</code></pre>
-<p>Object <code>df.control</code> shows all tickers were valid, and we got 21 observations (rows) for each.</p>
+<p>Object <code>df.control</code> shows all tickers were valid, and we got 20 observations (rows) for each.</p>
 <p>As for the actual financial data, it is contained in element <code>df.tickers</code> of <code>l.out</code>. Let’s look:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print df.tickers</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(l.out<span class="op">$</span>df.tickers))</code></pre></div>
 <pre><code>##    price.open price.high price.low price.close   volume
-## 79      30.27      30.38     29.45       29.55 71936900
-## 80      29.85      29.93     29.49       29.55 47640000
-## 81      29.45      29.60     29.32       29.45 39764600
-## 82      29.52      29.55     29.26       29.26 36606000
-## 83      29.29      29.31     29.02       29.08 32777900
-## 84      29.10      29.16     28.93       28.99 23929100
+## 75      29.85      29.93     29.49       29.55 47640000
+## 76      29.45      29.60     29.32       29.45 39764600
+## 77      29.52      29.55     29.26       29.26 36606000
+## 78      29.29      29.31     29.02       29.08 32777900
+## 79      29.10      29.16     28.93       28.99 23929100
+## 80      29.01      29.17     28.93       28.94 23695700
 ##    price.adjusted   ref.date ticker
-## 79          29.55 2017-04-21     GE
-## 80          29.55 2017-04-24     GE
-## 81          29.45 2017-04-25     GE
-## 82          29.26 2017-04-26     GE
-## 83          29.08 2017-04-27     GE
-## 84          28.99 2017-04-28     GE</code></pre>
+## 75          29.55 2017-04-24     GE
+## 76          29.45 2017-04-25     GE
+## 77          29.26 2017-04-26     GE
+## 78          29.08 2017-04-27     GE
+## 79          28.99 2017-04-28     GE
+## 80          28.94 2017-05-01     GE</code></pre>
 <p>As expected, the information about prices and volume is there. Notice it also includes a column, called <code>ticker</code>, containing the symbols of the stocks. Later, in chapter <a href="programming.html#programming">7</a>, we will use this column to make calculations for each stock in our dataset.</p>
 <p>Another useful function of <code>BatchGetSymbols</code> is <code>GetSP500Stocks</code>, which imports the current composition of the SP500 index, including the tickers of the stocks. So, by using <code>GetSP500Stocks</code> and <code>BatchGetSymbols</code> together, you can easily download a large amount of stock data for the US market. Consider the following chunk of code, where we performed such operation:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(BatchGetSymbols)
@@ -857,12 +857,12 @@ my.df &lt;-<span class="st"> </span><span class="kw">tq_get</span>(my.ticker,
 <pre><code>## # A tibble: 6 × 7
 ##         date   open   high    low  close   volume adjusted
 ##       &lt;date&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1 2017-04-21 142.44 142.68 141.85 142.27 17245200   142.27
-## 2 2017-04-24 143.50 143.95 143.18 143.64 17099200   143.64
-## 3 2017-04-25 143.91 144.90 143.87 144.53 18290300   144.53
-## 4 2017-04-26 144.47 144.60 143.38 143.68 19769400   143.68
-## 5 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
-## 6 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65</code></pre>
+## 1 2017-04-24 143.50 143.95 143.18 143.64 17099200   143.64
+## 2 2017-04-25 143.91 144.90 143.87 144.53 18290300   144.53
+## 3 2017-04-26 144.47 144.60 143.38 143.68 19769400   143.68
+## 4 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
+## 5 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65
+## 6 2017-05-01 145.10 147.20 144.96 146.58 33424500   146.58</code></pre>
 <p>As we can see, the price data is the same as using <code>quantmod</code> and <code>BatchGetSymbols</code>. In fact, the origin of it is the same, Yahoo Finance. One interesting aspect of <code>tidyquant</code> is the same function, <code>tq_get</code>, can be used to download other financial information from different sources, such as Google Finance, Morning Star, FRED, and Oanda. For example, we can download key financial ratios from Morning Star by setting <code>get='key.ratios'</code> in <code>tq_get</code>. </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get key financial rations of AAPL</span>
 df.key.ratios &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">&quot;AAPL&quot;</span>,<span class="dt">get =</span> <span class="st">&quot;key.ratios&quot;</span>)
@@ -1134,12 +1134,12 @@ my.df &lt;-<span class="st"> </span><span class="kw">Quandl</span>(<span class="
 
 <span class="kw">print</span>(<span class="kw">tail</span>(my.df))</code></pre></div>
 <pre><code>##            Date    Value
-## 4515 2000-01-10 274.3301
-## 4516 2000-01-07 274.1764
-## 4517 2000-01-06 269.9777
-## 4518 2000-01-05 271.3069
-## 4519 2000-01-04 273.2482
-## 4520 2000-01-03 280.2000</code></pre>
+## 4516 2000-01-10 274.3301
+## 4517 2000-01-07 274.1764
+## 4518 2000-01-06 269.9777
+## 4519 2000-01-05 271.3069
+## 4520 2000-01-04 273.2482
+## 4521 2000-01-03 280.2000</code></pre>
 <p>Notice how we used <code>type = 'raw'</code> in the inputs of <code>Quandl</code>. This option forces the function to output a <code>dataframe</code>. Other options include the output of objects of type <code>ts</code>, <code>zoo</code>, <code>xts</code> and <code>timeSeries</code>. If using <code>Quandl</code> will become part of your data analysis routine, I strongly recommend reading the help manual of the package. Several parameters can be passed to function <code>Quandl</code>, including the choice for applying transformations in the resulting dataset. You can find more details about using <code>Quandl</code> in R from its <a href="https://docs.quandl.com/docs/r">website</a>.</p>
 </div>
 <div id="package-rbitcoin" class="section level3">
@@ -1169,52 +1169,52 @@ my.l &lt;-<span class="st"> </span><span class="kw">market.api.process</span>(<s
 ## [1] &quot;EUR&quot;
 ## 
 ## $timestamp
-## [1] &quot;2017-04-29 20:14:30 BRT&quot;
+## [1] &quot;2017-05-02 09:39:29 BRT&quot;
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-04-29 21:31:36 1214.882 0.02500000
-##    2: 2017-04-29 21:32:05 1214.882 0.05879558
-##    3: 2017-04-29 21:32:06 1214.800 0.17356766
-##    4: 2017-04-29 21:32:13 1213.036 0.01780000
-##    5: 2017-04-29 21:32:15 1213.037 0.18335965
+##    1: 2017-05-02 12:08:15 1330.001 0.35360000
+##    2: 2017-05-02 12:08:17 1330.001 0.31649226
+##    3: 2017-05-02 12:08:17 1329.615 0.41720000
+##    4: 2017-05-02 12:08:17 1329.614 0.41720000
+##    5: 2017-05-02 12:08:17 1329.613 0.00310774
 ##   ---                                        
-##  996: 2017-04-29 23:14:08 1211.000 0.51904327
-##  997: 2017-04-29 23:14:10 1211.000 0.24552254
-##  998: 2017-04-29 23:14:17 1211.000 0.41615636
-##  999: 2017-04-29 23:14:17 1211.000 0.72236862
-## 1000: 2017-04-29 23:14:24 1211.000 0.03086871
+##  996: 2017-05-02 12:39:14 1322.384 0.04104397
+##  997: 2017-05-02 12:39:15 1322.384 0.01730000
+##  998: 2017-05-02 12:39:16 1322.470 0.15544000
+##  999: 2017-05-02 12:39:21 1322.470 0.64456000
+## 1000: 2017-05-02 12:39:25 1322.471 0.07000000
 ##                       tid type
 ##    1:                  NA  ask
 ##    2:                  NA  ask
-##    3:                  NA  bid
+##    3:                  NA  ask
 ##    4:                  NA  ask
 ##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  ask
-##  997:                  NA  ask
-##  998:                  NA  ask
-##  999:                  NA  ask
-## 1000: 1493507664042481126  ask</code></pre>
+##  996:                  NA  bid
+##  997:                  NA  bid
+##  998:                  NA  bid
+##  999:                  NA  bid
+## 1000: 1493728765679892163  ask</code></pre>
 <p>The output of <code>market.api.process</code> is a <code>list</code> object with information about Bitcoin in the <code>'kraken'</code> market. The actual trades are available in the <code>trade</code> slot of <code>my.l</code>. Let’s have a look at its content:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">tail</span>(my.l<span class="op">$</span>trades))</code></pre></div>
-<pre><code>##                   date price     amount                 tid
-## 1: 2017-04-29 23:14:08  1211 0.01064000                  NA
-## 2: 2017-04-29 23:14:08  1211 0.51904327                  NA
-## 3: 2017-04-29 23:14:10  1211 0.24552254                  NA
-## 4: 2017-04-29 23:14:17  1211 0.41615636                  NA
-## 5: 2017-04-29 23:14:17  1211 0.72236862                  NA
-## 6: 2017-04-29 23:14:24  1211 0.03086871 1493507664042481126
-##    type
-## 1:  ask
-## 2:  ask
-## 3:  ask
-## 4:  ask
-## 5:  ask
-## 6:  ask</code></pre>
+<pre><code>##                   date    price     amount
+## 1: 2017-05-02 12:39:10 1323.570 0.06190900
+## 2: 2017-05-02 12:39:14 1322.384 0.04104397
+## 3: 2017-05-02 12:39:15 1322.384 0.01730000
+## 4: 2017-05-02 12:39:16 1322.470 0.15544000
+## 5: 2017-05-02 12:39:21 1322.470 0.64456000
+## 6: 2017-05-02 12:39:25 1322.471 0.07000000
+##                    tid type
+## 1:                  NA  bid
+## 2:                  NA  bid
+## 3:                  NA  bid
+## 4:                  NA  bid
+## 5:                  NA  bid
+## 6: 1493728765679892163  ask</code></pre>
 <p>It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its <a href="https://github.com/jangorecki/Rbitcoin">website</a>.</p>
 </div>
 <div id="other-packages" class="section level3">

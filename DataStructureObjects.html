@@ -26,7 +26,7 @@
 <meta name="author" content="Marcelo S. Perlin (marcelo.perlin@ufrgs.br)">
 
 
-<meta name="date" content="2017-04-29">
+<meta name="date" content="2017-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1474,9 +1474,14 @@ my.f.tex &lt;-<span class="st"> &#39;tabs/MyTable.tex&#39;</span>
       <span class="dt">include.rownames =</span> <span class="ot">FALSE</span>,
       <span class="dt">file =</span> my.f.tex,
       <span class="dt">type=</span><span class="st">&#39;latex&#39;</span>)</code></pre></div>
-<p>In function <code>xtable</code>, we kept it simple by only using arguments <code>caption</code> and <code>label</code>. The resulting LaTeX file is saved in folder <code>tabs</code> of the current directory. If it doesn’t exist, you can create it with <code>dir.create('tabs')</code>. There are many more options for customization. The result in a compiled latex file will be identical to Table , a print-ready material for an scientific article or report.</p>
-
-<p>Another interesting package worth mentioning at this stage is <code>stargazer</code>. Like <code>texreg</code>, it provides many options for customizing a table and exporting it. One innovation over <code>texreg</code> is it offers templates for journals, such as a table template for <em>American Economic Review</em>, <em>Quarterly Journal of Economics</em>, and others. Let’s give it a try by replicating the previous table. In the next code, we again use object <code>my.table</code> to export a LaTeX table. The result is reported in Table .  </p>
+<p>In function <code>xtable</code>, we kept it simple by only using arguments <code>caption</code> and <code>label</code>. The resulting LaTeX file is saved in folder <code>tabs</code> of the current directory. If it doesn’t exist, you can create it with <code>dir.create('tabs')</code>. There are many more options for customization. The result in a compiled latex file will be identical to <a href="DataStructureObjects.html#fig:table-xtable">4.2</a>, a print-ready material for an scientific article or report.</p>
+<div class="figure" style="text-align: center"><span id="fig:table-xtable"></span>
+<img src="tabs/table-4-2.png" alt="Example of table with xtable" width="75%" />
+<p class="caption">
+Figure 4.2: Example of table with xtable
+</p>
+</div>
+<p>Another interesting package worth mentioning at this stage is <code>stargazer</code>. Like <code>texreg</code>, it provides many options for customizing a table and exporting it. One innovation over <code>texreg</code> is it offers templates for journals, such as a table template for <em>American Economic Review</em>, <em>Quarterly Journal of Economics</em>, and others. Let’s give it a try by replicating the previous table. In the next code, we again use object <code>my.table</code> to export a LaTeX table. The result is reported in <a href="DataStructureObjects.html#fig:table-stargazer">4.3</a>.  </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stargazer)
 
 my.stargazer &lt;-<span class="st"> </span><span class="kw">stargazer</span>(my.table, 
@@ -1489,7 +1494,12 @@ my.stargazer &lt;-<span class="st"> </span><span class="kw">stargazer</span>(my.
                           <span class="dt">out.header =</span> <span class="ot">FALSE</span>,
                           <span class="dt">header =</span> <span class="ot">FALSE</span>,
                           <span class="dt">label =</span> <span class="st">&#39;tab:DescRetStats_stargazer&#39;</span> )</code></pre></div>
-
+<div class="figure" style="text-align: center"><span id="fig:table-stargazer"></span>
+<img src="tabs/table-4-3.png" alt="Example of table with stargazer" width="75%" />
+<p class="caption">
+Figure 4.3: Example of table with stargazer
+</p>
+</div>
 <p>As for exporting tables to Word (Microsoft) or Writer (Libreoffice) files, there is no direct way of doing so using <code>xtable</code> or <code>stargazer</code>. But, a simple workaround is to use either package to output a table to a temporary <em>.html</em> or <em>.doc</em> file and then copy and paste the result in the final report. This operation works because <em>.html</em> and <em>.doc</em> files share a similar format for tables. Let’s try it. First, we will save the table in a new file with the <em>.html</em> extension:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set html file for output</span>
 my.f.html &lt;-<span class="st"> &#39;tabs/MyTable.html&#39;</span>
@@ -1499,11 +1509,11 @@ my.f.html &lt;-<span class="st"> &#39;tabs/MyTable.html&#39;</span>
       <span class="dt">file =</span> my.f.html,
       <span class="dt">type =</span> <span class="st">&#39;html&#39;</span>,
       <span class="dt">include.rownames =</span> <span class="ot">FALSE</span> )</code></pre></div>
-<p>Once the file is available, we can open tabs/MyTable.html with any web browser, select and copy the table and, finally, paste it in our <em>.docx</em> document. The result should look like Figure <a href="DataStructureObjects.html#fig:Writer-TableExample">4.2</a>.</p>
+<p>Once the file is available, we can open tabs/MyTable.html with any web browser, select and copy the table and, finally, paste it in our <em>.docx</em> document. The result should look like Figure <a href="DataStructureObjects.html#fig:Writer-TableExample">4.4</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:Writer-TableExample"></span>
 <img src="figs/Writer-TableExample.png" alt="Example of table in Writer (LibreOffice)" width="75%" />
 <p class="caption">
-Figure 4.2: Example of table in Writer (LibreOffice)
+Figure 4.4: Example of table in Writer (LibreOffice)
 </p>
 </div>
 <p>If you deal with lots of figures and tables in <em>.docx</em> (Word/Writer) or <em>.ppt</em> (Powerpoint/Impress) files, packages <code>knitr</code> <span class="citation">(Xie <a href="#ref-knitr">2015</a>)</span> and <code>ReporteRs</code> <span class="citation">(Gohel <a href="#ref-reporters">2017</a>)</span> can save you a lot of time and effort. Both have extensive capabilities of automating the process of creating reports.  </p>
@@ -1523,25 +1533,25 @@ Figure 4.2: Example of table in Writer (LibreOffice)
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017-04-30</td>
+<td align="left">2017-05-03</td>
 <td align="right">10.02</td>
 <td align="right">3.15</td>
 <td align="right">5.19</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-01</td>
+<td align="left">2017-05-04</td>
 <td align="right">9.79</td>
 <td align="right">3.34</td>
 <td align="right">5.06</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-02</td>
+<td align="left">2017-05-05</td>
 <td align="right">8.08</td>
 <td align="right">2.74</td>
 <td align="right">5.61</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-03</td>
+<td align="left">2017-05-06</td>
 <td align="right">7.33</td>
 <td align="right">2.56</td>
 <td align="right">5.99</td>
@@ -1560,62 +1570,62 @@ Figure 4.2: Example of table in Writer (LibreOffice)
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017-04-30</td>
+<td align="left">2017-05-03</td>
 <td align="left">STOCK1</td>
 <td align="right">10.02</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-01</td>
+<td align="left">2017-05-04</td>
 <td align="left">STOCK1</td>
 <td align="right">9.79</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-02</td>
+<td align="left">2017-05-05</td>
 <td align="left">STOCK1</td>
 <td align="right">8.08</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-03</td>
+<td align="left">2017-05-06</td>
 <td align="left">STOCK1</td>
 <td align="right">7.33</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-04-30</td>
+<td align="left">2017-05-03</td>
 <td align="left">STOCK2</td>
 <td align="right">3.15</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-01</td>
+<td align="left">2017-05-04</td>
 <td align="left">STOCK2</td>
 <td align="right">3.34</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-02</td>
+<td align="left">2017-05-05</td>
 <td align="left">STOCK2</td>
 <td align="right">2.74</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-03</td>
+<td align="left">2017-05-06</td>
 <td align="left">STOCK2</td>
 <td align="right">2.56</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-04-30</td>
+<td align="left">2017-05-03</td>
 <td align="left">STOCK3</td>
 <td align="right">5.19</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-01</td>
+<td align="left">2017-05-04</td>
 <td align="left">STOCK3</td>
 <td align="right">5.06</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-02</td>
+<td align="left">2017-05-05</td>
 <td align="left">STOCK3</td>
 <td align="right">5.61</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-03</td>
+<td align="left">2017-05-06</td>
 <td align="left">STOCK3</td>
 <td align="right">5.99</td>
 </tr>

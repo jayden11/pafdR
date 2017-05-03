@@ -913,52 +913,52 @@ my.l &lt;-<span class="st"> </span><span class="kw">market.api.process</span>(<s
 ## [1] &quot;EUR&quot;
 ## 
 ## $timestamp
-## [1] &quot;2017-05-03 15:27:58 BRT&quot;
+## [1] &quot;2017-05-03 16:09:00 BRT&quot;
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-05-03 18:03:00 1359.725 0.00081978
-##    2: 2017-05-03 18:03:03 1359.725 0.00107938
-##    3: 2017-05-03 18:03:03 1359.727 0.00700000
-##    4: 2017-05-03 18:03:05 1359.725 0.00262801
-##    5: 2017-05-03 18:03:06 1359.725 1.99337199
+##    1: 2017-05-03 18:27:12 1357.833 0.11047009
+##    2: 2017-05-03 18:27:12 1357.822 1.16512991
+##    3: 2017-05-03 18:27:19 1359.356 0.06720000
+##    4: 2017-05-03 18:27:26 1358.060 0.20211374
+##    5: 2017-05-03 18:27:30 1357.833 0.04000000
 ##   ---                                        
-##  996: 2017-05-03 18:27:46 1358.065 0.01000000
-##  997: 2017-05-03 18:27:51 1359.352 0.00200000
-##  998: 2017-05-03 18:27:55 1357.834 0.10000000
-##  999: 2017-05-03 18:27:58 1358.067 0.00450000
-## 1000: 2017-05-03 18:27:58 1358.067 0.01000000
+##  996: 2017-05-03 19:08:51 1362.975 0.08250000
+##  997: 2017-05-03 19:08:51 1362.975 0.08081592
+##  998: 2017-05-03 19:08:51 1362.989 0.09412579
+##  999: 2017-05-03 19:08:51 1362.990 9.82505829
+## 1000: 2017-05-03 19:08:56 1362.289 0.32110000
 ##                       tid type
 ##    1:                  NA  ask
 ##    2:                  NA  ask
 ##    3:                  NA  bid
 ##    4:                  NA  ask
-##    5:                  NA  bid
+##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  ask
+##  996:                  NA  bid
 ##  997:                  NA  bid
-##  998:                  NA  ask
-##  999:                  NA  ask
-## 1000: 1493836078861276392  ask</code></pre>
+##  998:                  NA  bid
+##  999:                  NA  bid
+## 1000: 1493838536818543405  ask</code></pre>
 <p>The output of <code>market.api.process</code> is a <code>list</code> object with information about Bitcoin in the <code>'kraken'</code> market. The actual trades are available in the <code>trade</code> slot of <code>my.l</code>. Let’s have a look at its content:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">tail</span>(my.l<span class="op">$</span>trades))</code></pre></div>
-<pre><code>##                   date    price    amount
-## 1: 2017-05-03 18:27:43 1358.064 0.1674863
-## 2: 2017-05-03 18:27:46 1358.065 0.0100000
-## 3: 2017-05-03 18:27:51 1359.352 0.0020000
-## 4: 2017-05-03 18:27:55 1357.834 0.1000000
-## 5: 2017-05-03 18:27:58 1358.067 0.0045000
-## 6: 2017-05-03 18:27:58 1358.067 0.0100000
+<pre><code>##                   date    price     amount
+## 1: 2017-05-03 19:08:42 1362.975 0.03668408
+## 2: 2017-05-03 19:08:51 1362.975 0.08250000
+## 3: 2017-05-03 19:08:51 1362.975 0.08081592
+## 4: 2017-05-03 19:08:51 1362.989 0.09412579
+## 5: 2017-05-03 19:08:51 1362.990 9.82505829
+## 6: 2017-05-03 19:08:56 1362.289 0.32110000
 ##                    tid type
-## 1:                  NA  ask
-## 2:                  NA  ask
+## 1:                  NA  bid
+## 2:                  NA  bid
 ## 3:                  NA  bid
-## 4:                  NA  ask
-## 5:                  NA  ask
-## 6: 1493836078861276392  ask</code></pre>
+## 4:                  NA  bid
+## 5:                  NA  bid
+## 6: 1493838536818543405  ask</code></pre>
 <p>It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its <a href="https://github.com/jangorecki/Rbitcoin">website</a>.</p>
 </div>
 <div id="other-packages" class="section level3">

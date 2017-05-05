@@ -16,7 +16,7 @@ cat(my.str)
 
 <img src="figs/CAPADigital_FinancialDataR.jpg" width="350" height="475" alt="Cover image" />
 
-Welcome to the book site of **Processing and Analyzing Financial Data with R**. Here you can find the full online content of the book. The book is also available as an [ebook](PLACEHOLDER) and [print (hardcover)](PLACEHOLDER). If you liked the material and are using the book, please consider purchasing it. As an author, I certainly appreciate the gesture and will take it as a motivating factor for future editions.
+Welcome to the book site of **Processing and Analyzing Financial Data with R**. Here you can find the full online content of the book. The book is also available as an [ebook (Amazon)](https://www.amazon.com/dp/B071DTSCPS) and hardcover ([CreateSpace](https://www.createspace.com/7141874) / [Amazon](https://www.amazon.com/gp/product/8592243556)). If you liked the material and are using the book, please consider purchasing it. As an author, I certainly appreciate the gesture and will take it as a motivating factor for future editions.
 
 This book introduces the reader to the use of **R and RStudio** as a platform for processing and analyzing financial data. The book covers all necessary knowledge for using R, from its installation in your computer to the organization and development of scripts. For every chapter, the book presents practical and replicable examples of R code, providing context and facilitating the learning process.
 
@@ -300,7 +300,7 @@ Before beginning to explain the use of R and RStudio, it is important to highlig
 
 * **Latin characters:** Due to its international standard, R has problems understanding Latin characters, such as the cedilla and accents. If you can avoid it, do not use these characters in the names of your variables or files. In character objects (text), you can use them without problems as long as the encoding is correctly specified (e.g. UTF-8, Latin1). Given that, it is recommended that the R code be written in the English language. This automatically eliminates the use of Latin characters and facilitates the usability of the code by people outside of your country.  \index{latin characters} \index{UTF-8} \index{Latin1}
 
-* **date format:** Dates in R are formatted according to the `YYYY-MM-DD` pattern, where `YYYY` is the year in four numbers, `MM` is the month and `DD` is the day. An example is 2017-05-03. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. \index{dates}
+* **date format:** Dates in R are formatted according to the `YYYY-MM-DD` pattern, where `YYYY` is the year in four numbers, `MM` is the month and `DD` is the day. An example is 2017-05-05. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. \index{dates}
 
 If you want to learn more about your local format in R, use the following command by typing it in the prompt and pressing enter:
 
@@ -1265,7 +1265,7 @@ print(my.dir)
 ```
 
 ```
-## [1] "C:/Dropbox/My Books/pafdR (en)/Book Content"
+## [1] "C:/Dropbox/My Books/pafdR (en)/Edition 2/Book Content"
 ```
 
 The result of the previous code shows the folder in which this book was written and compiled. As you can see, the book files are saved in a subfolder of my Dropbox directory. From the path, you should also realize that I'm working in a Windows OS. The root directory `C:/` gives that information away.
@@ -1484,10 +1484,10 @@ print(n.cran.packages)
 ```
 
 ```
-## [1] 10487
+## [1] 10503
 ```
 
-If asked about which mirror to use, simply select the one closest to you. Currently (2017-05-03 16:07:02), there are 10487 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
+If asked about which mirror to use, simply select the one closest to you. Currently (2017-05-05 08:18:18), there are 10503 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
 
 
 ```r
@@ -2045,9 +2045,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1]  0.91855512  0.44707063  0.92390797  0.08014179
-##  [5]  0.22730126 -1.90645545 -0.93509781 -0.94567442
-##  [9]  1.93717495  0.15910170
+##  [1]  0.3261201 -1.1984007 -1.3103724 -0.9693183 -1.3250236
+##  [6] -1.8833574  0.9946473  0.2250583 -0.2507958  1.7704749
 ```
 
 In the previous code, we generated ten random numbers from a normal distribution, with mean zero and standard deviation equal to one.
@@ -2064,8 +2063,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] -2.0565830  1.2907914 -4.7608112  0.3486677 -3.3820652
-##  [6] -0.8332276  2.9750624 -2.5932427 -0.5913908  0.1109931
+##  [1]  3.1307915 -4.7785169 -2.7433467  3.7523303  0.1440681
+##  [6]  0.6307013 -2.4424260 -4.9740006 -2.2535092  1.8727767
 ```
 
 Note that both functions, `rnorm` and `runif`, are limited to their respective distribution. An alternative and flexible way to generate random values is to use the `sample` function. It accepts any vector as input and returns a scrambled version of its elements. Its flexibility lies in the fact that the input vector can be anything. For example, if we wanted to create a random vector with elements taken from vector `c(0, 5, 15, 20, 25)`, we could do it as follows: \index{base!sample}
@@ -2083,7 +2082,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 15 25  0  5 10 20
+## [1]  0 10 20 15 25  5
 ```
 
 Function `sample` also allows the random selection of several elements. If we wanted to select randomly only one element of `my.vec`, we could write the code as:
@@ -2098,7 +2097,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 10
+## [1] 0
 ```
 
 If we wanted two random elements from `my.rnd.vec`:
@@ -2113,7 +2112,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 25  5
+## [1] 15 20
 ```
 
 It is also possible to select values from a smaller vector to create a larger vector. Consider the case where you have a vector with numbers `c(5, 10, 15)` and want to create a random vector with ten elements removed from that smaller vector. For that, we use option `replace = TRUE`.
@@ -2129,7 +2128,7 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] 15  5  5 10  5 15 15  5  5 10
+##  [1] 10 15 10 15 10 10  5 15 10 15
 ```
 
 Another important feature of `sample` is it works for any type of vector, not only for those of the `numeric` class. This means we can randomize any sort of object. Have a look:
@@ -2141,7 +2140,7 @@ print(sample(c('elem 1','elem 2','elem 3'), 1))
 ```
 
 ```
-## [1] "elem 1"
+## [1] "elem 2"
 ```
 
 At this point, it is important to acknowledge that **the generation of random values in R is not entirely random!** Internally, the computer chooses values from a queue. Each time functions, such as `rnorm`, `runif`, and `sample`, are called in the code, the computer chooses a different place in this queue according to various parameters, such as time itself. The practical effect is that the chosen values from the queue are unpredictable from the user point of view. 
@@ -4242,7 +4241,7 @@ print(my.day)
 ```
 
 ```
-## [1] "2017-05-03"
+## [1] "2017-05-05"
 ```
 
 To find the current date and time, we use function `Sys.time`:  \index{base!Sys.time}
@@ -4254,7 +4253,7 @@ print(Sys.time())
 ```
 
 ```
-## [1] "2017-05-03 16:07:06 BRT"
+## [1] "2017-05-05 08:18:21 BRT"
 ```
 
 Going further, based on these functions, we can write:
@@ -4269,7 +4268,7 @@ print(my.str)
 ```
 
 ```
-## [1] "This code was executed in 2017-05-03 16:07:06"
+## [1] "This code was executed in 2017-05-05 08:18:21"
 ```
 
 
@@ -6404,10 +6403,10 @@ After understanding the basics of `dataframe` manipulation, it is important to d
 
 refdate       STOCK1   STOCK2   STOCK3
 -----------  -------  -------  -------
-2017-05-04     10.02     3.15     5.19
-2017-05-05      9.79     3.34     5.06
-2017-05-06      8.08     2.74     5.61
-2017-05-07      7.33     2.56     5.99
+2017-05-06     10.02     3.15     5.19
+2017-05-07      9.79     3.34     5.06
+2017-05-08      8.08     2.74     5.61
+2017-05-09      7.33     2.56     5.99
 
 Note, the above table has three distinct pieces of information for each data point: ticker, price, and date. If we added one more stock, the table would be incremented by one column. If we wanted to include a new variable such as traded volume, we would need to create a new table or a structured naming system for the columns.
 
@@ -6416,18 +6415,18 @@ Note, the above table has three distinct pieces of information for each data poi
 
 refdate      ticker    price
 -----------  -------  ------
-2017-05-04   STOCK1    10.02
-2017-05-05   STOCK1     9.79
-2017-05-06   STOCK1     8.08
-2017-05-07   STOCK1     7.33
-2017-05-04   STOCK2     3.15
-2017-05-05   STOCK2     3.34
-2017-05-06   STOCK2     2.74
-2017-05-07   STOCK2     2.56
-2017-05-04   STOCK3     5.19
-2017-05-05   STOCK3     5.06
-2017-05-06   STOCK3     5.61
-2017-05-07   STOCK3     5.99
+2017-05-06   STOCK1    10.02
+2017-05-07   STOCK1     9.79
+2017-05-08   STOCK1     8.08
+2017-05-09   STOCK1     7.33
+2017-05-06   STOCK2     3.15
+2017-05-07   STOCK2     3.34
+2017-05-08   STOCK2     2.74
+2017-05-09   STOCK2     2.56
+2017-05-06   STOCK3     5.19
+2017-05-07   STOCK3     5.06
+2017-05-08   STOCK3     5.61
+2017-05-09   STOCK3     5.99
 
 This argument may seem trivial since the information is the same in both formats. But, make no mistake: the format of the data is very important and may facilitate the analysis of the data. Specialized packages, such as `dplyr` [@dplyr] and `ggplot2` [@wickham2009ggplot2], expect a `dataframe` in the _long_ format; therefore, this structure must be prioritized if one is using these packages. 
 
@@ -7003,21 +7002,21 @@ print(my.df)
 
 ```
 ##      ref.date    prices   ticker
-## 1  2017-05-04 10.018746 Stock  A
-## 2  2017-05-05  9.834148 Stock  A
-## 3  2017-05-06  8.485561 Stock  A
-## 4  2017-05-07  7.977134 Stock  A
-## 5  2017-05-08  8.212097 Stock  A
-## 6  2017-05-04 20.779589 Stock  B
-## 7  2017-05-05 18.269256 Stock  B
-## 8  2017-05-06 17.604847 Stock  B
-## 9  2017-05-07 14.741115 Stock  B
-## 10 2017-05-08 14.363037 Stock  B
-## 11 2017-05-04 33.305339 Stock  C
-## 12 2017-05-05 35.822494 Stock  C
-## 13 2017-05-06 34.969082 Stock  C
-## 14 2017-05-07 38.422086 Stock  C
-## 15 2017-05-08 41.270661 Stock  C
+## 1  2017-05-06 10.018746 Stock  A
+## 2  2017-05-07  9.834148 Stock  A
+## 3  2017-05-08  8.485561 Stock  A
+## 4  2017-05-09  7.977134 Stock  A
+## 5  2017-05-10  8.212097 Stock  A
+## 6  2017-05-06 20.779589 Stock  B
+## 7  2017-05-07 18.269256 Stock  B
+## 8  2017-05-08 17.604847 Stock  B
+## 9  2017-05-09 14.741115 Stock  B
+## 10 2017-05-10 14.363037 Stock  B
+## 11 2017-05-06 33.305339 Stock  C
+## 12 2017-05-07 35.822494 Stock  C
+## 13 2017-05-08 34.969082 Stock  C
+## 14 2017-05-09 38.422086 Stock  C
+## 15 2017-05-10 41.270661 Stock  C
 ```
 
 As mentioned before, using a matrix notation facilitates calculations for the portfolio. With that in mind, we will first transform the long `dataframe` in a `matrix` of prices:
@@ -7037,11 +7036,11 @@ print(my.price.mat)
 
 ```
 ##             Stock  A Stock  B Stock  C
-## 2017-05-04 10.018746 20.77959 33.30534
-## 2017-05-05  9.834148 18.26926 35.82249
-## 2017-05-06  8.485561 17.60485 34.96908
-## 2017-05-07  7.977134 14.74111 38.42209
-## 2017-05-08  8.212097 14.36304 41.27066
+## 2017-05-06 10.018746 20.77959 33.30534
+## 2017-05-07  9.834148 18.26926 35.82249
+## 2017-05-08  8.485561 17.60485 34.96908
+## 2017-05-09  7.977134 14.74111 38.42209
+## 2017-05-10  8.212097 14.36304 41.27066
 ```
 
 Now, from the price matrix, we can calculate a return matrix using simple element by element operation with the whole matrix: 
@@ -7058,10 +7057,10 @@ print(my.ret.mat)
 
 ```
 ##               Stock  A    Stock  B    Stock  C
-## 2017-05-05 -0.01842525 -0.12080762  0.07557815
-## 2017-05-06 -0.13713305 -0.03636760 -0.02382336
-## 2017-05-07 -0.05991677 -0.16266727  0.09874447
-## 2017-05-08  0.02945451 -0.02564784  0.07413901
+## 2017-05-07 -0.01842525 -0.12080762  0.07557815
+## 2017-05-08 -0.13713305 -0.03636760 -0.02382336
+## 2017-05-09 -0.05991677 -0.16266727  0.09874447
+## 2017-05-10  0.02945451 -0.02564784  0.07413901
 ```
 
 Finally, we use the weight vector in a `matrix` object to calculate the return of the portfolio over time:
@@ -7080,10 +7079,10 @@ print(ret.port)
 
 ```
 ##                   [,1]
-## 2017-05-05 -0.02121824
-## 2017-05-06 -0.06577467
-## 2017-05-07 -0.04127986
-## 2017-05-08  0.02598190
+## 2017-05-07 -0.02121824
+## 2017-05-08 -0.06577467
+## 2017-05-09 -0.04127986
+## 2017-05-10  0.02598190
 ```
 
 Vector `ret.port` show the return an investor would receive if the total value of the portfolio is evenly divided between the stocks.
@@ -7814,22 +7813,22 @@ print(tail(my.df))
 
 ```
 ##            FTSE.Open FTSE.High FTSE.Low FTSE.Close
-## 2017-04-24    7114.6    7273.9   7114.6     7264.7
-## 2017-04-25    7264.7    7290.8   7258.7     7275.6
 ## 2017-04-26    7275.6    7302.6   7262.3     7288.7
 ## 2017-04-27    7288.7    7289.4   7224.4     7237.2
 ## 2017-04-28    7237.2    7243.3   7197.3     7203.9
 ## 2017-05-02    7203.9    7254.3   7203.9     7250.1
+## 2017-05-03    7250.1    7250.1   7218.6     7234.5
+## 2017-05-04    7234.5    7280.7   7226.1     7248.1
 ##            FTSE.Volume FTSE.Adjusted
-## 2017-04-24  1027266000        7264.7
-## 2017-04-25   835369300        7275.6
 ## 2017-04-26   860455200        7288.7
 ## 2017-04-27  1094741200        7237.2
 ## 2017-04-28  1148718800        7203.9
 ## 2017-05-02   910924000        7250.1
+## 2017-05-03   766336200        7234.5
+## 2017-05-04   918713600        7248.1
 ```
 
-In the call to `getSymbols`, we used argument `auto.assign = F`. This forces the function to save the data to object `my.df` and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-05-02, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (`Open`), maximum price (`High`), minimum (`Low`), closing price (`Close`), trading volume (`Volume`), and the adjusted price (`Adjusted`). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In `my.df`, the only column with not so obvious content is `Adjusted`. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter \@ref(Financial-data).
+In the call to `getSymbols`, we used argument `auto.assign = F`. This forces the function to save the data to object `my.df` and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-05-04, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (`Open`), maximum price (`High`), minimum (`Low`), closing price (`Close`), trading volume (`Volume`), and the adjusted price (`Adjusted`). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In `my.df`, the only column with not so obvious content is `Adjusted`. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter \@ref(Financial-data).
 
 Some attention is required when downloading trade data for some exchanges. Yahoo Finance has specific codes for specific markets. As an example, all tickers from the Brazilian equity market have the `.SA` text attached to their original ticker. So, stock `PETR4` becomes `PETR4.SA`. You should investigate if Yahoo Finance has a particular format for the market you are interested. You can do that by looking for the tickers in the [website](https://finance.yahoo.com/).
 
@@ -7868,19 +7867,19 @@ print(tail(my.env$MSFT))
 
 ```
 ##            MSFT.Open MSFT.High MSFT.Low MSFT.Close
-## 2017-04-25     67.90     68.04    67.60      67.92
-## 2017-04-26     68.08     68.31    67.62      67.83
 ## 2017-04-27     68.15     68.38    67.58      68.27
 ## 2017-04-28     68.91     69.14    67.69      68.46
 ## 2017-05-01     68.68     69.55    68.50      69.41
 ## 2017-05-02     69.71     69.71    69.13      69.30
+## 2017-05-03     69.38     69.38    68.71      69.08
+## 2017-05-04     69.03     69.08    68.64      68.81
 ##            MSFT.Volume MSFT.Adjusted
-## 2017-04-25    30087700         67.92
-## 2017-04-26    25704400         67.83
 ## 2017-04-27    33464900         68.27
 ## 2017-04-28    39423500         68.46
 ## 2017-05-01    31789300         69.41
 ## 2017-05-02    23519500         69.30
+## 2017-05-03    28751500         69.08
+## 2017-05-04    21502600         68.81
 ```
 
 The previous code downloads data for all tickers in `my.tickers`. The resulting `dataframe` objects are available in environment `my.env`, and we can access them using operator `$`. There are easier ways of organizing financial data for several tickers, as we will soon learn. Ideally, we should have all stocks in a long `dataframe`.
@@ -7952,19 +7951,19 @@ print(tail(l.out$df.tickers))
 
 ```
 ##    price.open price.high price.low price.close   volume
-## 79      29.45      29.60     29.32       29.45 39764600
-## 80      29.52      29.55     29.26       29.26 36606000
-## 81      29.29      29.31     29.02       29.08 32777900
-## 82      29.10      29.16     28.93       28.99 23929100
-## 83      29.01      29.17     28.93       28.94 23695700
-## 84      29.01      29.05     28.91       28.99 31475900
+## 79      29.29      29.31     29.02       29.08 32777900
+## 80      29.10      29.16     28.93       28.99 23929100
+## 81      29.01      29.17     28.93       28.94 23695700
+## 82      29.01      29.05     28.91       28.99 31475900
+## 83      28.92      29.29     28.85       29.23 26774100
+## 84      29.27      29.31     29.05       29.20 19544100
 ##    price.adjusted   ref.date ticker
-## 79          29.45 2017-04-25     GE
-## 80          29.26 2017-04-26     GE
-## 81          29.08 2017-04-27     GE
-## 82          28.99 2017-04-28     GE
-## 83          28.94 2017-05-01     GE
-## 84          28.99 2017-05-02     GE
+## 79          29.08 2017-04-27     GE
+## 80          28.99 2017-04-28     GE
+## 81          28.94 2017-05-01     GE
+## 82          28.99 2017-05-02     GE
+## 83          29.23 2017-05-03     GE
+## 84          29.20 2017-05-04     GE
 ```
 
 As expected, the information about prices and volume is there. Notice it also includes a column, called `ticker`, containing the symbols of the stocks. Later, in chapter \@ref(programming), we will use this column to make calculations for each stock in our dataset. 
@@ -8143,12 +8142,12 @@ print(tail(my.df))
 ## # A tibble: 6 × 7
 ##         date   open   high    low  close   volume adjusted
 ##       <date>  <dbl>  <dbl>  <dbl>  <dbl>    <dbl>    <dbl>
-## 1 2017-04-25 143.91 144.90 143.87 144.53 18290300   144.53
-## 2 2017-04-26 144.47 144.60 143.38 143.68 19769400   143.68
-## 3 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
-## 4 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65
-## 5 2017-05-01 145.10 147.20 144.96 146.58 33424500   146.58
-## 6 2017-05-02 147.54 148.09 146.84 147.51 40290100   147.51
+## 1 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
+## 2 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65
+## 3 2017-05-01 145.10 147.20 144.96 146.58 33424500   146.58
+## 4 2017-05-02 147.54 148.09 146.84 147.51 40290100   147.51
+## 5 2017-05-03 145.59 147.49 144.27 147.06 45404200   147.06
+## 6 2017-05-04 146.52 147.14 145.81 146.53 23309300   146.53
 ```
 
 As we can see, the price data is the same as using `quantmod` and `BatchGetSymbols`. In fact, the origin of it is the same, Yahoo Finance. One interesting aspect of `tidyquant` is the same function, `tq_get`, can be used to download other financial information from different sources, such as Google Finance, Morning Star, FRED, and Oanda. For example, we can download key financial ratios from Morning Star by setting `get='key.ratios'` in `tq_get`. \index{tidyquant!tq\_get}
@@ -8313,14 +8312,14 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
 ##    type.output = agg
 ##       agg.diff = 5 min
 ## Reading ftp contents for equity (attempt = 1|10)
-##    Found  550  files in ftp
+##    Found  554  files in ftp
 ##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-04-26
-##    First date to download:  2017-04-26
-##    Last date to download:   2017-04-26
-## Downloading ftp files/NEG_20170426.zip (1|1) Attempt 1
-##    -> Reading files - Imported  869951 lines, 433 unique tickers
-##    -> Processing file - Found 64945 lines for 2 selected tickers
+##    Last available date in ftp:   2017-05-03
+##    First date to download:  2017-05-03
+##    Last date to download:   2017-05-03
+## Downloading ftp files/NEG_20170503.zip (1|1) Attempt 1
+##    -> Reading files - Imported  970956 lines, 434 unique tickers
+##    -> Processing file - Found 77714 lines for 2 selected tickers
 ##    -> Aggregation resulted in dataframe with 165 rows
 ```
 
@@ -8331,26 +8330,26 @@ print(head(my.df))
 
 ```
 ##   InstrumentSymbol SessionDate       TradeDateTime n.trades
-## 1            PETR4  2017-04-26 2017-04-26 10:05:00      314
-## 2            PETR4  2017-04-26 2017-04-26 10:10:00      207
-## 3            PETR4  2017-04-26 2017-04-26 10:15:00      273
-## 4            PETR4  2017-04-26 2017-04-26 10:20:00      267
-## 5            PETR4  2017-04-26 2017-04-26 10:25:00      245
-## 6            PETR4  2017-04-26 2017-04-26 10:30:00      430
+## 1            PETR4  2017-05-03 2017-05-03 10:00:00      262
+## 2            PETR4  2017-05-03 2017-05-03 10:05:00      392
+## 3            PETR4  2017-05-03 2017-05-03 10:10:00      432
+## 4            PETR4  2017-05-03 2017-05-03 10:15:00      292
+## 5            PETR4  2017-05-03 2017-05-03 10:20:00      319
+## 6            PETR4  2017-05-03 2017-05-03 10:25:00      309
 ##   last.price weighted.price    period.ret period.ret.volat
-## 1      14.20       14.17837  0.0028248588     0.0004373366
-## 2      14.22       14.21401  0.0007037298     0.0003708157
-## 3      14.18       14.21541 -0.0035137034     0.0003747119
-## 4      14.14       14.14605 -0.0028208745     0.0003976880
-## 5      14.13       14.12624 -0.0007072136     0.0003367954
-## 6      14.18       14.17620  0.0035385704     0.0003493024
-##   sum.qtd sum.vol n.buys n.sells Tradetime
-## 1  554100 7856221    136     178  10:05:00
-## 2  343300 4879665    111      96  10:10:00
-## 3  526400 7482957    129     144  10:15:00
-## 4  461500 6528396     97     170  10:20:00
-## 5  365900 5168790     88     157  10:25:00
-## 6  571600 8103092    221     209  10:30:00
+## 1      14.06       14.03621  0.0014245014     0.0004280166
+## 2      14.07       14.09177  0.0014234875     0.0002688719
+## 3      14.04       14.04842 -0.0028409091     0.0002911117
+## 4      14.03       14.02329 -0.0014234875     0.0002900921
+## 5      13.99       13.99147 -0.0028510335     0.0003679022
+## 6      13.99       14.00167 -0.0007142857     0.0002910933
+##   sum.qtd  sum.vol n.buys n.sells Tradetime
+## 1  390700  5483943     60     202  10:00:00
+## 2  686100  9668356    188     204  10:05:00
+## 3 1015100 14260549     86     346  10:10:00
+## 4  486900  6827932     56     236  10:15:00
+## 5  411200  5753286     73     246  10:20:00
+## 6  355700  4980394    118     191  10:25:00
 ```
 
 The output of `ghfd_get_HF_data` is a `dataframe` with several columns, such as time frame, last price, volatility, number of buyer/seller initiated trades, among other information. The user can also download raw data, without aggregation, by setting option `type.output='raw'`. Let's give it a try: 
@@ -8393,14 +8392,14 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
 ##    my.assets = PETR4, VALE5
 ##    type.output = raw
 ## Reading ftp contents for equity (attempt = 1|10)
-##    Found  550  files in ftp
+##    Found  554  files in ftp
 ##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-04-26
-##    First date to download:  2017-04-26
-##    Last date to download:   2017-04-26
-## Downloading ftp files/NEG_20170426.zip (1|1) Attempt 1
-##    -> Reading files - Imported  869951 lines, 433 unique tickers
-##    -> Processing file - Found 64945 lines for 2 selected tickers
+##    Last available date in ftp:   2017-05-03
+##    First date to download:  2017-05-03
+##    Last date to download:   2017-05-03
+## Downloading ftp files/NEG_20170503.zip (1|1) Attempt 1
+##    -> Reading files - Imported  970956 lines, 434 unique tickers
+##    -> Processing file - Found 77714 lines for 2 selected tickers
 ```
 
 ```r
@@ -8410,26 +8409,26 @@ print(head(my.df))
 
 ```
 ##   SessionDate InstrumentSymbol TradePrice TradedQuantity
-## 1  2017-04-26            PETR4      14.16           4000
-## 2  2017-04-26            PETR4      14.16           2000
-## 3  2017-04-26            PETR4      14.16            100
-## 4  2017-04-26            PETR4      14.16           5000
-## 5  2017-04-26            PETR4      14.16            300
-## 6  2017-04-26            PETR4      14.16           1000
+## 1  2017-05-03            PETR4      14.04            300
+## 2  2017-05-03            PETR4      14.04            400
+## 3  2017-05-03            PETR4      14.04            200
+## 4  2017-05-03            PETR4      14.04           1600
+## 5  2017-05-03            PETR4      14.04           3500
+## 6  2017-05-03            PETR4      14.04            100
 ##      Tradetime CrossTradeIndicator BuyMember SellMember
-## 1 10:07:12.379                   0       386         59
-## 2 10:07:12.379                   0       174        386
-## 3 10:07:12.379                   0       114        147
-## 4 10:07:12.379                   0       386        147
-## 5 10:07:12.379                   0        15        147
-## 6 10:07:12.379                   0         3         39
+## 1 10:03:00.002                   0       262        386
+## 2 10:03:00.002                   0       262        386
+## 3 10:03:00.002                   0         3         45
+## 4 10:03:00.002                   0       114        386
+## 5 10:03:00.002                   0       114         45
+## 6 10:03:00.002                   0        77         72
 ##         TradeDateTime TradeSign
-## 1 2017-04-26 10:07:12        -1
-## 2 2017-04-26 10:07:12        -1
-## 3 2017-04-26 10:07:12        -1
-## 4 2017-04-26 10:07:12        -1
-## 5 2017-04-26 10:07:12        -1
-## 6 2017-04-26 10:07:12        -1
+## 1 2017-05-03 10:03:00        -1
+## 2 2017-05-03 10:03:00        -1
+## 3 2017-05-03 10:03:00        -1
+## 4 2017-05-03 10:03:00        -1
+## 5 2017-05-03 10:03:00        -1
+## 6 2017-05-03 10:03:00        -1
 ```
 
 
@@ -8554,12 +8553,12 @@ print(tail(my.df))
 
 ```
 ##            Date    Value
-## 4518 2000-01-10 274.3301
-## 4519 2000-01-07 274.1764
-## 4520 2000-01-06 269.9777
-## 4521 2000-01-05 271.3069
-## 4522 2000-01-04 273.2482
-## 4523 2000-01-03 280.2000
+## 4519 2000-01-10 274.3301
+## 4520 2000-01-07 274.1764
+## 4521 2000-01-06 269.9777
+## 4522 2000-01-05 271.3069
+## 4523 2000-01-04 273.2482
+## 4524 2000-01-03 280.2000
 ```
 
 Notice how we used `type = 'raw'` in the inputs of `Quandl`. This option forces the function to output a `dataframe`. Other options include the output of objects of type `ts`, `zoo`, `xts` and `timeSeries`. If using `Quandl` will become part of your data analysis routine, I strongly recommend reading the help manual of the package. Several parameters can be passed to function `Quandl`, including the choice for applying transformations in the resulting dataset. You can find more details about using `Quandl` in R from its [website](https://docs.quandl.com/docs/r).
@@ -8598,36 +8597,36 @@ print(my.l)
 ## [1] "EUR"
 ## 
 ## $timestamp
-## [1] "2017-05-03 16:09:00 BRT"
+## [1] "2017-05-05 08:20:29 BRT"
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-05-03 18:27:12 1357.833 0.11047009
-##    2: 2017-05-03 18:27:12 1357.822 1.16512991
-##    3: 2017-05-03 18:27:19 1359.356 0.06720000
-##    4: 2017-05-03 18:27:26 1358.060 0.20211374
-##    5: 2017-05-03 18:27:30 1357.833 0.04000000
+##    1: 2017-05-05 10:53:34 1438.000 0.06433756
+##    2: 2017-05-05 10:53:35 1437.998 0.18100000
+##    3: 2017-05-05 10:53:39 1438.000 0.99230724
+##    4: 2017-05-05 10:53:40 1438.999 0.17315182
+##    5: 2017-05-05 10:53:40 1439.000 0.22684818
 ##   ---                                        
-##  996: 2017-05-03 19:08:51 1362.975 0.08250000
-##  997: 2017-05-03 19:08:51 1362.975 0.08081592
-##  998: 2017-05-03 19:08:51 1362.989 0.09412579
-##  999: 2017-05-03 19:08:51 1362.990 9.82505829
-## 1000: 2017-05-03 19:08:56 1362.289 0.32110000
+##  996: 2017-05-05 11:20:05 1431.000 0.21753226
+##  997: 2017-05-05 11:20:15 1431.295 0.08426302
+##  998: 2017-05-05 11:20:15 1431.000 0.01133698
+##  999: 2017-05-05 11:20:22 1431.000 0.05010000
+## 1000: 2017-05-05 11:20:32 1431.000 0.73720000
 ##                       tid type
-##    1:                  NA  ask
+##    1:                  NA  bid
 ##    2:                  NA  ask
 ##    3:                  NA  bid
-##    4:                  NA  ask
-##    5:                  NA  ask
+##    4:                  NA  bid
+##    5:                  NA  bid
 ##   ---                         
-##  996:                  NA  bid
-##  997:                  NA  bid
-##  998:                  NA  bid
-##  999:                  NA  bid
-## 1000: 1493838536818543405  ask
+##  996:                  NA  ask
+##  997:                  NA  ask
+##  998:                  NA  ask
+##  999:                  NA  ask
+## 1000: 1493983232058620797  ask
 ```
 
 The output of `market.api.process` is a `list` object with information about Bitcoin in the `'kraken'` market. The actual trades are available in the `trade` slot of `my.l`. Let's have a look at its content:
@@ -8639,19 +8638,19 @@ print(tail(my.l$trades))
 
 ```
 ##                   date    price     amount
-## 1: 2017-05-03 19:08:42 1362.975 0.03668408
-## 2: 2017-05-03 19:08:51 1362.975 0.08250000
-## 3: 2017-05-03 19:08:51 1362.975 0.08081592
-## 4: 2017-05-03 19:08:51 1362.989 0.09412579
-## 5: 2017-05-03 19:08:51 1362.990 9.82505829
-## 6: 2017-05-03 19:08:56 1362.289 0.32110000
+## 1: 2017-05-05 11:20:05 1431.014 0.02946774
+## 2: 2017-05-05 11:20:05 1431.000 0.21753226
+## 3: 2017-05-05 11:20:15 1431.295 0.08426302
+## 4: 2017-05-05 11:20:15 1431.000 0.01133698
+## 5: 2017-05-05 11:20:22 1431.000 0.05010000
+## 6: 2017-05-05 11:20:32 1431.000 0.73720000
 ##                    tid type
-## 1:                  NA  bid
-## 2:                  NA  bid
-## 3:                  NA  bid
-## 4:                  NA  bid
-## 5:                  NA  bid
-## 6: 1493838536818543405  ask
+## 1:                  NA  ask
+## 2:                  NA  ask
+## 3:                  NA  ask
+## 4:                  NA  ask
+## 5:                  NA  ask
+## 6: 1493983232058620797  ask
 ```
 
 It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its [website](https://github.com/jangorecki/Rbitcoin).
@@ -8931,7 +8930,7 @@ In using `ggplot`, it is always necessary to provide a `dataframe`. If you want 
 
 
 
-Once the data and axis are defined, we save it in object `p`. This object registers the current information as new layers are added with the `+` sign. The second line of the code, `p <- p + geom_line()`, defines the type of figure. Here, we used function `geom_lines`, which is a simple line graph that connects the points. In `ggplot2`, the functions that define the geometric type begins with `geom_` character. So, using the _autocomplete_ function of RStudio, you can see there a lot of options. We can use `stringr` to find the list of functions in `ggplot2`, version 2.2.1 (2017-05-03), that starts with `geom_`: \index{stringr!str\_sub}
+Once the data and axis are defined, we save it in object `p`. This object registers the current information as new layers are added with the `+` sign. The second line of the code, `p <- p + geom_line()`, defines the type of figure. Here, we used function `geom_lines`, which is a simple line graph that connects the points. In `ggplot2`, the functions that define the geometric type begins with `geom_` character. So, using the _autocomplete_ function of RStudio, you can see there a lot of options. We can use `stringr` to find the list of functions in `ggplot2`, version 2.2.1 (2017-05-05), that starts with `geom_`: \index{stringr!str\_sub}
 
 
 ```r
@@ -9126,7 +9125,7 @@ print(p)
 
 ### Using Themes
 
-One way of customizing graphics in `ggplot2` is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package `ggplot` has a collection of functions for setting themes, and their name start with text _theme_. Next, we show the list of theme related functions in `ggplot`, version 2.2.1 (2017-05-03).
+One way of customizing graphics in `ggplot2` is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package `ggplot` has a collection of functions for setting themes, and their name start with text _theme_. Next, we show the list of theme related functions in `ggplot`, version 2.2.1 (2017-05-05).
 
 
 ```r
@@ -10017,7 +10016,7 @@ file.remove(list.files(out.dir, full.names = TRUE))
 ```
 
 ```
-## logical(0)
+## [1] TRUE
 ```
 
 ```r
@@ -12069,7 +12068,7 @@ print(str(sim.df))
 ```
 ## 'data.frame':	60 obs. of  4 variables:
 ##  $ G    : chr  "A" "A" "A" "A" ...
-##  $ dates: Date, format: "2017-05-04" ...
+##  $ dates: Date, format: "2017-05-06" ...
 ##  $ y    : num  -10.68 -11.55 -11.74 -9.84 -11.96 ...
 ##  $ x    : num  -0.212 -1.042 -1.153 0.322 -1.5 ...
 ## NULL
@@ -12728,7 +12727,7 @@ print(my.garchfit)
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## <environment: 0x000000009c3c0c50>
+## <environment: 0x000000006f5f16d0>
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -12756,7 +12755,7 @@ print(my.garchfit)
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Wed May 03 16:10:06 2017 by user: marcelo
+##  Fri May 05 08:21:41 2017 by user: marcelo
 ```
 
 The resulting parameters from the estimation are close to the values defined arbitrarily in the call to `garchSpec`. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function `summary` also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader. 
@@ -12838,7 +12837,7 @@ print(my.garchfit.sp500)
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Wed May 03 16:10:06 2017 by user: marcelo
+##  Fri May 05 08:21:41 2017 by user: marcelo
 ```
 
 As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for `ar1`, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.
@@ -14153,7 +14152,7 @@ print(eff.port)
 ## 0.1101 0.2608 0.4200 0.4200 
 ## 
 ## Description:
-##  Wed May 03 16:10:27 2017 by user: marcelo
+##  Fri May 05 08:22:06 2017 by user: marcelo
 ```
 
 Not surprisingly, the optimized portfolio invested a significant proportion in ^MXX. The American and Chinese market, with symbols ^GSPC and ^00001.SS, were left with approximately 10% of the portfolio. We can find out the exact sharpe ratio of this portfolio with the following code:

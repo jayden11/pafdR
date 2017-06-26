@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="BasicObjects.html">
 <link rel="next" href="Financial-data.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="DataStructureObjects" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Data Structure Objects</h1>
 <p>In chapter <a href="BasicObjects.html#BasicObjects">3</a> we learned about the basic classes of objects in R. Together, the basic classes can represent a wide variety of data. When dealing with rich datasets, the number of created objects increases significantly. While you can work storing each information in each object, the code becomes messy. In practice, we organize our information in table like structures, with rows and columns, containing numeric or textual data. When we represent our dataset in a tabular format, the code using this data becomes simpler and more efficient. This is the main format of how raw data is imported into R.</p>
@@ -1541,25 +1540,25 @@ Figure 4.4: Example of table in Writer (LibreOffice)
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017-05-04</td>
+<td align="left">2017-06-27</td>
 <td align="right">10.02</td>
 <td align="right">3.15</td>
 <td align="right">5.19</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-05</td>
+<td align="left">2017-06-28</td>
 <td align="right">9.79</td>
 <td align="right">3.34</td>
 <td align="right">5.06</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-06</td>
+<td align="left">2017-06-29</td>
 <td align="right">8.08</td>
 <td align="right">2.74</td>
 <td align="right">5.61</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-07</td>
+<td align="left">2017-06-30</td>
 <td align="right">7.33</td>
 <td align="right">2.56</td>
 <td align="right">5.99</td>
@@ -1578,62 +1577,62 @@ Figure 4.4: Example of table in Writer (LibreOffice)
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2017-05-04</td>
+<td align="left">2017-06-27</td>
 <td align="left">STOCK1</td>
 <td align="right">10.02</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-05</td>
+<td align="left">2017-06-28</td>
 <td align="left">STOCK1</td>
 <td align="right">9.79</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-06</td>
+<td align="left">2017-06-29</td>
 <td align="left">STOCK1</td>
 <td align="right">8.08</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-07</td>
+<td align="left">2017-06-30</td>
 <td align="left">STOCK1</td>
 <td align="right">7.33</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-04</td>
+<td align="left">2017-06-27</td>
 <td align="left">STOCK2</td>
 <td align="right">3.15</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-05</td>
+<td align="left">2017-06-28</td>
 <td align="left">STOCK2</td>
 <td align="right">3.34</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-06</td>
+<td align="left">2017-06-29</td>
 <td align="left">STOCK2</td>
 <td align="right">2.74</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-07</td>
+<td align="left">2017-06-30</td>
 <td align="left">STOCK2</td>
 <td align="right">2.56</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-04</td>
+<td align="left">2017-06-27</td>
 <td align="left">STOCK3</td>
 <td align="right">5.19</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-05</td>
+<td align="left">2017-06-28</td>
 <td align="left">STOCK3</td>
 <td align="right">5.06</td>
 </tr>
 <tr class="odd">
-<td align="left">2017-05-06</td>
+<td align="left">2017-06-29</td>
 <td align="left">STOCK3</td>
 <td align="right">5.61</td>
 </tr>
 <tr class="even">
-<td align="left">2017-05-07</td>
+<td align="left">2017-06-30</td>
 <td align="left">STOCK3</td>
 <td align="right">5.99</td>
 </tr>
@@ -1943,8 +1942,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="BasicObjects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Financial-data.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="Financial-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1984,7 +1984,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

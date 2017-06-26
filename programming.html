@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="Figures.html">
 <link rel="next" href="models.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="programming" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Programming and Data Analysis with R</h1>
 <p>In chapters <a href="BasicObjects.html#BasicObjects">3</a>, <a href="DataStructureObjects.html#DataStructureObjects">4</a>, and <a href="importing.html#importing">6</a>, we learned the ecosystem of objects in R and studied the procedures for importing datasets from local files and the web. Here, we will address programming with R and processing data. This includes the creation of custom functions, structured repetition of code (<em>loops</em>), and conditional execution. A section about one of the most popular packages in CRAN, <code>dplyr</code>, is also included. The concepts presented here are valuable. Based on it, you’ll be able to solve several computational problems in your data analysis.</p>
@@ -583,7 +582,7 @@ my.df &lt;-<span class="st"> </span><span class="kw">df.calc.ret</span>(my.df,
                      <span class="dt">colname.tickers =</span> <span class="st">&#39;ticker&#39;</span>)</code></pre></div>
 <p>Let’s look at the result:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">head</span>(my.df))</code></pre></div>
-<pre><code>## # A tibble: 6 × 4
+<pre><code>## # A tibble: 6 x 4
 ##   price.adjusted   ref.date ticker          ret
 ##            &lt;dbl&gt;     &lt;date&gt;  &lt;chr&gt;        &lt;dbl&gt;
 ## 1       69.15826 2010-01-04    MMM           NA
@@ -734,7 +733,7 @@ file.names &lt;-<span class="st"> </span><span class="kw">paste0</span>(out.dir,
 <p>Now, let’s check if the files are in the folder:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check files</span>
 <span class="kw">print</span>(<span class="kw">list.files</span>(out.dir))</code></pre></div>
-<pre><code>##  [1] &quot;myfiles_1.csv&quot;  &quot;myfiles_10.csv&quot; &quot;myfiles_2.csv&quot; 
+<pre><code>##  [1] &quot;myfiles_10.csv&quot; &quot;myfiles_1.csv&quot;  &quot;myfiles_2.csv&quot; 
 ##  [4] &quot;myfiles_3.csv&quot;  &quot;myfiles_4.csv&quot;  &quot;myfiles_5.csv&quot; 
 ##  [7] &quot;myfiles_6.csv&quot;  &quot;myfiles_7.csv&quot;  &quot;myfiles_8.csv&quot; 
 ## [10] &quot;myfiles_9.csv&quot;</code></pre>
@@ -1324,7 +1323,7 @@ my.tab &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class
 <p>One of the most important assets of an experienced data analyst is the knowledge of the capabilities of different R packages. For data processing operations, one of the most useful packages is <code>dplyr</code> <span class="citation">(Wickham and Francois <a href="#ref-dplyr">2016</a>)</span>. It allows complex data operations to be carried out with its own intuitive and customizable syntax. Not only that, it also decreases computational time. </p>
 <p>Before describing functions and examples, let’s load <code>dplyr</code> to show its effect in the environment.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&#39;dplyr&#39;</span>)</code></pre></div>
-<p>The loading screen of <code>dplyr</code> warns the user the package replaced functions of other packages, such as <code>xts::first</code> and <code>stats::lag</code>. Therefore, the features of these functions after loading <code>dplyr</code> will change. In its current version, 0.5.0, <code>dplyr</code> has 245 functions. Describing each functionality would be too exhaustive for this book. Therefore, we will focus on the main functions of the package.</p>
+<p>The loading screen of <code>dplyr</code> warns the user the package replaced functions of other packages, such as <code>xts::first</code> and <code>stats::lag</code>. Therefore, the features of these functions after loading <code>dplyr</code> will change. In its current version, 0.7.1, <code>dplyr</code> has 236 functions. Describing each functionality would be too exhaustive for this book. Therefore, we will focus on the main functions of the package.</p>
 <div id="manipulating-a-dataframe-with-dplyr" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Manipulating a <code>dataframe</code> with <code>dplyr</code></h3>
 <p>Package <code>dplyr</code> includes several functions for standard <code>dataframe</code> manipulations, such as adding columns, filtering rows, and ordering. The main advantage of these functions is they can be used with the pipeline operator, a way to streamline data operations. We will detail the use of the pipeline operator in the following section. For now, let’s learn the <code>dplyr</code> functions for simple <code>dataframe</code> manipulations, without the use of pipelines.</p>
@@ -1447,18 +1446,18 @@ my.tab &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 
 <span class="co"># print result                        </span>
 <span class="kw">print</span>(my.tab)</code></pre></div>
-<pre><code>## # A tibble: 471 × 6
+<pre><code>## # A tibble: 471 x 6
 ##    ticker mean.price max.price min.price    max.ret
 ##     &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1       A   33.05298  48.18046 18.329764 0.11763059
-## 2     AAL   23.42431  54.66265  3.893684 0.17316703
-## 3     AAP  103.23486 199.99451 38.418693 0.16557581
-## 4    AAPL   75.02859 127.96609 24.881912 0.08874137
-## 5     ABC   58.40506 112.10088 23.307129 0.09532090
-## 6     ABT   32.12158  49.33589 18.430625 0.06496596
-## 7     ACN   70.61981 125.40000 31.589890 0.07989349
-## 8    ADBE   55.25822 110.81000 22.690001 0.12780138
-## 9     ADI   42.36350  73.90623 21.600676 0.10146155
+##  1      A   33.05298  48.18046 18.329764 0.11763059
+##  2    AAL   23.42431  54.66265  3.893684 0.17316703
+##  3    AAP  103.23486 199.99451 38.418693 0.16557581
+##  4   AAPL   75.02859 127.96609 24.881912 0.08874137
+##  5    ABC   58.40506 112.10088 23.307129 0.09532090
+##  6    ABT   32.12158  49.33589 18.430625 0.06496596
+##  7    ACN   70.61981 125.40000 31.589890 0.07989349
+##  8   ADBE   55.25822 110.81000 22.690001 0.12780138
+##  9    ADI   42.36350  73.90623 21.600676 0.10146155
 ## 10    ADM   33.77152  50.48857 20.866785 0.07298599
 ## # ... with 461 more rows, and 1 more variables:
 ## #   min.ret &lt;dbl&gt;</code></pre>
@@ -1484,20 +1483,19 @@ my.tab &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 
 <span class="co"># print result                        </span>
 <span class="kw">print</span>(my.tab)</code></pre></div>
-<pre><code>## Source: local data frame [2,355 x 7]
-## Groups: ticker [?]
-## 
+<pre><code>## # A tibble: 2,355 x 7
+## # Groups:   ticker [?]
 ##    ticker  week.day mean.price max.price min.price
 ##     &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1       A    Friday   33.02034  47.88207 18.370543
-## 2       A    Monday   33.11657  48.18046 18.458895
-## 3       A  Thursday   33.03899  47.87212 18.696768
-## 4       A   Tuesday   33.05971  48.02132 18.329764
-## 5       A Wednesday   33.03401  48.17052 18.744342
-## 6     AAL    Friday   23.30720  54.66265  3.913153
-## 7     AAL    Monday   23.63982  54.24885  4.137040
-## 8     AAL  Thursday   23.27089  54.38582  4.283053
-## 9     AAL   Tuesday   23.48269  52.86867  3.942356
+##  1      A    Friday   33.02034  47.88207 18.370543
+##  2      A    Monday   33.11657  48.18046 18.458895
+##  3      A  Thursday   33.03899  47.87212 18.696768
+##  4      A   Tuesday   33.05971  48.02132 18.329764
+##  5      A Wednesday   33.03401  48.17052 18.744342
+##  6    AAL    Friday   23.30720  54.66265  3.913153
+##  7    AAL    Monday   23.63982  54.24885  4.137040
+##  8    AAL  Thursday   23.27089  54.38582  4.283053
+##  9    AAL   Tuesday   23.48269  52.86867  3.942356
 ## 10    AAL Wednesday   23.43472  53.06473  3.893684
 ## # ... with 2,345 more rows, and 2 more variables:
 ## #   max.ret &lt;dbl&gt;, min.ret &lt;dbl&gt;</code></pre>
@@ -1522,7 +1520,7 @@ my.tab &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
          <span class="dt">min.cumret =</span> <span class="kw">min</span>(acum.ret))
 
 <span class="kw">print</span>(<span class="kw">head</span>(my.tab))</code></pre></div>
-<pre><code>## # A tibble: 6 × 4
+<pre><code>## # A tibble: 6 x 4
 ##   ticker      acum.ret last.cumret min.cumret
 ##    &lt;chr&gt;        &lt;list&gt;       &lt;dbl&gt;      &lt;dbl&gt;
 ## 1      A &lt;dbl [1,761]&gt;    2.141724  0.8616613
@@ -1572,8 +1570,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="Figures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="models.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1613,7 +1612,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

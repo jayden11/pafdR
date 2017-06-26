@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="Introduction.html">
 <link rel="next" href="BasicObjects.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="basicoperations" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Basic Operations in R</h1>
 <p>Before you start developing your code, you need to understand how to work with R and RStudio. This includes work patterns, language components, basic commands and RStudio shortcuts. Understanding the software and how to take advantage of the platform is essential for the development of data-based research scripts. This is the main chapter for those who are not familiar with R or other programming languages.</p>
@@ -391,22 +390,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p><strong>decimal:</strong> Following an international notation, the decimal point in R is defined by the period symbol (.), as in <code>2.5</code> and not comma, as in <code>2,5</code>. In some countries, this might not be the case. This difference can create a lot of confusion and errors at the beginning. Some software, such as Microsoft Excel, does the conversion automatically when the data is imported. This, however, is generally an exception. As a general rule of using R, only use commas to separate the inputs of a function. Under no circumstances should the comma symbol be used as the decimal point separator. Always give priority to the international format because it will be compatible with the vast majority of data. Other researchers may experience some difficulty in understanding your code if you use your local notation for the decimal. </p></li>
 <li><p><strong>Latin characters:</strong> Due to its international standard, R has problems understanding Latin characters, such as the cedilla and accents. If you can avoid it, do not use these characters in the names of your variables or files. In character objects (text), you can use them without problems as long as the encoding is correctly specified (e.g. UTF-8, Latin1). Given that, it is recommended that the R code be written in the English language. This automatically eliminates the use of Latin characters and facilitates the usability of the code by people outside of your country.   </p></li>
-<li><p><strong>date format:</strong> Dates in R are formatted according to the <code>YYYY-MM-DD</code> pattern, where <code>YYYY</code> is the year in four numbers, <code>MM</code> is the month and <code>DD</code> is the day. An example is 2017-05-03. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. </p></li>
+<li><p><strong>date format:</strong> Dates in R are formatted according to the <code>YYYY-MM-DD</code> pattern, where <code>YYYY</code> is the year in four numbers, <code>MM</code> is the month and <code>DD</code> is the day. An example is 2017-06-26. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. </p></li>
 </ul>
 <p>If you want to learn more about your local format in R, use the following command by typing it in the prompt and pressing enter:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.localeconv</span>()</code></pre></div>
 <pre><code>##     decimal_point     thousands_sep          grouping 
 ##               &quot;.&quot;                &quot;&quot;                &quot;&quot; 
 ##   int_curr_symbol   currency_symbol mon_decimal_point 
-##             &quot;BRL&quot;              &quot;R$&quot;               &quot;,&quot; 
+##            &quot;USD &quot;               &quot;$&quot;               &quot;.&quot; 
 ## mon_thousands_sep      mon_grouping     positive_sign 
-##               &quot;.&quot;            &quot;\003&quot;                &quot;&quot; 
+##               &quot;,&quot;        &quot;\003\003&quot;                &quot;&quot; 
 ##     negative_sign   int_frac_digits       frac_digits 
 ##               &quot;-&quot;               &quot;2&quot;               &quot;2&quot; 
 ##     p_cs_precedes    p_sep_by_space     n_cs_precedes 
-##               &quot;1&quot;               &quot;1&quot;               &quot;1&quot; 
+##               &quot;1&quot;               &quot;0&quot;               &quot;1&quot; 
 ##    n_sep_by_space       p_sign_posn       n_sign_posn 
-##               &quot;1&quot;               &quot;3&quot;               &quot;3&quot;</code></pre>
+##               &quot;0&quot;               &quot;1&quot;               &quot;1&quot;</code></pre>
 <p>The output of <code>Sys.localeconv()</code> shows how R interprets decimal points and the thousands separator, among other things. As you can see from the previous output, this book was compiled using the Brazilian notation for currency but uses the dot point for decimals. As mentioned before, it is good policy to follow international notation, especially for the decimal point. If necessary, you can change your local format to the US/international notation using the following command.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_ALL&quot;</span>, <span class="st">&quot;English&quot;</span>)</code></pre></div>
 <p>A note, however, is that you’ll need to run this command every time that R starts or incorporate it in the initialization of the software.</p>
@@ -863,8 +862,8 @@ x &lt;-<span class="st"> </span><span class="dv">1</span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>##  [1] &quot;elem.x&quot;        &quot;M&quot;             &quot;my.array&quot;     
 ##  [4] &quot;my.char&quot;       &quot;my.dim&quot;        &quot;my.engine&quot;    
-##  [7] &quot;my.fct&quot;        &quot;my.logical&quot;    &quot;my.n.elements&quot;
-## [10] &quot;my.ncol&quot;       &quot;my.nrow&quot;       &quot;my.out.width&quot; 
+##  [7] &quot;my.fct&quot;        &quot;my.logical&quot;    &quot;my.ncol&quot;      
+## [10] &quot;my.n.elements&quot; &quot;my.nrow&quot;       &quot;my.out.width&quot; 
 ## [13] &quot;my.piece.x&quot;    &quot;my.str&quot;        &quot;my.text&quot;      
 ## [16] &quot;my.text.1&quot;     &quot;my.text.2&quot;     &quot;my.text.3&quot;    
 ## [19] &quot;my.vec&quot;        &quot;my.x&quot;          &quot;my.y&quot;         
@@ -879,8 +878,8 @@ x &lt;-<span class="st"> </span><span class="dv">1</span>
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>##  [1] &quot;elem.x&quot;        &quot;M&quot;             &quot;my.array&quot;     
 ##  [4] &quot;my.char&quot;       &quot;my.dim&quot;        &quot;my.engine&quot;    
-##  [7] &quot;my.fct&quot;        &quot;my.logical&quot;    &quot;my.n.elements&quot;
-## [10] &quot;my.ncol&quot;       &quot;my.nrow&quot;       &quot;my.out.width&quot; 
+##  [7] &quot;my.fct&quot;        &quot;my.logical&quot;    &quot;my.ncol&quot;      
+## [10] &quot;my.n.elements&quot; &quot;my.nrow&quot;       &quot;my.out.width&quot; 
 ## [13] &quot;my.piece.x&quot;    &quot;my.str&quot;        &quot;my.text&quot;      
 ## [16] &quot;my.text.1&quot;     &quot;my.text.2&quot;     &quot;my.text.3&quot;    
 ## [19] &quot;my.vec&quot;        &quot;my.x&quot;          &quot;my.y&quot;         
@@ -895,12 +894,12 @@ x &lt;-<span class="st"> </span><span class="dv">1</span>
 <h2><span class="header-section-number">2.15</span> Displaying and Setting the Working Directory</h2>
 <p>Like other programming platforms, <strong>R always works in a directory</strong>. If no directory is set, a default value is used when R starts up. It is based on the current directory that R searches for files to load data or other R scripts. It is in this directory that R saves any output we want if we do not explicitly define an address on the computer. This output can be a graphic file, text or a spreadsheet like file. A good programming policy is to change the working directory to the same place where the <em>script</em> is located. In chapter <a href="research-scripts.html#research-scripts">11</a> we discuss the topic of file and folder organization.</p>
 <p>To show the current working directory, use function <code>getwd</code>: </p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get current dir</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get current dir </span>
 my.dir &lt;-<span class="st"> </span><span class="kw">getwd</span>()
 
 <span class="co"># display it</span>
 <span class="kw">print</span>(my.dir)</code></pre></div>
-<pre><code>## [1] &quot;C:/Dropbox/My Books/pafdR (en)/Book Content&quot;</code></pre>
+<pre><code>## C:/Dropbox/My Books/pafdR (en)/Book Content</code></pre>
 <p>The result of the previous code shows the folder in which this book was written and compiled. As you can see, the book files are saved in a subfolder of my Dropbox directory. From the path, you should also realize that I’m working in a Windows OS. The root directory <code>C:/</code> gives that information away.</p>
 <p>The change of working directory is performed with the <code>setwd</code> command. For example, if we wanted to change our working directory to <em>C:/My Research/</em>, simply type in the <em>prompt</em>: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set where to change directory</span>
@@ -911,7 +910,7 @@ my.d &lt;-<span class="st"> &#39;C:/My Research/&#39;</span>
 <p>As for simple cases such as the above, remembering the directory name is easy. In practical cases, however, the working directory can be in a deeper directory of the file system. In this situation, an efficient strategy to locate the path is to use a file explorer, like Windows <em>explorer</em>. To do so, open the <em>explorer</em> application and navigate to the location where you want to work with your <em>script</em>. Place the cursor in the address bar and select the whole path. Press <em>control + c</em> to copy the address to the clipboard. Go back to your code and paste it in. <strong>An important step here: Windows uses the backslash to set addresses on the computer, while the R uses the forward slash</strong>. If you try to use backslashes, an error is displayed on the screen. See the following example.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set directory (WRONG WAY)</span>
 my.d &lt;-<span class="st"> &#39;C:\My Research</span><span class="ch">\&#39;</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;##Error: &#39;</span><span class="ch">\\</span><span class="st">M&#39; is an unrecognized escape in character string&quot;</span>)</code></pre></div>
+<pre><code>## ##Error: &#39;\M&#39; is an unrecognized escape in character string</code></pre>
 <p>This message means that R was not able to understand the use of backslashes. This is a reserved symbol for macros and should not be used anywhere in a code. Therefore, after copying the address, modify all backslashes to forward slashes, as in the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set directory (CORRECT WAY)</span>
 my.d &lt;-<span class="st"> &#39;C:/My Research/&#39;</span>
@@ -939,7 +938,7 @@ my.d &lt;-<span class="st"> &#39;C:/My Research/&#39;</span>
   <span class="kw">cat</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">Running code (please make it stop by hitting esc!)&#39;</span>)
   <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
 }</code></pre></div>
-<p>In the previous code, we used a <code>for</code> loop to display the message <code>'\nRunning code (please make it stop by hitting esc!)'</code> every second. For now, do not worry about the code and functions used in the example. We will discuss the use of loops chapter <a href="programming.html#programming">9</a>.</p>
+<p>In the previous code, we used a <code>for</code> loop to display the message <code>'\nRunning code (please make it stop by hitting esc!)'</code> every second. For now, do not worry about the code and functions used in the example. We will discuss the use of loops in chapter <a href="programming.html#programming">9</a>.</p>
 </div>
 <div id="code-comments" class="section level2">
 <h2><span class="header-section-number">2.17</span> Code Comments</h2>
@@ -1030,8 +1029,8 @@ n.cran.packages &lt;-<span class="st"> </span><span class="kw">nrow</span>(df.cr
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(n.cran.packages)</code></pre></div>
-<pre><code>## [1] 10487</code></pre>
-<p>If asked about which mirror to use, simply select the one closest to you. Currently (2017-05-03 16:07:02), there are 10487 packages available on the CRAN servers. We can see some details of the first three packages in <code>df.cran.pkgs</code> with function <code>print</code> and some indexing: </p>
+<pre><code>## [1] 10907</code></pre>
+<p>If asked about which mirror to use, simply select the one closest to you. Currently (2017-06-26 09:34:01), there are 10907 packages available on the CRAN servers. We can see some details of the first three packages in <code>df.cran.pkgs</code> with function <code>print</code> and some indexing: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print information about the first three packages</span>
 <span class="kw">print</span>(df.cran.pkgs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ])</code></pre></div>
 <pre><code>##        Package  Version Priority
@@ -1073,8 +1072,8 @@ n.local.packages &lt;-<span class="st"> </span><span class="kw">nrow</span>(<spa
 
 <span class="co"># print it </span>
 <span class="kw">print</span>(n.local.packages)</code></pre></div>
-<pre><code>## [1] 364</code></pre>
-<p>In this case, the computer on which the book was written has 364 packages currently installed. This value is probably different from yours. Give it a try!</p>
+<pre><code>## [1] 340</code></pre>
+<p>In this case, the computer on which the book was written has 340 packages currently installed. This value is probably different from yours. Give it a try!</p>
 <div id="installing-packages-from-cran" class="section level3">
 <h3><span class="header-section-number">2.19.1</span> Installing Packages from CRAN</h3>
 <p>To install a package, simply use the command <code>install.packages</code>. You only need to do it once for each new package. As an example, we will install a package called <code>quantmod</code> that will be used in future chapters. </p>
@@ -1189,16 +1188,16 @@ my.f &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span clas
 ##  [4] &quot;data/example_gethfdata.RDATA&quot;                  
 ##  [5] &quot;data/FileWithLatinChar.txt&quot;                    
 ##  [6] &quot;data/grunfeld.csv&quot;                             
-##  [7] &quot;data/HFData.csv&quot;                               
-##  [8] &quot;data/HFData_6_Assets_15 min.RData&quot;             
+##  [7] &quot;data/HFData_6_Assets_15 min.RData&quot;             
+##  [8] &quot;data/HFData.csv&quot;                               
 ##  [9] &quot;data/MktIndices_and_Symbols.csv&quot;               
 ## [10] &quot;data/MySQLiteDatabase.SQLITE&quot;                  
-## [11] &quot;data/SP500-Excel.xlsx&quot;                         
-## [12] &quot;data/SP500-Stocks-WithRet.RData&quot;               
-## [13] &quot;data/SP500-Stocks_long.csv&quot;                    
-## [14] &quot;data/SP500-Stocks_wide.csv&quot;                    
-## [15] &quot;data/SP500.csv&quot;                                
-## [16] &quot;data/SP500_2011-11-13_2016-11-11.csv&quot;          
+## [11] &quot;data/SP500_2011-11-13_2016-11-11.csv&quot;          
+## [12] &quot;data/SP500.csv&quot;                                
+## [13] &quot;data/SP500-Excel.xlsx&quot;                         
+## [14] &quot;data/SP500-Stocks_long.csv&quot;                    
+## [15] &quot;data/SP500-Stocks_wide.csv&quot;                    
+## [16] &quot;data/SP500-Stocks-WithRet.RData&quot;               
 ## [17] &quot;data/TDData.csv&quot;                               
 ## [18] &quot;data/temp.csv&quot;                                 
 ## [19] &quot;data/temp.RData&quot;                               
@@ -1215,40 +1214,40 @@ my.dirs &lt;-<span class="st"> </span><span class="kw">list.dirs</span>(<span cl
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(my.dirs)</code></pre></div>
-<pre><code>##  [1] &quot;./.Rproj.user&quot;              
+<pre><code>##  [1] &quot;./_book&quot;                    
 ##  [2] &quot;./_bookdown_files&quot;          
 ##  [3] &quot;./data&quot;                     
-##  [4] &quot;./docs&quot;                     
-##  [5] &quot;./eqs&quot;                      
-##  [6] &quot;./fig_ggplot&quot;               
-##  [7] &quot;./figs&quot;                     
-##  [8] &quot;./ftp files&quot;                
-##  [9] &quot;./latex_files&quot;              
-## [10] &quot;./many_datafiles&quot;           
-## [11] &quot;./ProcAnFinDataR_ed_1_cache&quot;
-## [12] &quot;./ProcAnFinDataR_ed_1_files&quot;
-## [13] &quot;./Removed chapters&quot;         
+##  [4] &quot;./eqs&quot;                      
+##  [5] &quot;./fig_ggplot&quot;               
+##  [6] &quot;./figs&quot;                     
+##  [7] &quot;./ftp files&quot;                
+##  [8] &quot;./latex_files&quot;              
+##  [9] &quot;./many_datafiles&quot;           
+## [10] &quot;./ProcAnFinDataR_ed_1_cache&quot;
+## [11] &quot;./ProcAnFinDataR_ed_1_files&quot;
+## [12] &quot;./Removed chapters&quot;         
+## [13] &quot;./.Rproj.user&quot;              
 ## [14] &quot;./Scripts&quot;                  
 ## [15] &quot;./tabs&quot;</code></pre>
 <p>The command <code>list.dirs(recursive = F)</code> listed all directories of the current path without recursion. The output shows the directories that I have used to write this book. It includes the output directory of the book ( <code>./_book</code>), the directory with the data (<code>./data</code>), among others. In this same directory, you can find the chapters of the book, organized by files and based on the <em>RMarkdown</em> language (<code>.Rmd</code> file extension). To list only files with the extension <code>.Rmd</code>, we can use the <code>pattern</code> input in function <code>list.files</code> as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list all files with extension .Rmd</span>
 <span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;*.Rmd&quot;</span>)</code></pre></div>
-<pre><code>##  [1] &quot;_Welcome.Rmd&quot;                               
-##  [2] &quot;00-Preface.Rmd&quot;                             
-##  [3] &quot;01-Introduction.Rmd&quot;                        
-##  [4] &quot;02-BasicOperations.Rmd&quot;                     
-##  [5] &quot;03-BasicObjects.Rmd&quot;                        
-##  [6] &quot;04-DataStructureObjects.Rmd&quot;                
-##  [7] &quot;05-Financial-data-and-common-operations.Rmd&quot;
-##  [8] &quot;06-ImportingExportingLocal.Rmd&quot;             
-##  [9] &quot;07-ImportingInternet.Rmd&quot;                   
-## [10] &quot;08-Figures.Rmd&quot;                             
-## [11] &quot;09-Programming.Rmd&quot;                         
-## [12] &quot;10-Models.Rmd&quot;                              
-## [13] &quot;11-ResearchScripts.Rmd&quot;                     
-## [14] &quot;12-references.Rmd&quot;                          
-## [15] &quot;index.Rmd&quot;                                  
-## [16] &quot;ProcAnFinDataR_ed_1.Rmd&quot;</code></pre>
+<pre><code>##  [1] &quot;00-Preface.Rmd&quot;                             
+##  [2] &quot;01-Introduction.Rmd&quot;                        
+##  [3] &quot;02-BasicOperations.Rmd&quot;                     
+##  [4] &quot;03-BasicObjects.Rmd&quot;                        
+##  [5] &quot;04-DataStructureObjects.Rmd&quot;                
+##  [6] &quot;05-Financial-data-and-common-operations.Rmd&quot;
+##  [7] &quot;06-ImportingExportingLocal.Rmd&quot;             
+##  [8] &quot;07-ImportingInternet.Rmd&quot;                   
+##  [9] &quot;08-Figures.Rmd&quot;                             
+## [10] &quot;09-Programming.Rmd&quot;                         
+## [11] &quot;10-Models.Rmd&quot;                              
+## [12] &quot;11-ResearchScripts.Rmd&quot;                     
+## [13] &quot;12-references.Rmd&quot;                          
+## [14] &quot;index.Rmd&quot;                                  
+## [15] &quot;ProcAnFinDataR_ed_1.Rmd&quot;                    
+## [16] &quot;_Welcome.Rmd&quot;</code></pre>
 <p>The files presented above contain all the contents of this book, including this specific paragraph, located in file <code>02-BasicOperations.Rmd</code>!</p>
 
 </div>
@@ -1292,8 +1291,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="Introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="BasicObjects.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="BasicObjects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1333,7 +1333,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

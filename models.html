@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="programming.html">
 <link rel="next" href="research-scripts.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="models" class="section level1">
 <h1><span class="header-section-number">Chapter 10</span> Financial Econometrics with R</h1>
 <p>The modelling tools from financial econometrics allow the researcher to simulate stochastic processes, such as price series, make predictions, and test a particular hypothesis about the data. The number of possible empirical applications of financial models is enormous. Briefly, we estimate a model to learn something from the data. This model can later provide quantitative insights that will help the decision making process.</p>
@@ -415,7 +414,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span cl
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-479-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-480-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Clearly, there is a positive linear correlation; an upward straight line would be a good approximation for the relationship between these variables. We can check this result with the calculation of the correlation coefficient with command <code>cor(temp.df$x, temp.df$y)</code>. Here, the correlation between <code>y</code> and <code>x</code> is 0.901.</p>
 </div>
 <div id="estimating-ols" class="section level3">
@@ -605,7 +604,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-491-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-492-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows a clear linear tendency; the returns from the market index are a good predictor of the returns of the stock. Now, let’s estimate the linear model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># estimate beta model</span>
 my.beta.model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> my.df.asset, <span class="dt">formula =</span> ret <span class="op">~</span><span class="st"> </span>ret.sp500)
@@ -849,7 +848,7 @@ df =<span class="st"> </span><span class="kw">data.frame</span>(y, x)
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">seq_along</span>(y) ,<span class="dt">y=</span>y))
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-508-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-509-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Object <code>y</code> contains zeros and ones, as expected.</p>
 </div>
 <div id="estimating-a-glm-model" class="section level3">
@@ -1028,7 +1027,7 @@ sim.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span cl
 <span class="kw">print</span>(<span class="kw">str</span>(sim.df))</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
 ##  $ G    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
-##  $ dates: Date, format: &quot;2017-05-04&quot; ...
+##  $ dates: Date, format: &quot;2017-06-27&quot; ...
 ##  $ y    : num  -10.68 -11.55 -11.74 -9.84 -11.96 ...
 ##  $ x    : num  -0.212 -1.042 -1.153 0.322 -1.5 ...
 ## NULL</code></pre>
@@ -1040,7 +1039,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>G)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-515-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-516-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows the strong linear relationship shared between x and y in the different groups. If we estimated a linear model from this data, we would have to allow a different intercept for each group we find in column <code>cases</code>.</p>
 </div>
 <div id="estimating-panel-data-models" class="section level3">
@@ -1065,8 +1064,8 @@ my.pdm &lt;-<span class="st"> </span><span class="kw">plm</span>(<span class="dt
 ## Balanced Panel: n=12, T=5, N=60
 ## 
 ## Residuals :
-##    Min. 1st Qu.  Median 3rd Qu.    Max. 
-##  -0.440  -0.148  -0.033   0.154   0.479 
+##      Min.   1st Qu.    Median   3rd Qu.      Max. 
+## -0.440310 -0.147656 -0.032982  0.153713  0.479001 
 ## 
 ## Coefficients :
 ##   Estimate Std. Error t-value  Pr(&gt;|t|)    
@@ -1208,8 +1207,8 @@ my.pdm.random &lt;-<span class="st"> </span><span class="kw">plm</span>(<span cl
 ## theta:  0.8612  
 ## 
 ## Residuals :
-##    Min. 1st Qu.  Median 3rd Qu.    Max. 
-## -178.00  -19.70    4.69   19.50  253.00 
+##      Min.   1st Qu.    Median   3rd Qu.      Max. 
+## -177.6063  -19.7350    4.6851   19.5105  252.8743 
 ## 
 ## Coefficients :
 ##               Estimate Std. Error t-value Pr(&gt;|t|)    
@@ -1295,7 +1294,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span cl
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-529-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-530-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The graph shows a time series with an average close to zero and strong instability. These are typical properties of an Arima model.</p>
 </div>
 <div id="arima-estimating" class="section level3">
@@ -1460,7 +1459,7 @@ temp.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span c
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(temp.df, <span class="kw">aes</span>(<span class="dt">x=</span>idx, <span class="dt">y=</span>sim.ret))
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-543-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-544-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The behaviour of the simulated series is similar to the return series of the stocks presented in chapter <a href="Figures.html#Figures">8</a>. It is difficult to set one apart from the other based solely on visual inspection. Unlike other models, where the instability is constant, a Garch model can portray a return series more realistically by assuming a time changing volatility.</p>
 </div>
 <div id="estimating-garch" class="section level3">
@@ -1483,7 +1482,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## &lt;environment: 0x000000009c3c0c50&gt;
+## &lt;environment: 0xa25f8f0&gt;
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -1511,7 +1510,7 @@ my.garchfit &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Wed May 03 16:10:06 2017 by user: marcelo</code></pre>
+##  Mon Jun 26 09:37:50 2017 by user: msperlin</code></pre>
 <p>The resulting parameters from the estimation are close to the values defined arbitrarily in the call to <code>garchSpec</code>. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function <code>summary</code> also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader.</p>
 <p>Now, as an example with real data, let’s estimate a Garch model for the SP500 index. The data is loaded from section <a href="models.html#arima-estimating">10.4.2</a>, so we can use it directly. First, let’s execute the LM Arch test <span class="citation">(Engle <a href="#ref-engle1982autoregressive">1982</a>; Tsay <a href="#ref-tsay2005analysis">2005</a>)</span> to verify if the returns of the market index have the Arch effect. Function <code>ArchTest</code> from <code>FinTS</code> <span class="citation">(Graves <a href="#ref-fints">2014</a>)</span> can perform this task.  </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FinTS)
@@ -1575,7 +1574,7 @@ my.garchfit.sp500 &lt;-<span class="st"> </span><span class="kw">garchFit</span>
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Wed May 03 16:10:06 2017 by user: marcelo</code></pre>
+##  Mon Jun 26 09:37:51 2017 by user: msperlin</code></pre>
 <p>As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for <code>ar1</code>, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.</p>
 </div>
 <div id="forecasting-garch-models" class="section level3">
@@ -1701,7 +1700,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Simulated time series&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-564-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-566-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>We can also look at the simulated states:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 df.to.plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> my.ms.simul<span class="op">@</span>dep, 
@@ -1712,7 +1711,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&#39;Probability of state 1&#39;</span>)
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-565-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-567-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As expected, the model is switching from one state to the other. Either state is strongly predominant over time, but state one seems to have a longer duration than state two. This property is controlled by the transition probabilities set in object <code>P</code>.</p>
 </div>
 <div id="estimating-regime-switching-models" class="section level3">
@@ -1777,7 +1776,7 @@ my.MS.model &lt;-<span class="st"> </span><span class="kw">MS_Regress_Fit</span>
 ##      Expected duration of Regime #2: 4.81 time periods</code></pre>
 <p>The estimated coefficients are close to the ones from the simulation. The estimation recognized the parameters from the simulated data. The output object from <code>MS_Regress_Fit</code> can also be used with <code>plot</code> for a custom figure. Have a look.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(my.MS.model)   <span class="co"># plotting output</span></code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-568-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-570-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>As an example with real data, let’s estimate the same markov regime switching model for the SP500 returns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read file</span>
 my.f &lt;-<span class="st"> &#39;data/SP500.csv&#39;</span>
@@ -1869,7 +1868,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df.to.plot,
 
 <span class="co"># plot it!</span>
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-572-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-574-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>The figure shows how the price increases in state 1 and decreases in state 2. From 2013 to 2015, it is clearly a bull market trend for the SP500 prices.</p>
 </div>
 <div id="forecasting-regime-switching-models" class="section level3">
@@ -1968,7 +1967,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df.to.plot, <span
 <span class="st">  </span><span class="kw">geom_histogram</span>()
 
 <span class="kw">print</span>(p)</code></pre></div>
-<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-581-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-583-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>For the SP500 data, we find no negative value of beta. Given the market portfolio is built as an average of the stocks, not surprisingly, the average beta equals one.</p>
 <p>Another way of storing and managing several models is to use the capabilities of list-columns with <code>dplyr</code>. Look at the next example of code, where we replicate the previous procedure of estimating an Arima model for several stocks using functions from <code>dplyr</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
@@ -1978,7 +1977,7 @@ my.tab &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">do</span>(<span class="dt">my.model =</span> <span class="kw">arima</span>(<span class="dt">x =</span> .<span class="op">$</span>ret, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)))
 
 <span class="kw">print</span>(<span class="kw">head</span>(my.tab))</code></pre></div>
-<pre><code>## # A tibble: 6 × 2
+<pre><code>## # A tibble: 6 x 2
 ##   ticker    my.model
 ##    &lt;chr&gt;      &lt;list&gt;
 ## 1      A &lt;S3: Arima&gt;
@@ -1995,7 +1994,7 @@ my.tab &lt;-<span class="st"> </span>my.df <span class="op">%&gt;%</span>
          <span class="dt">ar1 =</span> <span class="kw">coef</span>(my.model)[<span class="dv">1</span>])
 
 <span class="kw">print</span>(<span class="kw">head</span>(my.model.tab))</code></pre></div>
-<pre><code>## # A tibble: 6 × 4
+<pre><code>## # A tibble: 6 x 4
 ##   ticker    my.model        alpha          ar1
 ##    &lt;chr&gt;      &lt;list&gt;        &lt;dbl&gt;        &lt;dbl&gt;
 ## 1      A &lt;S3: Arima&gt; 0.0006101093 -0.010115360
@@ -2013,9 +2012,8 @@ my.coef.tab &lt;-<span class="st"> </span>my.model.tab <span class="op">%&gt;%</
 
 <span class="co"># print result</span>
 <span class="kw">print</span>(<span class="kw">head</span>(my.coef.tab))</code></pre></div>
-<pre><code>## Source: local data frame [6 x 6]
-## Groups: ticker, alpha, ar1 [3]
-## 
+<pre><code>## # A tibble: 6 x 6
+## # Groups:   ticker, alpha, ar1 [3]
 ##   ticker        alpha          ar1      term      estimate
 ##    &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;chr&gt;         &lt;dbl&gt;
 ## 1      A 0.0006101093 -0.010115360       ar1 -0.0101153599
@@ -2031,9 +2029,8 @@ my.info.models &lt;-<span class="st"> </span>my.model.tab <span class="op">%&gt;
 <span class="st">  </span><span class="kw">glance</span>(my.model)
 
 <span class="kw">print</span>(<span class="kw">head</span>(my.info.models))</code></pre></div>
-<pre><code>## Source: local data frame [6 x 7]
-## Groups: ticker, alpha, ar1 [6]
-## 
+<pre><code>## # A tibble: 6 x 7
+## # Groups:   ticker, alpha, ar1 [6]
 ##   ticker        alpha          ar1      sigma   logLik
 ##    &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1      A 0.0006101093 -0.010115360 0.01875836 4503.189
@@ -2200,8 +2197,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="research-scripts.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="research-scripts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -2241,7 +2239,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

@@ -3,6 +3,10 @@ Marcelo S. Perlin (marcelo.perlin@ufrgs.br)
 `r as.Date('2017-05-01')`  
 
 
+```
+## Warning in Sys.setlocale("LC_TIME", "English"): OS reports
+## request to set locale to "English" cannot be honored
+```
 
 
 
@@ -107,7 +111,7 @@ Today, R is almost synonymous to data analysis, with a large user base and defin
 
 Learning a new programming language requires a lot of time and effort. Perhaps you're wondering why you should opt for R and invest time in learning it. Here are the main arguments.
 
-First, **R is a mature, stable platform, continuously supported and intensively used in the industry**. When choosing R, you will have the computational background not only for an academic career in scientific research, but also to work as a data analyst in private organizations. If you are a student, learning R will create more options for your future career. Also, the strong support from the community means it very unlikely the R platform will ever fade away or be substituted for something else. Depending on your career choices, R might be the only programming language you ever need to learn.
+First, **R is a mature, stable platform, continuously supported and intensively used in the industry**. When choosing R, you will have the computational background not only for an academic career in scientific research, but also to work as a data analyst in private organizations. If you are a student, learning R will create more options for your future career. Also, the strong support from the community means it is very unlikely the R platform will ever fade away or be substituted for something else. Depending on your career choices, R might be the only programming language you ever need to learn.
 
 **Learning R is easy**. My experience in teaching R allows me to say students, even those with no programming experience, have no problem learning the language and using it to create their own code. The language is intuitive and certain rules and functions can be extended to different cases. For example, function `print` is used to show the contents of an object on the screen. You can use it for any kind of object as it adapts to the class of the object. So, by learning it one time, you'll be able to apply it in many different scenarios. Once you understand how the program works, it is easy to discover new features starting from a previous logic. This generic notation facilitates the learning process.
 
@@ -300,7 +304,7 @@ Before beginning to explain the use of R and RStudio, it is important to highlig
 
 * **Latin characters:** Due to its international standard, R has problems understanding Latin characters, such as the cedilla and accents. If you can avoid it, do not use these characters in the names of your variables or files. In character objects (text), you can use them without problems as long as the encoding is correctly specified (e.g. UTF-8, Latin1). Given that, it is recommended that the R code be written in the English language. This automatically eliminates the use of Latin characters and facilitates the usability of the code by people outside of your country.  \index{latin characters} \index{UTF-8} \index{Latin1}
 
-* **date format:** Dates in R are formatted according to the `YYYY-MM-DD` pattern, where `YYYY` is the year in four numbers, `MM` is the month and `DD` is the day. An example is 2017-05-05. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. \index{dates}
+* **date format:** Dates in R are formatted according to the `YYYY-MM-DD` pattern, where `YYYY` is the year in four numbers, `MM` is the month and `DD` is the day. An example is 2017-06-26. This may not be the case in your country. When importing local datasets, make sure that the dates are in this format or do a conversion. Again, while you can work with your local format of dates in R, it is best advised to use the international notation. The conversion between one format and another is quite easy and will be presented in a future chapter. \index{dates}
 
 If you want to learn more about your local format in R, use the following command by typing it in the prompt and pressing enter:
 
@@ -313,15 +317,15 @@ Sys.localeconv()
 ##     decimal_point     thousands_sep          grouping 
 ##               "."                ""                "" 
 ##   int_curr_symbol   currency_symbol mon_decimal_point 
-##             "BRL"              "R$"               "," 
+##            "USD "               "$"               "." 
 ## mon_thousands_sep      mon_grouping     positive_sign 
-##               "."            "\003"                "" 
+##               ","        "\003\003"                "" 
 ##     negative_sign   int_frac_digits       frac_digits 
 ##               "-"               "2"               "2" 
 ##     p_cs_precedes    p_sep_by_space     n_cs_precedes 
-##               "1"               "1"               "1" 
+##               "1"               "0"               "1" 
 ##    n_sep_by_space       p_sign_posn       n_sign_posn 
-##               "1"               "3"               "3"
+##               "0"               "1"               "1"
 ```
 
 The output of `Sys.localeconv()` shows how R interprets decimal points and the thousands separator, among other things. As you can see from the previous output, this book was compiled using the Brazilian notation for currency but uses the dot point for decimals. As mentioned before, it is good policy to follow international notation, especially for the decimal point. If necessary, you can change your local format to the US/international notation using the following command.
@@ -1207,8 +1211,8 @@ ls()
 ```
 ##  [1] "elem.x"        "M"             "my.array"     
 ##  [4] "my.char"       "my.dim"        "my.engine"    
-##  [7] "my.fct"        "my.logical"    "my.n.elements"
-## [10] "my.ncol"       "my.nrow"       "my.out.width" 
+##  [7] "my.fct"        "my.logical"    "my.ncol"      
+## [10] "my.n.elements" "my.nrow"       "my.out.width" 
 ## [13] "my.piece.x"    "my.str"        "my.text"      
 ## [16] "my.text.1"     "my.text.2"     "my.text.3"    
 ## [19] "my.vec"        "my.x"          "my.y"         
@@ -1229,8 +1233,8 @@ ls()
 ```
 ##  [1] "elem.x"        "M"             "my.array"     
 ##  [4] "my.char"       "my.dim"        "my.engine"    
-##  [7] "my.fct"        "my.logical"    "my.n.elements"
-## [10] "my.ncol"       "my.nrow"       "my.out.width" 
+##  [7] "my.fct"        "my.logical"    "my.ncol"      
+## [10] "my.n.elements" "my.nrow"       "my.out.width" 
 ## [13] "my.piece.x"    "my.str"        "my.text"      
 ## [16] "my.text.1"     "my.text.2"     "my.text.3"    
 ## [19] "my.vec"        "my.x"          "my.y"         
@@ -1257,16 +1261,18 @@ To show the current working directory, use function `getwd`: \index{base!getwd}
 
 
 ```r
-# get current dir
+# get current dir 
 my.dir <- getwd()
 
 # display it
 print(my.dir)
 ```
 
+
 ```
-## [1] "C:/Dropbox/My Books/pafdR (en)/Edition 2/Book Content"
+## C:/Dropbox/My Books/pafdR (en)/Book Content
 ```
+
 
 The result of the previous code shows the folder in which this book was written and compiled. As you can see, the book files are saved in a subfolder of my Dropbox directory. From the path, you should also realize that I'm working in a Windows OS. The root directory `C:/` gives that information away.
 
@@ -1290,8 +1296,8 @@ my.d <- 'C:\My Research\'
 ```
 
 
-```r
-cat("##Error: '\\M' is an unrecognized escape in character string")
+```
+## ##Error: '\M' is an unrecognized escape in character string
 ```
 
 This message means that R was not able to understand the use of backslashes. This is a reserved symbol for macros and should not be used anywhere in a code. Therefore, after copying the address, modify all backslashes to forward slashes, as in the following code:
@@ -1350,7 +1356,7 @@ for (i in 1:100) {
 }
 ```
 
-In the previous code, we used a `for` loop to display the message `'\nRunning code (please make it stop by hitting esc!)'` every second. For now, do not worry about the code and functions used in the example. We will discuss the use of loops chapter \@ref(programming). 
+In the previous code, we used a `for` loop to display the message `'\nRunning code (please make it stop by hitting esc!)'` every second. For now, do not worry about the code and functions used in the example. We will discuss the use of loops in chapter \@ref(programming). 
 
 
 ## Code Comments
@@ -1484,10 +1490,10 @@ print(n.cran.packages)
 ```
 
 ```
-## [1] 10503
+## [1] 10907
 ```
 
-If asked about which mirror to use, simply select the one closest to you. Currently (2017-05-05 08:18:18), there are 10503 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
+If asked about which mirror to use, simply select the one closest to you. Currently (2017-06-26 09:34:01), there are 10907 packages available on the CRAN servers. We can see some details of the first three packages in `df.cran.pkgs` with function `print` and some indexing: \index{base!available.packages}
 
 
 ```r
@@ -1544,10 +1550,10 @@ print(n.local.packages)
 ```
 
 ```
-## [1] 364
+## [1] 340
 ```
 
-In this case, the computer on which the book was written has 364 packages currently installed. This value is probably different from yours. Give it a try!
+In this case, the computer on which the book was written has 340 packages currently installed. This value is probably different from yours. Give it a try!
 
 
 ### Installing Packages from CRAN
@@ -1728,16 +1734,16 @@ print(my.f)
 ##  [4] "data/example_gethfdata.RDATA"                  
 ##  [5] "data/FileWithLatinChar.txt"                    
 ##  [6] "data/grunfeld.csv"                             
-##  [7] "data/HFData.csv"                               
-##  [8] "data/HFData_6_Assets_15 min.RData"             
+##  [7] "data/HFData_6_Assets_15 min.RData"             
+##  [8] "data/HFData.csv"                               
 ##  [9] "data/MktIndices_and_Symbols.csv"               
 ## [10] "data/MySQLiteDatabase.SQLITE"                  
-## [11] "data/SP500-Excel.xlsx"                         
-## [12] "data/SP500-Stocks-WithRet.RData"               
-## [13] "data/SP500-Stocks_long.csv"                    
-## [14] "data/SP500-Stocks_wide.csv"                    
-## [15] "data/SP500.csv"                                
-## [16] "data/SP500_2011-11-13_2016-11-11.csv"          
+## [11] "data/SP500_2011-11-13_2016-11-11.csv"          
+## [12] "data/SP500.csv"                                
+## [13] "data/SP500-Excel.xlsx"                         
+## [14] "data/SP500-Stocks_long.csv"                    
+## [15] "data/SP500-Stocks_wide.csv"                    
+## [16] "data/SP500-Stocks-WithRet.RData"               
 ## [17] "data/TDData.csv"                               
 ## [18] "data/temp.csv"                                 
 ## [19] "data/temp.RData"                               
@@ -1768,19 +1774,19 @@ print(my.dirs)
 ```
 
 ```
-##  [1] "./.Rproj.user"              
+##  [1] "./_book"                    
 ##  [2] "./_bookdown_files"          
 ##  [3] "./data"                     
-##  [4] "./docs"                     
-##  [5] "./eqs"                      
-##  [6] "./fig_ggplot"               
-##  [7] "./figs"                     
-##  [8] "./ftp files"                
-##  [9] "./latex_files"              
-## [10] "./many_datafiles"           
-## [11] "./ProcAnFinDataR_ed_1_cache"
-## [12] "./ProcAnFinDataR_ed_1_files"
-## [13] "./Removed chapters"         
+##  [4] "./eqs"                      
+##  [5] "./fig_ggplot"               
+##  [6] "./figs"                     
+##  [7] "./ftp files"                
+##  [8] "./latex_files"              
+##  [9] "./many_datafiles"           
+## [10] "./ProcAnFinDataR_ed_1_cache"
+## [11] "./ProcAnFinDataR_ed_1_files"
+## [12] "./Removed chapters"         
+## [13] "./.Rproj.user"              
 ## [14] "./Scripts"                  
 ## [15] "./tabs"
 ```
@@ -1794,22 +1800,22 @@ list.files(pattern = "*.Rmd")
 ```
 
 ```
-##  [1] "_Welcome.Rmd"                               
-##  [2] "00-Preface.Rmd"                             
-##  [3] "01-Introduction.Rmd"                        
-##  [4] "02-BasicOperations.Rmd"                     
-##  [5] "03-BasicObjects.Rmd"                        
-##  [6] "04-DataStructureObjects.Rmd"                
-##  [7] "05-Financial-data-and-common-operations.Rmd"
-##  [8] "06-ImportingExportingLocal.Rmd"             
-##  [9] "07-ImportingInternet.Rmd"                   
-## [10] "08-Figures.Rmd"                             
-## [11] "09-Programming.Rmd"                         
-## [12] "10-Models.Rmd"                              
-## [13] "11-ResearchScripts.Rmd"                     
-## [14] "12-references.Rmd"                          
-## [15] "index.Rmd"                                  
-## [16] "ProcAnFinDataR_ed_1.Rmd"
+##  [1] "00-Preface.Rmd"                             
+##  [2] "01-Introduction.Rmd"                        
+##  [3] "02-BasicOperations.Rmd"                     
+##  [4] "03-BasicObjects.Rmd"                        
+##  [5] "04-DataStructureObjects.Rmd"                
+##  [6] "05-Financial-data-and-common-operations.Rmd"
+##  [7] "06-ImportingExportingLocal.Rmd"             
+##  [8] "07-ImportingInternet.Rmd"                   
+##  [9] "08-Figures.Rmd"                             
+## [10] "09-Programming.Rmd"                         
+## [11] "10-Models.Rmd"                              
+## [12] "11-ResearchScripts.Rmd"                     
+## [13] "12-references.Rmd"                          
+## [14] "index.Rmd"                                  
+## [15] "ProcAnFinDataR_ed_1.Rmd"                    
+## [16] "_Welcome.Rmd"
 ```
 
 The files presented above contain all the contents of this book, including this specific paragraph, located in file `02-BasicOperations.Rmd`!
@@ -2045,8 +2051,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1]  0.3261201 -1.1984007 -1.3103724 -0.9693183 -1.3250236
-##  [6] -1.8833574  0.9946473  0.2250583 -0.2507958  1.7704749
+##  [1]  1.5191426  0.1929714  0.2411308 -1.5415691  0.6088365
+##  [6]  0.6793591 -1.4386729  0.9177581 -0.6380608 -1.7099636
 ```
 
 In the previous code, we generated ten random numbers from a normal distribution, with mean zero and standard deviation equal to one.
@@ -2063,8 +2069,8 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1]  3.1307915 -4.7785169 -2.7433467  3.7523303  0.1440681
-##  [6]  0.6307013 -2.4424260 -4.9740006 -2.2535092  1.8727767
+##  [1]  2.3320814  3.2052973 -1.8787152  3.3645836 -4.2315093
+##  [6] -0.8846578  3.5940072 -2.0730946  2.5217051  1.9470057
 ```
 
 Note that both functions, `rnorm` and `runif`, are limited to their respective distribution. An alternative and flexible way to generate random values is to use the `sample` function. It accepts any vector as input and returns a scrambled version of its elements. Its flexibility lies in the fact that the input vector can be anything. For example, if we wanted to create a random vector with elements taken from vector `c(0, 5, 15, 20, 25)`, we could do it as follows: \index{base!sample}
@@ -2082,7 +2088,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1]  0 10 20 15 25  5
+## [1] 10  5 20 25 15  0
 ```
 
 Function `sample` also allows the random selection of several elements. If we wanted to select randomly only one element of `my.vec`, we could write the code as:
@@ -2097,7 +2103,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 0
+## [1] 10
 ```
 
 If we wanted two random elements from `my.rnd.vec`:
@@ -2112,7 +2118,7 @@ print(my.rnd.vec)
 ```
 
 ```
-## [1] 15 20
+## [1] 25  5
 ```
 
 It is also possible to select values from a smaller vector to create a larger vector. Consider the case where you have a vector with numbers `c(5, 10, 15)` and want to create a random vector with ten elements removed from that smaller vector. For that, we use option `replace = TRUE`.
@@ -2128,7 +2134,7 @@ print(my.rnd.vec)
 ```
 
 ```
-##  [1] 10 15 10 15 10 10  5 15 10 15
+##  [1] 15 15 10  5 10  5 10 15 15 10
 ```
 
 Another important feature of `sample` is it works for any type of vector, not only for those of the `numeric` class. This means we can randomize any sort of object. Have a look:
@@ -3243,7 +3249,7 @@ print(my.char)
 ```
 
 ```
-## [1] "A casa Ã© bonita e tem muito espaÃ§o"
+## [1] "A casa é bonita e tem muito espaço"
 ```
 
 The original content of the file is a text in Portuguese. As you can see, the output of `readLines` shows all Latin characters as ugly, unreadable symbols. The problem is the function did not recognize the characters because the default encoding differs from the one in the file. The easiest solution is to set the encoding manually using input `encoding`, as in:
@@ -3786,10 +3792,10 @@ print(my.date)
 ```
 
 ```
-## [1] "0024-06-20"
+## [1] "24-06-20"
 ```
 
-The date of 0024-06-20 is wrong! To fix this formatting issue, use input  `format`, as shown below:
+The date of 24-06-20 is wrong! To fix this formatting issue, use input  `format`, as shown below:
 
 
 ```r
@@ -4080,7 +4086,7 @@ print(my.timedate)
 ```
 
 ```
-## [1] "2016-01-01 16:00:00 BRST"
+## [1] "2016-01-01 16:00:00 CET"
 ```
 
 When creating a `POSIXlt` object, the time zone is added automatically with the information from the operating system. If you need to represent a time zone different from the one in your computer, use input  `tz`: \index{time zone}
@@ -4241,7 +4247,7 @@ print(my.day)
 ```
 
 ```
-## [1] "2017-05-05"
+## [1] "2017-06-26"
 ```
 
 To find the current date and time, we use function `Sys.time`:  \index{base!Sys.time}
@@ -4253,7 +4259,7 @@ print(Sys.time())
 ```
 
 ```
-## [1] "2017-05-05 08:18:21 BRT"
+## [1] "2017-06-26 09:34:02 CEST"
 ```
 
 Going further, based on these functions, we can write:
@@ -4268,7 +4274,7 @@ print(my.str)
 ```
 
 ```
-## [1] "This code was executed in 2017-05-05 08:18:21"
+## [1] "This code was executed in 2017-06-26 09:34:02"
 ```
 
 
@@ -4356,7 +4362,7 @@ print(Sys.timezone())
 ```
 
 ```
-## [1] "America/Sao_Paulo"
+## [1] "Europe/Berlin"
 ```
 	
 * **cut** - Returns a factor by grouping dates and time. \index{base!cut}
@@ -6403,10 +6409,10 @@ After understanding the basics of `dataframe` manipulation, it is important to d
 
 refdate       STOCK1   STOCK2   STOCK3
 -----------  -------  -------  -------
-2017-05-06     10.02     3.15     5.19
-2017-05-07      9.79     3.34     5.06
-2017-05-08      8.08     2.74     5.61
-2017-05-09      7.33     2.56     5.99
+2017-06-27     10.02     3.15     5.19
+2017-06-28      9.79     3.34     5.06
+2017-06-29      8.08     2.74     5.61
+2017-06-30      7.33     2.56     5.99
 
 Note, the above table has three distinct pieces of information for each data point: ticker, price, and date. If we added one more stock, the table would be incremented by one column. If we wanted to include a new variable such as traded volume, we would need to create a new table or a structured naming system for the columns.
 
@@ -6415,18 +6421,18 @@ Note, the above table has three distinct pieces of information for each data poi
 
 refdate      ticker    price
 -----------  -------  ------
-2017-05-06   STOCK1    10.02
-2017-05-07   STOCK1     9.79
-2017-05-08   STOCK1     8.08
-2017-05-09   STOCK1     7.33
-2017-05-06   STOCK2     3.15
-2017-05-07   STOCK2     3.34
-2017-05-08   STOCK2     2.74
-2017-05-09   STOCK2     2.56
-2017-05-06   STOCK3     5.19
-2017-05-07   STOCK3     5.06
-2017-05-08   STOCK3     5.61
-2017-05-09   STOCK3     5.99
+2017-06-27   STOCK1    10.02
+2017-06-28   STOCK1     9.79
+2017-06-29   STOCK1     8.08
+2017-06-30   STOCK1     7.33
+2017-06-27   STOCK2     3.15
+2017-06-28   STOCK2     3.34
+2017-06-29   STOCK2     2.74
+2017-06-30   STOCK2     2.56
+2017-06-27   STOCK3     5.19
+2017-06-28   STOCK3     5.06
+2017-06-29   STOCK3     5.61
+2017-06-30   STOCK3     5.99
 
 This argument may seem trivial since the information is the same in both formats. But, make no mistake: the format of the data is very important and may facilitate the analysis of the data. Specialized packages, such as `dplyr` [@dplyr] and `ggplot2` [@wickham2009ggplot2], expect a `dataframe` in the _long_ format; therefore, this structure must be prioritized if one is using these packages. 
 
@@ -6800,7 +6806,7 @@ Certain events can also alter the price of a stock, even though no new informati
 
 Another event that impacts price is the payment of dividends. In the date previous to the payment, a stock will drop its price regarding the value of the dividend per share. This happens because a new buyer loses its right to the upcoming dividend payment and, therefore, a discount is expected. It is important to understand and recognize these events as you may have to deal with raw price data. In general, data providers give the option for _adjusted prices_, that is, the price is already adjusted to these events.  
 
-In it raw form, price data is sampled whenever there is a trade. Sites like [Yahoo Finance](https://finance.yahoo.com/) and [Google finance](https://www.google.com/finance) offers daily statistics about share prices such as highest/lowest price, traded volume and closing prices for the day. The variety of datasets is wide, covering almost every financial exchange in the world. Anyone can download this data using the website or a custom access point. Many of the CRAN packages that imports financial data from the web offer functions that make it easy to download datasets from these websites.
+In its raw form, price data is sampled whenever there is a trade. Sites like [Yahoo Finance](https://finance.yahoo.com/) and [Google finance](https://www.google.com/finance) offers daily statistics about share prices such as highest/lowest price, traded volume and closing prices for the day. The variety of datasets is wide, covering almost every financial exchange in the world. Anyone can download this data using the website or a custom access point. Many of the CRAN packages that imports financial data from the web offer functions that make it easy to download datasets from these websites.
 
 The data from Yahoo Finance or others is in the daily frequency. Obtaining information about trades within the day is far more difficult.[^2] This is usually called tick-by-tick, or high-frequency data (HFD). For liquid markets, the size of this database can be restrictive. One exchange that offers free access to tick-by-tick data is Bovespa, the Brazilian exchange. We will discuss this dataset in chapters  \@ref(importing) and \@ref(research-scripts).
 
@@ -6913,14 +6919,14 @@ We can use function `cumsum` to calculate the compound log return: \index{base!c
 
 ```r
 # calculate accumulated log. return
-acum.log.ret <- c(1, 1+cumsum(na.omit(arit.ret)))
+acum.log.ret <- c(1, 1+cumsum(na.omit(log.ret)))
 				  
 # print result
 print(acum.log.ret)
 ```
 
 ```
-## [1] 1.0000000 0.9815747 0.8444417 0.7845249 0.8139794
+## [1] 1.0000000 0.9814029 0.8339081 0.7721212 0.8011503
 ```
 
 The conversion from log to arithmetic return is simple. Consider the following conversion formulas:
@@ -7002,21 +7008,21 @@ print(my.df)
 
 ```
 ##      ref.date    prices   ticker
-## 1  2017-05-06 10.018746 Stock  A
-## 2  2017-05-07  9.834148 Stock  A
-## 3  2017-05-08  8.485561 Stock  A
-## 4  2017-05-09  7.977134 Stock  A
-## 5  2017-05-10  8.212097 Stock  A
-## 6  2017-05-06 20.779589 Stock  B
-## 7  2017-05-07 18.269256 Stock  B
-## 8  2017-05-08 17.604847 Stock  B
-## 9  2017-05-09 14.741115 Stock  B
-## 10 2017-05-10 14.363037 Stock  B
-## 11 2017-05-06 33.305339 Stock  C
-## 12 2017-05-07 35.822494 Stock  C
-## 13 2017-05-08 34.969082 Stock  C
-## 14 2017-05-09 38.422086 Stock  C
-## 15 2017-05-10 41.270661 Stock  C
+## 1  2017-06-27 10.018746 Stock  A
+## 2  2017-06-28  9.834148 Stock  A
+## 3  2017-06-29  8.485561 Stock  A
+## 4  2017-06-30  7.977134 Stock  A
+## 5  2017-07-01  8.212097 Stock  A
+## 6  2017-06-27 20.779589 Stock  B
+## 7  2017-06-28 18.269256 Stock  B
+## 8  2017-06-29 17.604847 Stock  B
+## 9  2017-06-30 14.741115 Stock  B
+## 10 2017-07-01 14.363037 Stock  B
+## 11 2017-06-27 33.305339 Stock  C
+## 12 2017-06-28 35.822494 Stock  C
+## 13 2017-06-29 34.969082 Stock  C
+## 14 2017-06-30 38.422086 Stock  C
+## 15 2017-07-01 41.270661 Stock  C
 ```
 
 As mentioned before, using a matrix notation facilitates calculations for the portfolio. With that in mind, we will first transform the long `dataframe` in a `matrix` of prices:
@@ -7036,11 +7042,11 @@ print(my.price.mat)
 
 ```
 ##             Stock  A Stock  B Stock  C
-## 2017-05-06 10.018746 20.77959 33.30534
-## 2017-05-07  9.834148 18.26926 35.82249
-## 2017-05-08  8.485561 17.60485 34.96908
-## 2017-05-09  7.977134 14.74111 38.42209
-## 2017-05-10  8.212097 14.36304 41.27066
+## 2017-06-27 10.018746 20.77959 33.30534
+## 2017-06-28  9.834148 18.26926 35.82249
+## 2017-06-29  8.485561 17.60485 34.96908
+## 2017-06-30  7.977134 14.74111 38.42209
+## 2017-07-01  8.212097 14.36304 41.27066
 ```
 
 Now, from the price matrix, we can calculate a return matrix using simple element by element operation with the whole matrix: 
@@ -7057,10 +7063,10 @@ print(my.ret.mat)
 
 ```
 ##               Stock  A    Stock  B    Stock  C
-## 2017-05-07 -0.01842525 -0.12080762  0.07557815
-## 2017-05-08 -0.13713305 -0.03636760 -0.02382336
-## 2017-05-09 -0.05991677 -0.16266727  0.09874447
-## 2017-05-10  0.02945451 -0.02564784  0.07413901
+## 2017-06-28 -0.01842525 -0.12080762  0.07557815
+## 2017-06-29 -0.13713305 -0.03636760 -0.02382336
+## 2017-06-30 -0.05991677 -0.16266727  0.09874447
+## 2017-07-01  0.02945451 -0.02564784  0.07413901
 ```
 
 Finally, we use the weight vector in a `matrix` object to calculate the return of the portfolio over time:
@@ -7079,10 +7085,10 @@ print(ret.port)
 
 ```
 ##                   [,1]
-## 2017-05-07 -0.02121824
-## 2017-05-08 -0.06577467
-## 2017-05-09 -0.04127986
-## 2017-05-10  0.02598190
+## 2017-06-28 -0.02121824
+## 2017-06-29 -0.06577467
+## 2017-06-30 -0.04127986
+## 2017-07-01  0.02598190
 ```
 
 Vector `ret.port` show the return an investor would receive if the total value of the portfolio is evenly divided between the stocks.
@@ -7176,7 +7182,7 @@ The previous format is flexible and can hold a large number of different financi
 
 
 
-In chapter \@ref(DataStructureObjects), we studied the main types of R objects and the many ways to manipulate them. In particular, we looked at `dataframes`, an efficient storage type to represent our data in a tabular format. We learned more about the types of financial data in chapter \@ref(Financial-data). In this chapter, we will study the process of importing and exporting datasets with R. In most cases of data analysis, the database will be contained in an external source, such as a local file. 
+In chapter \@ref(DataStructureObjects), we studied the main types of R objects and the many ways to manipulate them. In particular, we looked at `dataframes`, an efficient storage type to represent our data in a tabular format. We learned more about the types of financial data in chapter \@ref(Financial-data). In this chapter, we will study the process of importing and exporting datasets with R. In most cases of data analysis, the database will be contained in an external source, such as a local file.
 
 
 ## Importing Data from Local Files
@@ -7373,7 +7379,7 @@ print(head(my.df))
 ```
 
 ```
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##         date   price
 ##       <dttm>   <dbl>
 ## 1 2010-01-04 1132.99
@@ -7422,16 +7428,16 @@ print(list.files('data'))
 ##  [4] "example_gethfdata.RDATA"                  
 ##  [5] "FileWithLatinChar.txt"                    
 ##  [6] "grunfeld.csv"                             
-##  [7] "HFData.csv"                               
-##  [8] "HFData_6_Assets_15 min.RData"             
+##  [7] "HFData_6_Assets_15 min.RData"             
+##  [8] "HFData.csv"                               
 ##  [9] "MktIndices_and_Symbols.csv"               
 ## [10] "MySQLiteDatabase.SQLITE"                  
-## [11] "SP500-Excel.xlsx"                         
-## [12] "SP500-Stocks-WithRet.RData"               
-## [13] "SP500-Stocks_long.csv"                    
-## [14] "SP500-Stocks_wide.csv"                    
-## [15] "SP500.csv"                                
-## [16] "SP500_2011-11-13_2016-11-11.csv"          
+## [11] "SP500_2011-11-13_2016-11-11.csv"          
+## [12] "SP500.csv"                                
+## [13] "SP500-Excel.xlsx"                         
+## [14] "SP500-Stocks_long.csv"                    
+## [15] "SP500-Stocks_wide.csv"                    
+## [16] "SP500-Stocks-WithRet.RData"               
 ## [17] "TDData.csv"                               
 ## [18] "temp.csv"                                 
 ## [19] "temp.RData"                               
@@ -7499,21 +7505,8 @@ my.con <- dbConnect(drv = SQLite(), f.sqlite)
 
 # write df to sqlite
 dbWriteTable(conn = my.con, name = 'MyTable1', value = my.large.df.1)
-```
-
-```
-## [1] TRUE
-```
-
-```r
 dbWriteTable(conn = my.con, name = 'MyTable2', value = my.large.df.2)
-```
 
-```
-## [1] TRUE
-```
-
-```r
 # disconnect
 dbDisconnect(my.con)
 ```
@@ -7794,7 +7787,7 @@ One of the great advantages of using R for data analysis is the amount of data t
 In most cases, the importation of financial data from the web is performed using specific packages. For Finance, there are several packages with this purpose. Here, we will describe the main packages available in CRAN: `quantmod`, `BatchGetSymbols`, `finreportr`, `tidyquant`, `GetHFData`, `ustyc`, `Quandl` and `Rbitcoin`. 
 
 
-### Package `quantmod`
+### Package `quantmod` 
 
 To import daily trade data of stocks, one of the most popular packages is `quantmod` [@quantmod2015]. You can download information for a huge number of stocks from different sources, such as _Yahoo Finance_ and _Google Finance_.  \index{quantmod}
 
@@ -7813,22 +7806,22 @@ print(tail(my.df))
 
 ```
 ##            FTSE.Open FTSE.High FTSE.Low FTSE.Close
-## 2017-04-26    7275.6    7302.6   7262.3     7288.7
-## 2017-04-27    7288.7    7289.4   7224.4     7237.2
-## 2017-04-28    7237.2    7243.3   7197.3     7203.9
-## 2017-05-02    7203.9    7254.3   7203.9     7250.1
-## 2017-05-03    7250.1    7250.1   7218.6     7234.5
-## 2017-05-04    7234.5    7280.7   7226.1     7248.1
+## 2017-06-16    7419.4    7479.0   7419.4     7463.5
+## 2017-06-19    7463.5    7537.8   7463.5     7523.8
+## 2017-06-20    7523.8    7561.1   7472.7     7472.7
+## 2017-06-21    7472.7    7477.2   7417.5     7447.8
+## 2017-06-22    7447.8    7448.5   7398.8     7439.3
+## 2017-06-23    7439.3    7441.8   7396.8     7424.1
 ##            FTSE.Volume FTSE.Adjusted
-## 2017-04-26   860455200        7288.7
-## 2017-04-27  1094741200        7237.2
-## 2017-04-28  1148718800        7203.9
-## 2017-05-02   910924000        7250.1
-## 2017-05-03   766336200        7234.5
-## 2017-05-04   918713600        7248.1
+## 2017-06-16  1889237700        7463.5
+## 2017-06-19   551165300        7523.8
+## 2017-06-20  1005340300        7472.7
+## 2017-06-21   843652400        7447.8
+## 2017-06-22   789287000        7439.3
+## 2017-06-23   608960600        7424.1
 ```
 
-In the call to `getSymbols`, we used argument `auto.assign = F`. This forces the function to save the data to object `my.df` and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-05-04, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (`Open`), maximum price (`High`), minimum (`Low`), closing price (`Close`), trading volume (`Volume`), and the adjusted price (`Adjusted`). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In `my.df`, the only column with not so obvious content is `Adjusted`. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter \@ref(Financial-data).
+In the call to `getSymbols`, we used argument `auto.assign = F`. This forces the function to save the data to object `my.df` and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-06-23, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (`Open`), maximum price (`High`), minimum (`Low`), closing price (`Close`), trading volume (`Volume`), and the adjusted price (`Adjusted`). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In `my.df`, the only column with not so obvious content is `Adjusted`. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter \@ref(Financial-data).
 
 Some attention is required when downloading trade data for some exchanges. Yahoo Finance has specific codes for specific markets. As an example, all tickers from the Brazilian equity market have the `.SA` text attached to their original ticker. So, stock `PETR4` becomes `PETR4.SA`. You should investigate if Yahoo Finance has a particular format for the market you are interested. You can do that by looking for the tickers in the [website](https://finance.yahoo.com/).
 
@@ -7867,19 +7860,19 @@ print(tail(my.env$MSFT))
 
 ```
 ##            MSFT.Open MSFT.High MSFT.Low MSFT.Close
-## 2017-04-27     68.15     68.38    67.58      68.27
-## 2017-04-28     68.91     69.14    67.69      68.46
-## 2017-05-01     68.68     69.55    68.50      69.41
-## 2017-05-02     69.71     69.71    69.13      69.30
-## 2017-05-03     69.38     69.38    68.71      69.08
-## 2017-05-04     69.03     69.08    68.64      68.81
+## 2017-06-16     69.73     70.03    69.22      70.00
+## 2017-06-19     70.50     70.94    70.35      70.87
+## 2017-06-20     70.82     70.87    69.87      69.91
+## 2017-06-21     70.21     70.62    69.94      70.27
+## 2017-06-22     70.54     70.59    69.71      70.26
+## 2017-06-23     70.09     71.25    69.92      71.21
 ##            MSFT.Volume MSFT.Adjusted
-## 2017-04-27    33464900         68.27
-## 2017-04-28    39423500         68.46
-## 2017-05-01    31789300         69.41
-## 2017-05-02    23519500         69.30
-## 2017-05-03    28751500         69.08
-## 2017-05-04    21502600         68.81
+## 2017-06-16    48345100         70.00
+## 2017-06-19    23798300         70.87
+## 2017-06-20    21512200         69.91
+## 2017-06-21    19891100         70.27
+## 2017-06-22    22965700         70.26
+## 2017-06-23    26804300         71.21
 ```
 
 The previous code downloads data for all tickers in `my.tickers`. The resulting `dataframe` objects are available in environment `my.env`, and we can access them using operator `$`. There are easier ways of organizing financial data for several tickers, as we will soon learn. Ideally, we should have all stocks in a long `dataframe`.
@@ -7912,10 +7905,10 @@ l.out <- BatchGetSymbols(tickers = my.tickers,
 ## Running BatchGetSymbols for:
 ##    tickers = MSFT, GOOGL, JPM, GE
 ##    Downloading data for benchmark ticker
-## Downloading Data for MSFT from yahoo (1|4) - Got it!
-## Downloading Data for GOOGL from yahoo (2|4) - Good job!
-## Downloading Data for JPM from yahoo (3|4) - Good stuff!
-## Downloading Data for GE from yahoo (4|4) - Good job!
+## Downloading Data for MSFT from yahoo (1|4) - Boa!
+## Downloading Data for GOOGL from yahoo (2|4) - Nice!
+## Downloading Data for JPM from yahoo (3|4) - Got it!
+## Downloading Data for GE from yahoo (4|4) - Well done!
 ```
 
 The output of `BatchGetSymbols` is a `list`, where element `df.control` contains a `dataframe` with the result of the download process. The package not only downloads the data, but also keeps track of possible errors and missing values. Let's see the content of this `dataframe`.
@@ -7928,10 +7921,10 @@ print(l.out$df.control)
 
 ```
 ##   ticker   src download.status total.obs
-## 1   MSFT yahoo              OK        21
-## 2  GOOGL yahoo              OK        21
-## 3    JPM yahoo              OK        21
-## 4     GE yahoo              OK        21
+## 1   MSFT yahoo              OK        19
+## 2  GOOGL yahoo              OK        19
+## 3    JPM yahoo              OK        19
+## 4     GE yahoo              OK        19
 ##   perc.benchmark.dates threshold.decision
 ## 1                    1               KEEP
 ## 2                    1               KEEP
@@ -7939,7 +7932,7 @@ print(l.out$df.control)
 ## 4                    1               KEEP
 ```
 
-Object `df.control` shows all tickers were valid, and we got 21 observations (rows) for each. 
+Object `df.control` shows all tickers were valid, and we got 19 observations (rows) for each. 
 
 As for the actual financial data, it is contained in element `df.tickers` of `l.out`. Let's look:
 
@@ -7951,19 +7944,19 @@ print(tail(l.out$df.tickers))
 
 ```
 ##    price.open price.high price.low price.close   volume
-## 79      29.29      29.31     29.02       29.08 32777900
-## 80      29.10      29.16     28.93       28.99 23929100
-## 81      29.01      29.17     28.93       28.94 23695700
-## 82      29.01      29.05     28.91       28.99 31475900
-## 83      28.92      29.29     28.85       29.23 26774100
-## 84      29.27      29.31     29.05       29.20 19544100
+## 71      28.98      29.01     28.62       29.00 81565600
+## 72      28.96      29.00     28.74       28.80 30504700
+## 73      28.71      28.72     28.08       28.13 47542900
+## 74      28.18      28.19     27.65       27.78 33758100
+## 75      27.77      27.83     27.54       27.55 36384600
+## 76      27.79      27.79     27.50       27.57 30501100
 ##    price.adjusted   ref.date ticker
-## 79          29.08 2017-04-27     GE
-## 80          28.99 2017-04-28     GE
-## 81          28.94 2017-05-01     GE
-## 82          28.99 2017-05-02     GE
-## 83          29.23 2017-05-03     GE
-## 84          29.20 2017-05-04     GE
+## 71          29.00 2017-06-16     GE
+## 72          28.80 2017-06-19     GE
+## 73          28.13 2017-06-20     GE
+## 74          27.78 2017-06-21     GE
+## 75          27.55 2017-06-22     GE
+## 76          27.57 2017-06-23     GE
 ```
 
 As expected, the information about prices and volume is there. Notice it also includes a column, called `ticker`, containing the symbols of the stocks. Later, in chapter \@ref(programming), we will use this column to make calculations for each stock in our dataset. 
@@ -8139,15 +8132,15 @@ print(tail(my.df))
 ```
 
 ```
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##         date   open   high    low  close   volume adjusted
 ##       <date>  <dbl>  <dbl>  <dbl>  <dbl>    <dbl>    <dbl>
-## 1 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
-## 2 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65
-## 3 2017-05-01 145.10 147.20 144.96 146.58 33424500   146.58
-## 4 2017-05-02 147.54 148.09 146.84 147.51 40290100   147.51
-## 5 2017-05-03 145.59 147.49 144.27 147.06 45404200   147.06
-## 6 2017-05-04 146.52 147.14 145.81 146.53 23309300   146.53
+## 1 2017-06-16 143.78 144.50 142.20 142.27 50361100   142.27
+## 2 2017-06-19 143.66 146.74 143.66 146.34 32541400   146.34
+## 3 2017-06-20 146.87 146.87 144.94 145.01 24900100   145.01
+## 4 2017-06-21 145.52 146.07 144.61 145.87 21265800   145.87
+## 5 2017-06-22 145.77 146.70 145.12 145.63 19106300   145.63
+## 6 2017-06-23 145.13 147.16 145.11 146.28 33917600   146.28
 ```
 
 As we can see, the price data is the same as using `quantmod` and `BatchGetSymbols`. In fact, the origin of it is the same, Yahoo Finance. One interesting aspect of `tidyquant` is the same function, `tq_get`, can be used to download other financial information from different sources, such as Google Finance, Morning Star, FRED, and Oanda. For example, we can download key financial ratios from Morning Star by setting `get='key.ratios'` in `tq_get`. \index{tidyquant!tq\_get}
@@ -8162,16 +8155,16 @@ print(df.key.ratios)
 ```
 
 ```
-## # A tibble: 7 × 2
+## # A tibble: 7 x 2
 ##             section               data
 ##               <chr>             <list>
-## 1        Financials <tibble [150 × 5]>
-## 2     Profitability <tibble [170 × 5]>
-## 3            Growth <tibble [160 × 5]>
-## 4         Cash Flow  <tibble [50 × 5]>
-## 5  Financial Health <tibble [240 × 5]>
-## 6 Efficiency Ratios  <tibble [80 × 5]>
-## 7  Valuation Ratios  <tibble [40 × 5]>
+## 1        Financials <tibble [150 x 5]>
+## 2     Profitability <tibble [170 x 5]>
+## 3            Growth <tibble [160 x 5]>
+## 4         Cash Flow  <tibble [50 x 5]>
+## 5  Financial Health <tibble [240 x 5]>
+## 6 Efficiency Ratios  <tibble [80 x 5]>
+## 7  Valuation Ratios  <tibble [40 x 5]>
 ```
 
 Object `df.key.ratios` offers fundamental information about Apple. In this case, the output is an object of class `tibble`, a special type of `dataframe`. Column `data` in `df.key.ratios` is a `list-column`, allowing objects other than single values to take an element in the table. Its behaviour is the same as for other `list` objects. For example, we can look into the profitability section with the following notation:
@@ -8186,7 +8179,7 @@ print(tail(df.profitability))
 ```
 
 ```
-## # A tibble: 6 × 5
+## # A tibble: 6 x 5
 ##     sub.section group          category       date  value
 ##           <chr> <dbl>             <chr>     <date>  <dbl>
 ## 1 Profitability    32 Interest Coverage 2011-09-01     NA
@@ -8206,7 +8199,7 @@ print(head(tq_exchange('AMEX')))
 ```
 
 ```
-## # A tibble: 6 × 7
+## # A tibble: 6 x 7
 ##   symbol
 ##    <chr>
 ## 1   XXII
@@ -8245,18 +8238,18 @@ print(tq_index("DOWJONES"))
 ```
 
 ```
-## # A tibble: 65 × 2
+## # A tibble: 65 x 2
 ##    symbol                      company
 ##     <chr>                        <chr>
-## 1     MMM                           3M
-## 2     ALK             ALASKA AIR GROUP
-## 3     AAL AMERICAN AIRLINES GROUP INC.
-## 4     AEP      AMERICAN ELECTRIC POWER
-## 5     AXP             AMERICAN EXPRESS
-## 6     AWK         AMERICAN WATER WORKS
-## 7    AAPL                        APPLE
-## 8     CAR            AVIS BUDGET GROUP
-## 9     CAT                  CATERPILLAR
+##  1    MMM                           3M
+##  2    ALK             ALASKA AIR GROUP
+##  3    AAL AMERICAN AIRLINES GROUP INC.
+##  4    AEP      AMERICAN ELECTRIC POWER
+##  5    AXP             AMERICAN EXPRESS
+##  6    AWK         AMERICAN WATER WORKS
+##  7   AAPL                        APPLE
+##  8    CAR            AVIS BUDGET GROUP
+##  9    CAT                  CATERPILLAR
 ## 10    CNP           CENTERPOINT ENERGY
 ## # ... with 55 more rows
 ```
@@ -8288,7 +8281,7 @@ df.available.dates <- ghfd_get_ftp_contents(my.type.market)
 
 ```
 ## 
-## Reading ftp contents for equity (attempt = 1|10)
+## Reading ftp contents for equity(trades) (attempt = 1|10)
 ```
 
 ```r
@@ -8308,19 +8301,20 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
 ## 
 ## Running ghfd_get_HF_Data for:
 ##    type.market = equity
+##    type.data = trades
 ##    my.assets = PETR4, VALE5
 ##    type.output = agg
 ##       agg.diff = 5 min
-## Reading ftp contents for equity (attempt = 1|10)
-##    Found  554  files in ftp
-##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-05-03
-##    First date to download:  2017-05-03
-##    Last date to download:   2017-05-03
-## Downloading ftp files/NEG_20170503.zip (1|1) Attempt 1
-##    -> Reading files - Imported  970956 lines, 434 unique tickers
-##    -> Processing file - Found 77714 lines for 2 selected tickers
-##    -> Aggregation resulted in dataframe with 165 rows
+## Reading ftp contents for equity(trades) (attempt = 1|10)
+##    Found  528  files in ftp
+##    First available date in ftp:  2015-06-01
+##    Last available date in ftp:   2017-06-23
+##    First date to download:  2017-06-23
+##    Last date to download:   2017-06-23
+## Downloading ftp files/NEG_20170623.zip (1|1) Attempt 1
+##    -> Reading files - Imported  696040 lines, 424 unique tickers
+##    -> Processing file - Found 48880 lines for 2 selected tickers
+##    -> Aggregation resulted in dataframe with 46 rows
 ```
 
 ```r
@@ -8330,26 +8324,26 @@ print(head(my.df))
 
 ```
 ##   InstrumentSymbol SessionDate       TradeDateTime n.trades
-## 1            PETR4  2017-05-03 2017-05-03 10:00:00      262
-## 2            PETR4  2017-05-03 2017-05-03 10:05:00      392
-## 3            PETR4  2017-05-03 2017-05-03 10:10:00      432
-## 4            PETR4  2017-05-03 2017-05-03 10:15:00      292
-## 5            PETR4  2017-05-03 2017-05-03 10:20:00      319
-## 6            PETR4  2017-05-03 2017-05-03 10:25:00      309
-##   last.price weighted.price    period.ret period.ret.volat
-## 1      14.06       14.03621  0.0014245014     0.0004280166
-## 2      14.07       14.09177  0.0014234875     0.0002688719
-## 3      14.04       14.04842 -0.0028409091     0.0002911117
-## 4      14.03       14.02329 -0.0014234875     0.0002900921
-## 5      13.99       13.99147 -0.0028510335     0.0003679022
-## 6      13.99       14.00167 -0.0007142857     0.0002910933
+## 1            PETR4  2017-06-23 2017-06-23 15:05:00      368
+## 2            PETR4  2017-06-23 2017-06-23 15:10:00      571
+## 3            PETR4  2017-06-23 2017-06-23 15:15:00      456
+## 4            PETR4  2017-06-23 2017-06-23 15:20:00      408
+## 5            PETR4  2017-06-23 2017-06-23 15:25:00      433
+## 6            PETR4  2017-06-23 2017-06-23 15:30:00      673
+##   last.price weighted.price   period.ret period.ret.volat
+## 1      12.14       12.11225  0.002477291     0.0003258349
+## 2      12.12       12.12501 -0.001647446     0.0003625336
+## 3      12.07       12.08281 -0.003303055     0.0003560332
+## 4      12.03       12.03987 -0.003314002     0.0004242634
+## 5      12.00       11.99876 -0.002493766     0.0003612732
+## 6      11.98       11.97870 -0.001666667     0.0003840556
 ##   sum.qtd  sum.vol n.buys n.sells Tradetime
-## 1  390700  5483943     60     202  10:00:00
-## 2  686100  9668356    188     204  10:05:00
-## 3 1015100 14260549     86     346  10:10:00
-## 4  486900  6827932     56     236  10:15:00
-## 5  411200  5753286     73     246  10:20:00
-## 6  355700  4980394    118     191  10:25:00
+## 1  560800  6792542    182     186  15:05:00
+## 2  928300 11255626    364     207  15:10:00
+## 3  682400  8245303    166     290  15:15:00
+## 4  848900 10220633    125     283  15:20:00
+## 5  603800  7244844    204     229  15:25:00
+## 6 1167800 13988691    309     364  15:30:00
 ```
 
 The output of `ghfd_get_HF_data` is a `dataframe` with several columns, such as time frame, last price, volatility, number of buyer/seller initiated trades, among other information. The user can also download raw data, without aggregation, by setting option `type.output='raw'`. Let's give it a try: 
@@ -8370,7 +8364,7 @@ df.available.dates <- ghfd_get_ftp_contents(my.type.market)
 
 ```
 ## 
-## Reading ftp contents for equity (attempt = 1|10)
+## Reading ftp contents for equity(trades) (attempt = 1|10)
 ```
 
 ```r
@@ -8389,17 +8383,19 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
 ## 
 ## Running ghfd_get_HF_Data for:
 ##    type.market = equity
+##    type.data = trades
 ##    my.assets = PETR4, VALE5
 ##    type.output = raw
-## Reading ftp contents for equity (attempt = 1|10)
-##    Found  554  files in ftp
-##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-05-03
-##    First date to download:  2017-05-03
-##    Last date to download:   2017-05-03
-## Downloading ftp files/NEG_20170503.zip (1|1) Attempt 1
-##    -> Reading files - Imported  970956 lines, 434 unique tickers
-##    -> Processing file - Found 77714 lines for 2 selected tickers
+## Reading ftp contents for equity(trades) (attempt = 1|10)
+##    Found  528  files in ftp
+##    First available date in ftp:  2015-06-01
+##    Last available date in ftp:   2017-06-23
+##    First date to download:  2017-06-23
+##    Last date to download:   2017-06-23
+## Downloading ftp files/NEG_20170623.zip (1|1) Attempt 1
+##    -> Reading files - Imported  696040 lines, 424 unique tickers
+##    -> Processing file - Found 48880 lines for 2 selected tickers
+##    -> Aggregation resulted in dataframe with 18366 rows
 ```
 
 ```r
@@ -8409,26 +8405,26 @@ print(head(my.df))
 
 ```
 ##   SessionDate InstrumentSymbol TradePrice TradedQuantity
-## 1  2017-05-03            PETR4      14.04            300
-## 2  2017-05-03            PETR4      14.04            400
-## 3  2017-05-03            PETR4      14.04            200
-## 4  2017-05-03            PETR4      14.04           1600
-## 5  2017-05-03            PETR4      14.04           3500
-## 6  2017-05-03            PETR4      14.04            100
+## 1  2017-06-23            PETR4      12.11           2500
+## 2  2017-06-23            PETR4      12.11            100
+## 3  2017-06-23            PETR4      12.11           1900
+## 4  2017-06-23            PETR4      12.11           1000
+## 5  2017-06-23            PETR4      12.11           1000
+## 6  2017-06-23            PETR4      12.11           1000
 ##      Tradetime CrossTradeIndicator BuyMember SellMember
-## 1 10:03:00.002                   0       262        386
-## 2 10:03:00.002                   0       262        386
-## 3 10:03:00.002                   0         3         45
-## 4 10:03:00.002                   0       114        386
-## 5 10:03:00.002                   0       114         45
-## 6 10:03:00.002                   0        77         72
+## 1 10:07:15.438                   0        72        174
+## 2 10:07:15.438                   0         3         72
+## 3 10:07:15.438                   0         3          3
+## 4 10:07:15.438                   0        72        120
+## 5 10:07:15.438                   0        72        238
+## 6 10:07:15.438                   0        72          3
 ##         TradeDateTime TradeSign
-## 1 2017-05-03 10:03:00        -1
-## 2 2017-05-03 10:03:00        -1
-## 3 2017-05-03 10:03:00        -1
-## 4 2017-05-03 10:03:00        -1
-## 5 2017-05-03 10:03:00        -1
-## 6 2017-05-03 10:03:00        -1
+## 1 2017-06-23 10:07:15        -1
+## 2 2017-06-23 10:07:15        -1
+## 3 2017-06-23 10:07:15        -1
+## 4 2017-06-23 10:07:15        -1
+## 5 2017-06-23 10:07:15        -1
+## 6 2017-06-23 10:07:15        -1
 ```
 
 
@@ -8553,12 +8549,12 @@ print(tail(my.df))
 
 ```
 ##            Date    Value
-## 4519 2000-01-10 274.3301
-## 4520 2000-01-07 274.1764
-## 4521 2000-01-06 269.9777
-## 4522 2000-01-05 271.3069
-## 4523 2000-01-04 273.2482
-## 4524 2000-01-03 280.2000
+## 4555 2000-01-10 274.3301
+## 4556 2000-01-07 274.1764
+## 4557 2000-01-06 269.9777
+## 4558 2000-01-05 271.3069
+## 4559 2000-01-04 273.2482
+## 4560 2000-01-03 280.2000
 ```
 
 Notice how we used `type = 'raw'` in the inputs of `Quandl`. This option forces the function to output a `dataframe`. Other options include the output of objects of type `ts`, `zoo`, `xts` and `timeSeries`. If using `Quandl` will become part of your data analysis routine, I strongly recommend reading the help manual of the package. Several parameters can be passed to function `Quandl`, including the choice for applying transformations in the resulting dataset. You can find more details about using `Quandl` in R from its [website](https://docs.quandl.com/docs/r).
@@ -8597,36 +8593,36 @@ print(my.l)
 ## [1] "EUR"
 ## 
 ## $timestamp
-## [1] "2017-05-05 08:20:29 BRT"
+## [1] "2017-06-26 09:37:01 CEST"
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-05-05 10:53:34 1438.000 0.06433756
-##    2: 2017-05-05 10:53:35 1437.998 0.18100000
-##    3: 2017-05-05 10:53:39 1438.000 0.99230724
-##    4: 2017-05-05 10:53:40 1438.999 0.17315182
-##    5: 2017-05-05 10:53:40 1439.000 0.22684818
+##    1: 2017-06-26 07:17:03 2134.730 0.07370000
+##    2: 2017-06-26 07:17:07 2135.831 0.21773877
+##    3: 2017-06-26 07:17:07 2135.831 0.31155322
+##    4: 2017-06-26 07:17:11 2135.831 0.20000000
+##    5: 2017-06-26 07:17:11 2134.750 0.00050000
 ##   ---                                        
-##  996: 2017-05-05 11:20:05 1431.000 0.21753226
-##  997: 2017-05-05 11:20:15 1431.295 0.08426302
-##  998: 2017-05-05 11:20:15 1431.000 0.01133698
-##  999: 2017-05-05 11:20:22 1431.000 0.05010000
-## 1000: 2017-05-05 11:20:32 1431.000 0.73720000
+##  996: 2017-06-26 07:37:31 2179.010 0.00820005
+##  997: 2017-06-26 07:37:31 2179.010 0.10689569
+##  998: 2017-06-26 07:37:31 2179.010 0.05344784
+##  999: 2017-06-26 07:37:34 2179.011 0.40255451
+## 1000: 2017-06-26 07:37:36 2179.121 0.02671749
 ##                       tid type
 ##    1:                  NA  bid
 ##    2:                  NA  ask
-##    3:                  NA  bid
-##    4:                  NA  bid
-##    5:                  NA  bid
+##    3:                  NA  ask
+##    4:                  NA  ask
+##    5:                  NA  ask
 ##   ---                         
 ##  996:                  NA  ask
 ##  997:                  NA  ask
 ##  998:                  NA  ask
 ##  999:                  NA  ask
-## 1000: 1493983232058620797  ask
+## 1000: 1498462656224412603  ask
 ```
 
 The output of `market.api.process` is a `list` object with information about Bitcoin in the `'kraken'` market. The actual trades are available in the `trade` slot of `my.l`. Let's have a look at its content:
@@ -8638,19 +8634,19 @@ print(tail(my.l$trades))
 
 ```
 ##                   date    price     amount
-## 1: 2017-05-05 11:20:05 1431.014 0.02946774
-## 2: 2017-05-05 11:20:05 1431.000 0.21753226
-## 3: 2017-05-05 11:20:15 1431.295 0.08426302
-## 4: 2017-05-05 11:20:15 1431.000 0.01133698
-## 5: 2017-05-05 11:20:22 1431.000 0.05010000
-## 6: 2017-05-05 11:20:32 1431.000 0.73720000
+## 1: 2017-06-26 07:37:31 2179.010 0.01000000
+## 2: 2017-06-26 07:37:31 2179.010 0.00820005
+## 3: 2017-06-26 07:37:31 2179.010 0.10689569
+## 4: 2017-06-26 07:37:31 2179.010 0.05344784
+## 5: 2017-06-26 07:37:34 2179.011 0.40255451
+## 6: 2017-06-26 07:37:36 2179.121 0.02671749
 ##                    tid type
 ## 1:                  NA  ask
 ## 2:                  NA  ask
 ## 3:                  NA  ask
 ## 4:                  NA  ask
 ## 5:                  NA  ask
-## 6: 1493983232058620797  ask
+## 6: 1498462656224412603  ask
 ```
 
 It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its [website](https://github.com/jangorecki/Rbitcoin).
@@ -8704,7 +8700,7 @@ library(rvest)
 
 # set url and xpath
 my.url <- 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
-my.xpath <- '//*[@id="mw-content-text"]/table[1]'
+my.xpath <- '//*[@id="mw-content-text"]/div/table[1]'
 
 # get nodes from html
 out.nodes <- html_nodes(read_html(my.url),
@@ -8832,7 +8828,7 @@ print(head(my.df))
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##   price.adjusted   ref.date ticker          ret
 ##            <dbl>     <date>  <chr>        <dbl>
 ## 1       68.72509 2010-01-05    MMM -0.006263503
@@ -8887,7 +8883,7 @@ qplot(data = temp.df,
 	  geom = 'line')
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-387-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-388-1.png" width="60%" style="display: block; margin: auto;" />
 
 In the previous example, the name of the axis corresponds to the names of the columns in `temp.df`. If we want to customize it for a given text, we use arguments `xlab` and `ylab`:
 
@@ -8901,7 +8897,7 @@ qplot(data = temp.df,
 	  ylab = 'Adjusted closing prices')
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-388-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-389-1.png" width="60%" style="display: block; margin: auto;" />
 
 Notice how the horizontal axis of dates in the previous figures is formatted to show only the years. It adapts automatically according to the length of time in the plot. This only happened because the `ref.date` column  is correctly defined as a `Date` object.
 
@@ -8924,13 +8920,13 @@ p <- p + labs(x = 'Dates', y = 'Adjusted closing prices')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-389-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-390-1.png" width="60%" style="display: block; margin: auto;" />
 
 In using `ggplot`, it is always necessary to provide a `dataframe`. If you want to create figures from atomic vectors,  you must allocate them to a `dataframe` first. After defining the data, we use function `aes` to set the aesthetics of the graph with the _x_ and _y_ coordinates. Here, we set the horizontal axis using column `date` and the vertical axis as prices (column `price.adjusted`). As we will soon see, it is possible to use other information in `aes`, such as colour and shapes.
 
 
 
-Once the data and axis are defined, we save it in object `p`. This object registers the current information as new layers are added with the `+` sign. The second line of the code, `p <- p + geom_line()`, defines the type of figure. Here, we used function `geom_lines`, which is a simple line graph that connects the points. In `ggplot2`, the functions that define the geometric type begins with `geom_` character. So, using the _autocomplete_ function of RStudio, you can see there a lot of options. We can use `stringr` to find the list of functions in `ggplot2`, version 2.2.1 (2017-05-05), that starts with `geom_`: \index{stringr!str\_sub}
+Once the data and axis are defined, we save it in object `p`. This object registers the current information as new layers are added with the `+` sign. The second line of the code, `p <- p + geom_line()`, defines the type of figure. Here, we used function `geom_lines`, which is a simple line graph that connects the points. In `ggplot2`, the functions that define the geometric type begins with `geom_` character. So, using the _autocomplete_ function of RStudio, you can see there a lot of options. We can use `stringr` to find the list of functions in `ggplot2`, version 2.2.1 (2017-06-26), that starts with `geom_`: \index{stringr!str\_sub}
 
 
 ```r
@@ -8953,7 +8949,7 @@ print(fcts)
 ##  [4] "geom_bin2d"      "geom_blank"      "geom_boxplot"   
 ##  [7] "geom_col"        "geom_contour"    "geom_count"     
 ## [10] "geom_crossbar"   "geom_curve"      "geom_density"   
-## [13] "geom_density_2d" "geom_density2d"  "geom_dotplot"   
+## [13] "geom_density2d"  "geom_density_2d" "geom_dotplot"   
 ## [16] "geom_errorbar"   "geom_errorbarh"  "geom_freqpoly"  
 ## [19] "geom_hex"        "geom_histogram"  "geom_hline"     
 ## [22] "geom_jitter"     "geom_label"      "geom_line"      
@@ -9005,7 +9001,7 @@ p <- p + labs(x = 'Dates', y = 'Adjusted closing prices')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-394-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-395-1.png" width="60%" style="display: block; margin: auto;" />
 
 A difference from the previous examples is that we defined the colour of the lines using argument `colour` in `aes`. Each line colour is defined by the elements in column `ticker` of `temp.df`. The actual choices of colour, e.g., red, blue, and so on, is automatically defined by `ggplot`. 
 
@@ -9054,7 +9050,7 @@ p <- p + labs(x = 'Maturity (years)',
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-395-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-396-1.png" width="60%" style="display: block; margin: auto;" />
 
 As expected, the current yield curve is upward rising, meaning the yield rate increases with the maturity of the debt. As an extension of the example, we can add some dynamic to the figure by using several dates. Have a look in the following code, where we use five yield curves covering the whole year of 2016.
 
@@ -9087,7 +9083,7 @@ p <- p + labs(x = 'Maturity (years)',
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-396-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-397-1.png" width="60%" style="display: block; margin: auto;" />
 The US yield curve changed significantly in 2016. In empirical applications, the information in the US yield curve can be used as a benchmark for the calculation of cost of capital.
 
 As another example of geometric shape in `ggplot`, let's create a bar plot with the daily sharpe ratio, mean divided by standard deviation of returns, for 10 assets from the database, ordered from high to low. First, we need to calculate the sharpe ratio for each stock. This is easily done with `dplyr`. Once the data is available, we use `geom_bar` to create the bar figure. Notice input `x` in `aes` is set using `reorder(ticker, -sharpe.ratio)`. It forces the horizontal axis to display descending values of sharpe ratio.
@@ -9120,12 +9116,12 @@ p <- p + labs(x = 'Tickers', y = 'Daily Sharpe Ratio')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-397-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-398-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 ### Using Themes
 
-One way of customizing graphics in `ggplot2` is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package `ggplot` has a collection of functions for setting themes, and their name start with text _theme_. Next, we show the list of theme related functions in `ggplot`, version 2.2.1 (2017-05-05).
+One way of customizing graphics in `ggplot2` is using themes. A theme is a collection of options that defines the organization of the figure, its points and line colours, notation of axis, background colour, and several other features. Package `ggplot` has a collection of functions for setting themes, and their name start with text _theme_. Next, we show the list of theme related functions in `ggplot`, version 2.2.1 (2017-06-26).
 
 
 ```r
@@ -9165,7 +9161,7 @@ p <- p + theme_bw()
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-399-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-400-1.png" width="60%" style="display: block; margin: auto;" />
 
 As you can see, the new theme was a white background and a frame box. You can try other themes on your computer and see which one you like the most. You can also create your own theme. Have a look at @wickham2009ggplot2 for instructions on this specific task.
 
@@ -9178,7 +9174,7 @@ p <- p + scale_colour_grey(start = 0.0, end = 0.6)
 print(p)  
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-400-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-401-1.png" width="60%" style="display: block; margin: auto;" />
 
 The lines of the plot are now in grey. The inputs `start` and `end` at `scale_color_grey` set the minimum and maximum of "whiteness". So, never use `end=1` with a white background. Otherwise, some lines will will not be visible.
 
@@ -9209,7 +9205,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-401-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-402-1.png" width="60%" style="display: block; margin: auto;" />
 
 Using panels is recommended when the data of the groups are similar and tend to agglomerate. This makes it difficult to analyze the differences between the groups in a single graphic. This is the case of stock returns of different assets. Consider the following example, where we create a panel for the returns of four randomly selected shares.
 
@@ -9232,7 +9228,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-402-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-403-1.png" width="60%" style="display: block; margin: auto;" />
 
 Notice how the vertical axis of the panels is fixed for all stocks, facilitating the visual analysis. We can also set the scales free by using option `scales='free'` in `facet_wrap`:
 
@@ -9243,7 +9239,7 @@ p <- p + facet_wrap(facets = ~ticker, scales = 'free')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-403-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-404-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 ## Using Pipelines for Data Analysis and Figures
@@ -9269,7 +9265,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-404-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-405-1.png" width="60%" style="display: block; margin: auto;" />
 
 Notice how the previous code is self-contained, easy to read, and elegant. It goes from raw data to the plot, with no object created in the intermediate steps. Anyone can clearly see the steps taken to build the plot. Modifications in the data processing stage are also straightforward. One detail about using pipelines with `ggplot` is the steps in the plot creation are incremented with the `+` sign, not `%>%`. From this section on, we will use the pipeline notation to simplify the code, whenever possible.
 
@@ -9293,7 +9289,7 @@ p <- p + geom_histogram(bins = 25)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-405-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-406-1.png" width="60%" style="display: block; margin: auto;" />
 
 Here, we only need to define the _x_ value, without the _y_. The size of the intervals in the histogram is defined by input `bins`. 
 
@@ -9316,7 +9312,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-406-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-407-1.png" width="60%" style="display: block; margin: auto;" />
 
 A histogram with the empirical densities of the data can be created using function `geom_density`. While histograms built with `geom_histogram` count the number of times the data is located within an interval, a density histogram uses the relative frequency and interpolates the values, resulting in a more visually appealing representation of a distribution. See an example next.
 
@@ -9331,7 +9327,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-407-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-408-1.png" width="60%" style="display: block; margin: auto;" />
 
 The previous figure allows a clear visual comparison of the differences between the distributions of returns of the different stocks.
 
@@ -9357,7 +9353,7 @@ p <- my.df %>%
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-408-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-409-1.png" width="60%" style="display: block; margin: auto;" />
 
 As we can see from the previous figure, the stocks have different distributions for their prices. The middle line defines the median value, while the upper and lower lines of the box define the first and third quartile. 
 
@@ -9387,7 +9383,7 @@ p <- p + geom_qq(distribution = qnorm,
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-409-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-410-1.png" width="60%" style="display: block; margin: auto;" />
 
 In the previous code, we simulate random normal variables with mean 10 and standard deviation equal to 2. As you can see, the QQ plot is close to a straight line, meaning the empirical distribution of the simulated data is close to a Normal distribution. Since we used artificial data from the aforementioned distribution, this result is not surprising!
 
@@ -9437,7 +9433,7 @@ p <- p + facet_wrap(~ticker)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-410-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-411-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 As you can see, the result is not visually similar to the result found for the simulated distribution. In the extreme values of the normalized returns distributions, we see a higher proportion of cases, when comparing to the theoretical distribution. Such a result is well-known and called _fat tails_. This means the Normal distribution does a bad job describing empirical returns from the stock market. This issue is particularly important in the calculation of risk estimates, where a _fat tail_ will underestimate the likelihood of an extreme loss. 
@@ -9816,7 +9812,7 @@ print(head(my.df))
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##   price.adjusted   ref.date ticker          ret
 ##            <dbl>     <date>  <chr>        <dbl>
 ## 1       69.15826 2010-01-04    MMM           NA
@@ -10016,7 +10012,7 @@ file.remove(list.files(out.dir, full.names = TRUE))
 ```
 
 ```
-## [1] TRUE
+## logical(0)
 ```
 
 ```r
@@ -10046,7 +10042,7 @@ print(list.files(out.dir))
 ```
 
 ```
-##  [1] "myfiles_1.csv"  "myfiles_10.csv" "myfiles_2.csv" 
+##  [1] "myfiles_10.csv" "myfiles_1.csv"  "myfiles_2.csv" 
 ##  [4] "myfiles_3.csv"  "myfiles_4.csv"  "myfiles_5.csv" 
 ##  [7] "myfiles_6.csv"  "myfiles_7.csv"  "myfiles_8.csv" 
 ## [10] "myfiles_9.csv"
@@ -10868,7 +10864,7 @@ library('dplyr')
 
 
 
-The loading screen of `dplyr` warns the user the package replaced functions of other packages, such as `xts::first` and `stats::lag`. Therefore, the features of these functions after loading `dplyr` will change. In its current version, 0.5.0, `dplyr` has 245 functions. Describing each functionality would be too exhaustive for this book. Therefore, we will focus on the main functions of the package.
+The loading screen of `dplyr` warns the user the package replaced functions of other packages, such as `xts::first` and `stats::lag`. Therefore, the features of these functions after loading `dplyr` will change. In its current version, 0.7.1, `dplyr` has 236 functions. Describing each functionality would be too exhaustive for this book. Therefore, we will focus on the main functions of the package.
 
 
 ### Manipulating a `dataframe` with `dplyr`
@@ -11055,18 +11051,18 @@ print(my.tab)
 ```
 
 ```
-## # A tibble: 471 × 6
+## # A tibble: 471 x 6
 ##    ticker mean.price max.price min.price    max.ret
 ##     <chr>      <dbl>     <dbl>     <dbl>      <dbl>
-## 1       A   33.05298  48.18046 18.329764 0.11763059
-## 2     AAL   23.42431  54.66265  3.893684 0.17316703
-## 3     AAP  103.23486 199.99451 38.418693 0.16557581
-## 4    AAPL   75.02859 127.96609 24.881912 0.08874137
-## 5     ABC   58.40506 112.10088 23.307129 0.09532090
-## 6     ABT   32.12158  49.33589 18.430625 0.06496596
-## 7     ACN   70.61981 125.40000 31.589890 0.07989349
-## 8    ADBE   55.25822 110.81000 22.690001 0.12780138
-## 9     ADI   42.36350  73.90623 21.600676 0.10146155
+##  1      A   33.05298  48.18046 18.329764 0.11763059
+##  2    AAL   23.42431  54.66265  3.893684 0.17316703
+##  3    AAP  103.23486 199.99451 38.418693 0.16557581
+##  4   AAPL   75.02859 127.96609 24.881912 0.08874137
+##  5    ABC   58.40506 112.10088 23.307129 0.09532090
+##  6    ABT   32.12158  49.33589 18.430625 0.06496596
+##  7    ACN   70.61981 125.40000 31.589890 0.07989349
+##  8   ADBE   55.25822 110.81000 22.690001 0.12780138
+##  9    ADI   42.36350  73.90623 21.600676 0.10146155
 ## 10    ADM   33.77152  50.48857 20.866785 0.07298599
 ## # ... with 461 more rows, and 1 more variables:
 ## #   min.ret <dbl>
@@ -11110,20 +11106,19 @@ print(my.tab)
 ```
 
 ```
-## Source: local data frame [2,355 x 7]
-## Groups: ticker [?]
-## 
+## # A tibble: 2,355 x 7
+## # Groups:   ticker [?]
 ##    ticker  week.day mean.price max.price min.price
 ##     <chr>     <chr>      <dbl>     <dbl>     <dbl>
-## 1       A    Friday   33.02034  47.88207 18.370543
-## 2       A    Monday   33.11657  48.18046 18.458895
-## 3       A  Thursday   33.03899  47.87212 18.696768
-## 4       A   Tuesday   33.05971  48.02132 18.329764
-## 5       A Wednesday   33.03401  48.17052 18.744342
-## 6     AAL    Friday   23.30720  54.66265  3.913153
-## 7     AAL    Monday   23.63982  54.24885  4.137040
-## 8     AAL  Thursday   23.27089  54.38582  4.283053
-## 9     AAL   Tuesday   23.48269  52.86867  3.942356
+##  1      A    Friday   33.02034  47.88207 18.370543
+##  2      A    Monday   33.11657  48.18046 18.458895
+##  3      A  Thursday   33.03899  47.87212 18.696768
+##  4      A   Tuesday   33.05971  48.02132 18.329764
+##  5      A Wednesday   33.03401  48.17052 18.744342
+##  6    AAL    Friday   23.30720  54.66265  3.913153
+##  7    AAL    Monday   23.63982  54.24885  4.137040
+##  8    AAL  Thursday   23.27089  54.38582  4.283053
+##  9    AAL   Tuesday   23.48269  52.86867  3.942356
 ## 10    AAL Wednesday   23.43472  53.06473  3.893684
 ## # ... with 2,345 more rows, and 2 more variables:
 ## #   max.ret <dbl>, min.ret <dbl>
@@ -11160,7 +11155,7 @@ print(head(my.tab))
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##   ticker      acum.ret last.cumret min.cumret
 ##    <chr>        <list>       <dbl>      <dbl>
 ## 1      A <dbl [1,761]>    2.141724  0.8616613
@@ -11254,7 +11249,7 @@ p <- p + geom_point(size=0.5)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-479-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-480-1.png" width="60%" style="display: block; margin: auto;" />
 
 Clearly, there is a positive linear correlation;  an upward straight line would be a good approximation for the relationship between these variables. We can check this result with the calculation of the correlation coefficient with command `cor(temp.df$x, temp.df$y)`. Here, the correlation between `y` and `x` is 0.901. 
 
@@ -11556,7 +11551,7 @@ p <- p + geom_smooth(method = 'lm')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-491-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-492-1.png" width="60%" style="display: block; margin: auto;" />
 
 The figure shows a clear linear tendency;  the returns from the market index are a good predictor of the returns of the stock. Now, let's estimate the linear model.
 
@@ -11882,7 +11877,7 @@ p <- p + geom_point(size=0.5)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-508-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-509-1.png" width="60%" style="display: block; margin: auto;" />
 
 Object `y` contains zeros and ones, as expected. 
 
@@ -12068,7 +12063,7 @@ print(str(sim.df))
 ```
 ## 'data.frame':	60 obs. of  4 variables:
 ##  $ G    : chr  "A" "A" "A" "A" ...
-##  $ dates: Date, format: "2017-05-06" ...
+##  $ dates: Date, format: "2017-06-27" ...
 ##  $ y    : num  -10.68 -11.55 -11.74 -9.84 -11.96 ...
 ##  $ x    : num  -0.212 -1.042 -1.153 0.322 -1.5 ...
 ## NULL
@@ -12087,7 +12082,7 @@ p <- p + facet_wrap(~G)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-515-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-516-1.png" width="60%" style="display: block; margin: auto;" />
 
 The figure shows the strong linear relationship shared between x and y in the different groups.  If we estimated a linear model from this data, we would have to allow a different intercept for each group we find in column `cases`.
 
@@ -12120,8 +12115,8 @@ print(summary(my.pdm,))
 ## Balanced Panel: n=12, T=5, N=60
 ## 
 ## Residuals :
-##    Min. 1st Qu.  Median 3rd Qu.    Max. 
-##  -0.440  -0.148  -0.033   0.154   0.479 
+##      Min.   1st Qu.    Median   3rd Qu.      Max. 
+## -0.440310 -0.147656 -0.032982  0.153713  0.479001 
 ## 
 ## Coefficients :
 ##   Estimate Std. Error t-value  Pr(>|t|)    
@@ -12319,8 +12314,8 @@ print(summary(my.pdm.random))
 ## theta:  0.8612  
 ## 
 ## Residuals :
-##    Min. 1st Qu.  Median 3rd Qu.    Max. 
-## -178.00  -19.70    4.69   19.50  253.00 
+##      Min.   1st Qu.    Median   3rd Qu.      Max. 
+## -177.6063  -19.7350    4.6851   19.5105  252.8743 
 ## 
 ## Coefficients :
 ##               Estimate Std. Error t-value Pr(>|t|)    
@@ -12437,7 +12432,7 @@ p <- p + geom_line(size=0.5)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-529-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-530-1.png" width="60%" style="display: block; margin: auto;" />
 
 The graph shows a time series with an average close to zero and strong instability. These are typical properties of an Arima model.
 
@@ -12690,7 +12685,7 @@ p <- p + geom_line()
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-543-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-544-1.png" width="60%" style="display: block; margin: auto;" />
 
 The behaviour of the simulated series is similar to the return series of the stocks presented in chapter \@ref(Figures). It is difficult to set one apart from the other based solely on visual inspection. Unlike other models, where the instability is constant, a Garch model can portray a return series more realistically by assuming a time changing volatility.
 
@@ -12727,7 +12722,7 @@ print(my.garchfit)
 ## 
 ## Mean and Variance Equation:
 ##  data ~ arma(1, 0) + garch(1, 1)
-## <environment: 0x000000006f5f16d0>
+## <environment: 0xa25f8f0>
 ##  [data = sim.garch]
 ## 
 ## Conditional Distribution:
@@ -12755,7 +12750,7 @@ print(my.garchfit)
 ##  604.1894    normalized:  0.6041894 
 ## 
 ## Description:
-##  Fri May 05 08:21:41 2017 by user: marcelo
+##  Mon Jun 26 09:37:50 2017 by user: msperlin
 ```
 
 The resulting parameters from the estimation are close to the values defined arbitrarily in the call to `garchSpec`. We can achieve higher accuracy by increasing the number of observations in the simulated model. Function `summary` also works for Garch models. Due to the large amount of information on the prompt, we leave it as an exercise for the reader. 
@@ -12837,7 +12832,7 @@ print(my.garchfit.sp500)
 ##  6040.208    normalized:  3.355671 
 ## 
 ## Description:
-##  Fri May 05 08:21:41 2017 by user: marcelo
+##  Mon Jun 26 09:37:51 2017 by user: msperlin
 ```
 
 As expected, all Garch coefficients are significant at 1%. As for the mean equation, we again find a negative value for `ar1`, but its significance is not strong, with a p-value close to 10%. We could use the previously estimated Garch model to simulate future returns and prices of the SP500 index.
@@ -12932,6 +12927,9 @@ In R, two packages are available for handling univariate markov regime switching
 install.packages("fMarkovSwitching", 
                  repos="http://R-Forge.R-project.org")
 ```
+
+
+
 
 Once it is installed, let's look at its functions:
 
@@ -13034,7 +13032,7 @@ p <- p + labs(x='Time', y = 'Simulated time series')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-564-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-566-1.png" width="60%" style="display: block; margin: auto;" />
 
 We can also look at the simulated states:
 
@@ -13051,7 +13049,7 @@ p <- p + labs(y='Probability of state 1')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-565-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-567-1.png" width="60%" style="display: block; margin: auto;" />
 
 As expected, the model is switching from one state to the other. Either state is strongly predominant over time, but state one seems to have a longer duration than state two. This property is controlled by the transition probabilities set in object `P`.
 
@@ -13136,7 +13134,7 @@ The estimated coefficients are close to the ones from the simulation. The estima
 plot(my.MS.model)	# plotting output
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-568-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-570-1.png" width="60%" style="display: block; margin: auto;" />
 
 As an example with real data, let's estimate the same markov regime switching model for the SP500 returns. 
 
@@ -13252,7 +13250,7 @@ p <- ggplot(df.to.plot,
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-572-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-574-1.png" width="60%" style="display: block; margin: auto;" />
 
 The figure shows how the price increases in state 1 and decreases in state 2. From 2013 to 2015, it is clearly a bull market trend for the SP500 prices.
 
@@ -13402,7 +13400,7 @@ p <- ggplot(df.to.plot, aes(x=betas)) +
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-581-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-583-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 For the SP500 data, we find no negative value of beta. Given the market portfolio is built  as an average of the stocks, not surprisingly, the average beta equals one.
@@ -13421,7 +13419,7 @@ print(head(my.tab))
 ```
 
 ```
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##   ticker    my.model
 ##    <chr>      <list>
 ## 1      A <S3: Arima>
@@ -13446,7 +13444,7 @@ print(head(my.model.tab))
 ```
 
 ```
-## # A tibble: 6 × 4
+## # A tibble: 6 x 4
 ##   ticker    my.model        alpha          ar1
 ##    <chr>      <list>        <dbl>        <dbl>
 ## 1      A <S3: Arima> 0.0006101093 -0.010115360
@@ -13472,9 +13470,8 @@ print(head(my.coef.tab))
 ```
 
 ```
-## Source: local data frame [6 x 6]
-## Groups: ticker, alpha, ar1 [3]
-## 
+## # A tibble: 6 x 6
+## # Groups:   ticker, alpha, ar1 [3]
 ##   ticker        alpha          ar1      term      estimate
 ##    <chr>        <dbl>        <dbl>     <chr>         <dbl>
 ## 1      A 0.0006101093 -0.010115360       ar1 -0.0101153599
@@ -13498,9 +13495,8 @@ print(head(my.info.models))
 ```
 
 ```
-## Source: local data frame [6 x 7]
-## Groups: ticker, alpha, ar1 [6]
-## 
+## # A tibble: 6 x 7
+## # Groups:   ticker, alpha, ar1 [6]
 ##   ticker        alpha          ar1      sigma   logLik
 ##    <chr>        <dbl>        <dbl>      <dbl>    <dbl>
 ## 1      A 0.0006101093 -0.010115360 0.01875836 4503.189
@@ -13943,7 +13939,7 @@ p <- p + theme(legend.title=element_blank())
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-604-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-606-1.png" width="60%" style="display: block; margin: auto;" />
 
 The yearly returns of the different investments are mostly positive. It is interesting to see the impact of the 2008 financial crisis. All indices had an extreme loss of value at that year. However, in the following year, 2009, there was a systematic recovery for all stock markets in our sample. The figure also shows a clear correlation in between the indices. Let's have a look at its correlation matrix:
 
@@ -13965,33 +13961,33 @@ summary(cor(ret.mat))
 ```
 
 ```
-##       ^BFX            ^FCHI            ^FTSE       
-##  Min.   :0.5547   Min.   :0.5760   Min.   :0.5951  
-##  1st Qu.:0.7892   1st Qu.:0.8211   1st Qu.:0.8447  
-##  Median :0.8388   Median :0.8728   Median :0.8979  
-##  Mean   :0.8329   Mean   :0.8596   Mean   :0.8683  
-##  3rd Qu.:0.9263   3rd Qu.:0.9403   3rd Qu.:0.9322  
+##    000001.SS           ^BFX            ^FCHI       
+##  Min.   :0.1938   Min.   :0.5547   Min.   :0.5760  
+##  1st Qu.:0.4784   1st Qu.:0.7892   1st Qu.:0.8211  
+##  Median :0.5675   Median :0.8388   Median :0.8728  
+##  Mean   :0.5765   Mean   :0.8329   Mean   :0.8596  
+##  3rd Qu.:0.6255   3rd Qu.:0.9263   3rd Qu.:0.9403  
 ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##      ^GDAXI           ^GSPC           ^GSPTSE      
-##  Min.   :0.5590   Min.   :0.4502   Min.   :0.4852  
-##  1st Qu.:0.7979   1st Qu.:0.7605   1st Qu.:0.7595  
-##  Median :0.8425   Median :0.8131   Median :0.8062  
-##  Mean   :0.8319   Mean   :0.7819   Mean   :0.7952  
-##  3rd Qu.:0.9021   3rd Qu.:0.8528   3rd Qu.:0.8643  
+##      ^FTSE            ^GDAXI           ^GSPC       
+##  Min.   :0.5951   Min.   :0.5590   Min.   :0.4502  
+##  1st Qu.:0.8447   1st Qu.:0.7979   1st Qu.:0.7605  
+##  Median :0.8979   Median :0.8425   Median :0.8131  
+##  Mean   :0.8683   Mean   :0.8319   Mean   :0.7819  
+##  3rd Qu.:0.9322   3rd Qu.:0.9021   3rd Qu.:0.8528  
 ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##       ^HSI             ^MXX            ^N225       
-##  Min.   :0.6485   Min.   :0.4579   Min.   :0.1938  
-##  1st Qu.:0.7726   1st Qu.:0.6411   1st Qu.:0.6423  
-##  Median :0.8815   Median :0.7258   Median :0.7616  
-##  Mean   :0.8500   Mean   :0.7157   Mean   :0.7067  
-##  3rd Qu.:0.9044   3rd Qu.:0.8001   3rd Qu.:0.8038  
+##     ^GSPTSE            ^HSI             ^MXX       
+##  Min.   :0.4852   Min.   :0.6485   Min.   :0.4579  
+##  1st Qu.:0.7595   1st Qu.:0.7726   1st Qu.:0.6411  
+##  Median :0.8062   Median :0.8815   Median :0.7258  
+##  Mean   :0.7952   Mean   :0.8500   Mean   :0.7157  
+##  3rd Qu.:0.8643   3rd Qu.:0.9044   3rd Qu.:0.8001  
 ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
-##       ^STI          ^STOXX50E        000001.SS     
-##  Min.   :0.6236   Min.   :0.6092   Min.   :0.1938  
-##  1st Qu.:0.7801   1st Qu.:0.8071   1st Qu.:0.4784  
-##  Median :0.8313   Median :0.8789   Median :0.5675  
-##  Mean   :0.8276   Mean   :0.8605   Mean   :0.5765  
-##  3rd Qu.:0.9035   3rd Qu.:0.9398   3rd Qu.:0.6255  
+##      ^N225             ^STI          ^STOXX50E     
+##  Min.   :0.1938   Min.   :0.6236   Min.   :0.6092  
+##  1st Qu.:0.6423   1st Qu.:0.7801   1st Qu.:0.8071  
+##  Median :0.7616   Median :0.8313   Median :0.8789  
+##  Mean   :0.7067   Mean   :0.8276   Mean   :0.8605  
+##  3rd Qu.:0.8038   3rd Qu.:0.9035   3rd Qu.:0.9398  
 ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000
 ```
 
@@ -14028,7 +14024,7 @@ p <- p + theme(legend.position = "bottom",
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-607-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-609-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -14052,18 +14048,18 @@ print(my.tab)
 ```
 
 ```
-## # A tibble: 12 × 4
+## # A tibble: 12 x 4
 ##       ticker   mean.ret    sd.ret     sharpe
 ##        <chr>      <dbl>     <dbl>      <dbl>
-## 1       ^MXX 0.11534289 0.2773979 0.41580299
-## 2     ^GDAXI 0.07885876 0.2817598 0.27987934
-## 3    ^GSPTSE 0.07216617 0.2633533 0.27402798
-## 4      ^GSPC 0.04709950 0.1731060 0.27208473
-## 5       ^STI 0.07164052 0.2803992 0.25549471
-## 6  000001.SS 0.13116395 0.5189561 0.25274574
-## 7       ^HSI 0.05467892 0.2566677 0.21303389
-## 8       ^BFX 0.05166544 0.2496124 0.20698266
-## 9      ^N225 0.03468718 0.1847752 0.18772641
+##  1      ^MXX 0.11534289 0.2773979 0.41580299
+##  2    ^GDAXI 0.07885876 0.2817598 0.27987934
+##  3   ^GSPTSE 0.07216617 0.2633533 0.27402798
+##  4     ^GSPC 0.04709950 0.1731060 0.27208473
+##  5      ^STI 0.07164052 0.2803992 0.25549471
+##  6 000001.SS 0.13116395 0.5189561 0.25274574
+##  7      ^HSI 0.05467892 0.2566677 0.21303389
+##  8      ^BFX 0.05166544 0.2496124 0.20698266
+##  9     ^N225 0.03468718 0.1847752 0.18772641
 ## 10     ^FCHI 0.02143972 0.2273614 0.09429797
 ## 11     ^FTSE 0.01879847 0.2016375 0.09322904
 ## 12 ^STOXX50E 0.01154059 0.2300936 0.05015605
@@ -14082,7 +14078,7 @@ p <- p + labs(x='Risk', y='Expected Return')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-610-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-612-1.png" width="60%" style="display: block; margin: auto;" />
 
 
 The graph confirms the results about the high performance of the Mexican market. Its ticker, ^MXX, is located at the top left of the chart, with a high return and low risk. In the other side we have 000001.SS, the Chinese market index. It offers a higher average return but with excessive volatility.
@@ -14136,23 +14132,23 @@ print(eff.port)
 ##  Constraints:       LongOnly 
 ## 
 ## Portfolio Weights:
-##      ^BFX     ^FCHI     ^FTSE    ^GDAXI     ^GSPC   ^GSPTSE 
-##    0.0000    0.0000    0.0000    0.0000    0.0964    0.0000 
-##      ^HSI      ^MXX     ^N225      ^STI ^STOXX50E 000001.SS 
-##    0.0000    0.8172    0.0000    0.0000    0.0000    0.0864 
+## 000001.SS      ^BFX     ^FCHI     ^FTSE    ^GDAXI     ^GSPC 
+##    0.0864    0.0000    0.0000    0.0000    0.0000    0.0964 
+##   ^GSPTSE      ^HSI      ^MXX     ^N225      ^STI ^STOXX50E 
+##    0.0000    0.0000    0.8172    0.0000    0.0000    0.0000 
 ## 
 ## Covariance Risk Budgets:
-##      ^BFX     ^FCHI     ^FTSE    ^GDAXI     ^GSPC   ^GSPTSE 
-##    0.0000    0.0000    0.0000    0.0000    0.0412    0.0000 
-##      ^HSI      ^MXX     ^N225      ^STI ^STOXX50E 000001.SS 
-##    0.0000    0.8559    0.0000    0.0000    0.0000    0.1029 
+## 000001.SS      ^BFX     ^FCHI     ^FTSE    ^GDAXI     ^GSPC 
+##    0.1029    0.0000    0.0000    0.0000    0.0000    0.0412 
+##   ^GSPTSE      ^HSI      ^MXX     ^N225      ^STI ^STOXX50E 
+##    0.0000    0.0000    0.8559    0.0000    0.0000    0.0000 
 ## 
 ## Target Returns and Risks:
 ##   mean    Cov   CVaR    VaR 
 ## 0.1101 0.2608 0.4200 0.4200 
 ## 
 ## Description:
-##  Fri May 05 08:22:06 2017 by user: marcelo
+##  Mon Jun 26 09:38:09 2017 by user: msperlin
 ```
 
 Not surprisingly, the optimized portfolio invested a significant proportion in ^MXX. The American and Chinese market, with symbols ^GSPC and ^00001.SS, were left with approximately 10% of the portfolio. We can find out the exact sharpe ratio of this portfolio with the following code:
@@ -14193,7 +14189,7 @@ tailoredFrontierPlot(object = my.pf,
                      sharpeRatio = FALSE)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-614-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-616-1.png" width="60%" style="display: block; margin: auto;" />
 
 The figure shows the investment opportunities of each stock individually and also the efficient frontier, the portfolios that offer the highest expected return for each value of risk. The efficient frontier represents the best possible investments in the mean/variance world. The red point to the left is the portfolio with the minimum variance. The blue point is the portfolio with highest sharpe ratio. 
 
@@ -14250,7 +14246,7 @@ my.prophet <- prophet(df = df.est)
 ```
 ## Initial log joint probability = -42.58
 ## Optimization terminated normally: 
-##   Convergence detected: absolute parameter change was below tolerance
+##   Convergence detected: relative gradient magnitude is below tolerance
 ```
 
 ```r
@@ -14266,33 +14262,33 @@ print(head(df.pred))
 
 ```
 ##           ds        t         trend  yhat_lower yhat_upper
-## 1 2016-12-31 1.000392 -0.0003055182 -0.01717911 0.01158751
-## 2 2017-01-01 1.000784 -0.0003053772 -0.01768187 0.01184872
-## 3 2017-01-02 1.001176 -0.0003052362 -0.01540638 0.01466073
-## 4 2017-01-03 1.001568 -0.0003050952 -0.01416107 0.01573194
-## 5 2017-01-04 1.001960 -0.0003049542 -0.01357974 0.01602591
-## 6 2017-01-05 1.002352 -0.0003048131 -0.01388536 0.01675243
+## 1 2016-12-31 1.000392 -0.0003030915 -0.01717645 0.01159017
+## 2 2017-01-01 1.000784 -0.0003029479 -0.01767921 0.01185139
+## 3 2017-01-02 1.001176 -0.0003028043 -0.01540391 0.01466320
+## 4 2017-01-03 1.001568 -0.0003026606 -0.01415862 0.01573439
+## 5 2017-01-04 1.001960 -0.0003025170 -0.01357727 0.01602839
+## 6 2017-01-05 1.002352 -0.0003023733 -0.01388289 0.01675490
 ##     trend_lower   trend_upper seasonal_lower seasonal_upper
-## 1 -0.0003055182 -0.0003055182  -0.0024148818  -0.0024148818
-## 2 -0.0003053772 -0.0003053772  -0.0025166442  -0.0025166442
-## 3 -0.0003052362 -0.0003052362   0.0007601026   0.0007601026
-## 4 -0.0003050952 -0.0003050952   0.0009337965   0.0009337965
-## 5 -0.0003049542 -0.0003049542   0.0015559184   0.0015559184
-## 6 -0.0003048131 -0.0003048131   0.0011263063   0.0011263063
+## 1 -0.0003030915 -0.0003030915  -0.0024146459  -0.0024146459
+## 2 -0.0003029479 -0.0003029479  -0.0025164136  -0.0025164136
+## 3 -0.0003028043 -0.0003028043   0.0007601429   0.0007601429
+## 4 -0.0003026606 -0.0003026606   0.0009338128   0.0009338128
+## 5 -0.0003025170 -0.0003025170   0.0015559558   0.0015559558
+## 6 -0.0003023733 -0.0003023733   0.0011263386   0.0011263386
 ##          weekly  weekly_lower  weekly_upper        yearly
-## 1 -0.0027603338 -0.0027603338 -0.0027603338  3.454520e-04
-## 2 -0.0027603338 -0.0027603338 -0.0027603338  2.436896e-04
-## 3  0.0006238955  0.0006238955  0.0006238955  1.362071e-04
-## 4  0.0009091033  0.0009091033  0.0009091033  2.469318e-05
-## 5  0.0016449048  0.0016449048  0.0016449048 -8.898637e-05
-## 6  0.0013291257  0.0013291257  0.0013291257 -2.028195e-04
+## 1 -0.0027602049 -0.0027602049 -0.0027602049  3.455589e-04
+## 2 -0.0027602049 -0.0027602049 -0.0027602049  2.437913e-04
+## 3  0.0006238406  0.0006238406  0.0006238406  1.363022e-04
+## 4  0.0009090323  0.0009090323  0.0009090323  2.478049e-05
+## 5  0.0016448638  0.0016448638  0.0016448638 -8.890798e-05
+## 6  0.0013290895  0.0013290895  0.0013290895 -2.027509e-04
 ##    yearly_lower  yearly_upper      seasonal          yhat
-## 1  3.454520e-04  3.454520e-04 -0.0024148818 -0.0027204000
-## 2  2.436896e-04  2.436896e-04 -0.0025166442 -0.0028220213
-## 3  1.362071e-04  1.362071e-04  0.0007601026  0.0004548664
-## 4  2.469318e-05  2.469318e-05  0.0009337965  0.0006287014
-## 5 -8.898637e-05 -8.898637e-05  0.0015559184  0.0012509643
-## 6 -2.028195e-04 -2.028195e-04  0.0011263063  0.0008214931
+## 1  3.455589e-04  3.455589e-04 -0.0024146459 -0.0027177375
+## 2  2.437913e-04  2.437913e-04 -0.0025164136 -0.0028193614
+## 3  1.363022e-04  1.363022e-04  0.0007601429  0.0004573386
+## 4  2.478049e-05  2.478049e-05  0.0009338128  0.0006311522
+## 5 -8.890798e-05 -8.890798e-05  0.0015559558  0.0012534389
+## 6 -2.027509e-04 -2.027509e-04  0.0011263386  0.0008239652
 ```
 
 The usage is straightforward, we input a `dataframe` containing the data and dates to function `prophet`. We make predictions using output `my.prophet` with the `predict` function. The number of forecasts is set with argument `periods` in `make_future_dataframe`. \index{prophet!prophet} \index{prophet!predict}
@@ -14571,7 +14567,7 @@ p <- p + geom_vline(aes(xintercept =  0.0),size=1)
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-630-1.png" width="60%" style="display: block; margin: auto;" /><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-630-2.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-1.png" width="60%" style="display: block; margin: auto;" /><img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-2.png" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -14619,7 +14615,7 @@ p <- ggplot(my.tab, aes(x=p.value.PT)) +
 print(p)	
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-634-1.png" width="60%" style="display: block; margin: auto;" />
 
 ```r
 # plot histogram (AG)
@@ -14630,7 +14626,7 @@ p <- ggplot(my.tab, aes(x=p.value.AG)) +
 print(p)	
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-632-2.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-634-2.png" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -14695,7 +14691,7 @@ p <- p + labs(x = 'Tickers', y = 'Number of trades')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-637-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-639-1.png" width="60%" style="display: block; margin: auto;" />
 
 We can see that the six most traded assets in 2017-04-07 are VALE5, PETR4, JBSS3, ITUB4, BBAS3, BVMF3. A particular feature of the high frequency data from Brazil is that the liquidity is disperse and decreases rapidly across the assets. Even though we are only looking at trading data for one day, we can expect that the number of trades will also drop quickly in other time periods as well.
 
@@ -14793,7 +14789,7 @@ p <- p + labs(y='Number of Trades', x = 'Time of Day')
 print(p)
 ```
 
-<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-642-1.png" width="60%" style="display: block; margin: auto;" />
+<img src="ProcAnFinDataR_ed_1_files/figure-html/unnamed-chunk-644-1.png" width="60%" style="display: block; margin: auto;" />
 
 Previous figure shows the number of trades as a function of the time of the day. As expected, we find that the intraday shape of liquidity follows a  _U_ pattern. That is, the number of trades rises in the beginning and ending of the day, with the smallest value around 13:15:00. Such a pattern is found for the great majority of the assets.
 
@@ -14875,9 +14871,8 @@ print(head(RV.tab))
 ```
 
 ```
-## Source: local data frame [6 x 3]
-## Groups: InstrumentSymbol [1]
-## 
+## # A tibble: 6 x 3
+## # Groups:   InstrumentSymbol [1]
 ##   InstrumentSymbol SessionDate           RV
 ##              <chr>      <date>        <dbl>
 ## 1            BBAS3  2017-03-08 0.0011887256

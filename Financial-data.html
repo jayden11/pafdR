@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="DataStructureObjects.html">
 <link rel="next" href="importing.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="Financial-data" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Financial Data and Common Operations</h1>
 <p>Before learning how to import data into R, it is wise to discuss the types and properties of the typical cases of financial data. These are datasets you are likely to encounter in your work. This chapter will provide you context and help you understand where the data is coming from and what it represents. Let’s start by looking into datasets from financial markets.</p>
@@ -376,7 +375,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Prices in financial markets move according to supply and demand. For example, if many investors buy a stock, its price is likely to rise. Every time that a seller meets a buyer, a trade is recorded, and a cash transaction occurs. New information and market expectations about future performance play a prominent role in the dynamics of demand. If the market understands that a company will do well in the future, investors will likely buy the stock, and its price will rise. The prices of the financial contracts are, therefore, an indication of how the market perceives the future.</p>
 <p>Certain events can also alter the price of a stock, even though no new information or shift in the demand is seen. This is the typical case of a <em>split</em> operation, where a single stock is fractioned into several. For a one to two split, an investor with 100 stocks at 10$ will now have 200 shares at 5$ each. The value of the portfolio stays the same. When looking at the price series, a split operation results in a big drop of price.</p>
 <p>Another event that impacts price is the payment of dividends. In the date previous to the payment, a stock will drop its price regarding the value of the dividend per share. This happens because a new buyer loses its right to the upcoming dividend payment and, therefore, a discount is expected. It is important to understand and recognize these events as you may have to deal with raw price data. In general, data providers give the option for <em>adjusted prices</em>, that is, the price is already adjusted to these events.</p>
-<p>In it raw form, price data is sampled whenever there is a trade. Sites like <a href="https://finance.yahoo.com/">Yahoo Finance</a> and <a href="https://www.google.com/finance">Google finance</a> offers daily statistics about share prices such as highest/lowest price, traded volume and closing prices for the day. The variety of datasets is wide, covering almost every financial exchange in the world. Anyone can download this data using the website or a custom access point. Many of the CRAN packages that imports financial data from the web offer functions that make it easy to download datasets from these websites.</p>
+<p>In its raw form, price data is sampled whenever there is a trade. Sites like <a href="https://finance.yahoo.com/">Yahoo Finance</a> and <a href="https://www.google.com/finance">Google finance</a> offers daily statistics about share prices such as highest/lowest price, traded volume and closing prices for the day. The variety of datasets is wide, covering almost every financial exchange in the world. Anyone can download this data using the website or a custom access point. Many of the CRAN packages that imports financial data from the web offer functions that make it easy to download datasets from these websites.</p>
 <p>The data from Yahoo Finance or others is in the daily frequency. Obtaining information about trades within the day is far more difficult.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> This is usually called tick-by-tick, or high-frequency data (HFD). For liquid markets, the size of this database can be restrictive. One exchange that offers free access to tick-by-tick data is Bovespa, the Brazilian exchange. We will discuss this dataset in chapters <a href="importing.html#importing">6</a> and <a href="research-scripts.html#research-scripts">11</a>.</p>
 <p>From the viewpoint of data analysis, price datasets usually have three dimensions, an identifier (ticker), a date/time reference and a price. This means that, in the long format, you can represent this data in R with a three column <code>dataframe</code>. When new stocks are added to the dataset, this <code>dataframe</code> will increase in rows. When new variables, such as traded volume, are inserted, a new column can be added. As we saw in chapter <a href="DataStructureObjects.html#DataStructureObjects">4</a>, the long format facilitates data processing tasks and is recommended. While we only discussed data for equity markets, other types of markets have similar datasets, but with extra information. For example, financial contracts from the debt and derivative markets usually have an expiration (maturity) date. Option contracts have a strike price. Additional information regarding debt and derivative contracts can be easily added to a long <code>dataframe</code> with extra columns.</p>
 <div id="calculating-returns-for-a-single-asset" class="section level3">
@@ -429,11 +428,11 @@ log.ret &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot"
 <p><span class="math display">\[AcumLogRet_t = 1+ \sum\left (LogRet _t \right ) \]</span></p>
 <p>We can use function <code>cumsum</code> to calculate the compound log return: </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate accumulated log. return</span>
-acum.log.ret &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="op">+</span><span class="kw">cumsum</span>(<span class="kw">na.omit</span>(arit.ret)))
+acum.log.ret &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span><span class="op">+</span><span class="kw">cumsum</span>(<span class="kw">na.omit</span>(log.ret)))
                   
 <span class="co"># print result</span>
 <span class="kw">print</span>(acum.log.ret)</code></pre></div>
-<pre><code>## [1] 1.0000000 0.9815747 0.8444417 0.7845249 0.8139794</code></pre>
+<pre><code>## [1] 1.0000000 0.9814029 0.8339081 0.7721212 0.8011503</code></pre>
 <p>The conversion from log to arithmetic return is simple. Consider the following conversion formulas:</p>
 <p><span class="math display">\[AritRet_t = \exp(LogRet _t)-1 \]</span></p>
 <p><span class="math display">\[LogRet _t = \log(1+AritRet _t)\]</span></p>
@@ -485,21 +484,21 @@ my.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span cla
 <span class="co"># print result  </span>
 <span class="kw">print</span>(my.df)</code></pre></div>
 <pre><code>##      ref.date    prices   ticker
-## 1  2017-05-04 10.018746 Stock  A
-## 2  2017-05-05  9.834148 Stock  A
-## 3  2017-05-06  8.485561 Stock  A
-## 4  2017-05-07  7.977134 Stock  A
-## 5  2017-05-08  8.212097 Stock  A
-## 6  2017-05-04 20.779589 Stock  B
-## 7  2017-05-05 18.269256 Stock  B
-## 8  2017-05-06 17.604847 Stock  B
-## 9  2017-05-07 14.741115 Stock  B
-## 10 2017-05-08 14.363037 Stock  B
-## 11 2017-05-04 33.305339 Stock  C
-## 12 2017-05-05 35.822494 Stock  C
-## 13 2017-05-06 34.969082 Stock  C
-## 14 2017-05-07 38.422086 Stock  C
-## 15 2017-05-08 41.270661 Stock  C</code></pre>
+## 1  2017-06-27 10.018746 Stock  A
+## 2  2017-06-28  9.834148 Stock  A
+## 3  2017-06-29  8.485561 Stock  A
+## 4  2017-06-30  7.977134 Stock  A
+## 5  2017-07-01  8.212097 Stock  A
+## 6  2017-06-27 20.779589 Stock  B
+## 7  2017-06-28 18.269256 Stock  B
+## 8  2017-06-29 17.604847 Stock  B
+## 9  2017-06-30 14.741115 Stock  B
+## 10 2017-07-01 14.363037 Stock  B
+## 11 2017-06-27 33.305339 Stock  C
+## 12 2017-06-28 35.822494 Stock  C
+## 13 2017-06-29 34.969082 Stock  C
+## 14 2017-06-30 38.422086 Stock  C
+## 15 2017-07-01 41.270661 Stock  C</code></pre>
 <p>As mentioned before, using a matrix notation facilitates calculations for the portfolio. With that in mind, we will first transform the long <code>dataframe</code> in a <code>matrix</code> of prices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set price matrix</span>
 my.price.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(my.df<span class="op">$</span>prices, <span class="dt">nrow =</span> nT)
@@ -511,11 +510,11 @@ my.price.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(my.df<
 <span class="co"># print result</span>
 <span class="kw">print</span>(my.price.mat)</code></pre></div>
 <pre><code>##             Stock  A Stock  B Stock  C
-## 2017-05-04 10.018746 20.77959 33.30534
-## 2017-05-05  9.834148 18.26926 35.82249
-## 2017-05-06  8.485561 17.60485 34.96908
-## 2017-05-07  7.977134 14.74111 38.42209
-## 2017-05-08  8.212097 14.36304 41.27066</code></pre>
+## 2017-06-27 10.018746 20.77959 33.30534
+## 2017-06-28  9.834148 18.26926 35.82249
+## 2017-06-29  8.485561 17.60485 34.96908
+## 2017-06-30  7.977134 14.74111 38.42209
+## 2017-07-01  8.212097 14.36304 41.27066</code></pre>
 <p>Now, from the price matrix, we can calculate a return matrix using simple element by element operation with the whole matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apply return formula for each column</span>
 my.ret.mat &lt;-<span class="st"> </span>my.price.mat[<span class="dv">2</span><span class="op">:</span><span class="st"> </span><span class="kw">nrow</span>(my.price.mat)   , ]<span class="op">/</span>
@@ -524,10 +523,10 @@ my.ret.mat &lt;-<span class="st"> </span>my.price.mat[<span class="dv">2</span><
 <span class="co"># print it!</span>
 <span class="kw">print</span>(my.ret.mat)</code></pre></div>
 <pre><code>##               Stock  A    Stock  B    Stock  C
-## 2017-05-05 -0.01842525 -0.12080762  0.07557815
-## 2017-05-06 -0.13713305 -0.03636760 -0.02382336
-## 2017-05-07 -0.05991677 -0.16266727  0.09874447
-## 2017-05-08  0.02945451 -0.02564784  0.07413901</code></pre>
+## 2017-06-28 -0.01842525 -0.12080762  0.07557815
+## 2017-06-29 -0.13713305 -0.03636760 -0.02382336
+## 2017-06-30 -0.05991677 -0.16266727  0.09874447
+## 2017-07-01  0.02945451 -0.02564784  0.07413901</code></pre>
 <p>Finally, we use the weight vector in a <code>matrix</code> object to calculate the return of the portfolio over time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set weight of portfolio (evenly weighted)</span>
 w &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)
@@ -538,10 +537,10 @@ ret.port &lt;-<span class="st"> </span>my.ret.mat <span class="op">%*%</span><sp
 <span class="co"># print result</span>
 <span class="kw">print</span>(ret.port)</code></pre></div>
 <pre><code>##                   [,1]
-## 2017-05-05 -0.02121824
-## 2017-05-06 -0.06577467
-## 2017-05-07 -0.04127986
-## 2017-05-08  0.02598190</code></pre>
+## 2017-06-28 -0.02121824
+## 2017-06-29 -0.06577467
+## 2017-06-30 -0.04127986
+## 2017-07-01  0.02598190</code></pre>
 <p>Vector <code>ret.port</code> show the return an investor would receive if the total value of the portfolio is evenly divided between the stocks.</p>
 </div>
 </div>
@@ -644,8 +643,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="DataStructureObjects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="importing.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="importing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -685,7 +685,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);

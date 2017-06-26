@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Processing and Analyzing Financial Data with R</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="Processing and Analyzing Financial Data with R">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Processing and Analyzing Financial Data with R" />
   <meta property="og:type" content="book" />
@@ -35,7 +34,6 @@
   
 <link rel="prev" href="importing.html">
 <link rel="next" href="Figures.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -94,16 +92,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-98297869-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
@@ -365,6 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98297869-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <div id="importingInternet" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Importing Financial Data from the Internet</h1>
 <p>One of the great advantages of using R for data analysis is the amount of data that can be imported over the web. This is practical because a database can be downloaded or updated with a simple command, avoiding all the manual and tedious work of collecting data manually. It is also easy to share code, as anyone can download the exact same dataset with a single line of code.</p>
@@ -383,20 +382,20 @@ my.df &lt;-<span class="st"> </span><span class="kw">getSymbols</span>(<span cla
 <span class="co"># print last rows</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(my.df))</code></pre></div>
 <pre><code>##            FTSE.Open FTSE.High FTSE.Low FTSE.Close
-## 2017-04-24    7114.6    7273.9   7114.6     7264.7
-## 2017-04-25    7264.7    7290.8   7258.7     7275.6
-## 2017-04-26    7275.6    7302.6   7262.3     7288.7
-## 2017-04-27    7288.7    7289.4   7224.4     7237.2
-## 2017-04-28    7237.2    7243.3   7197.3     7203.9
-## 2017-05-02    7203.9    7254.3   7203.9     7250.1
+## 2017-06-16    7419.4    7479.0   7419.4     7463.5
+## 2017-06-19    7463.5    7537.8   7463.5     7523.8
+## 2017-06-20    7523.8    7561.1   7472.7     7472.7
+## 2017-06-21    7472.7    7477.2   7417.5     7447.8
+## 2017-06-22    7447.8    7448.5   7398.8     7439.3
+## 2017-06-23    7439.3    7441.8   7396.8     7424.1
 ##            FTSE.Volume FTSE.Adjusted
-## 2017-04-24  1027266000        7264.7
-## 2017-04-25   835369300        7275.6
-## 2017-04-26   860455200        7288.7
-## 2017-04-27  1094741200        7237.2
-## 2017-04-28  1148718800        7203.9
-## 2017-05-02   910924000        7250.1</code></pre>
-<p>In the call to <code>getSymbols</code>, we used argument <code>auto.assign = F</code>. This forces the function to save the data to object <code>my.df</code> and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-05-02, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (<code>Open</code>), maximum price (<code>High</code>), minimum (<code>Low</code>), closing price (<code>Close</code>), trading volume (<code>Volume</code>), and the adjusted price (<code>Adjusted</code>). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In <code>my.df</code>, the only column with not so obvious content is <code>Adjusted</code>. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter <a href="Financial-data.html#Financial-data">5</a>.</p>
+## 2017-06-16  1889237700        7463.5
+## 2017-06-19   551165300        7523.8
+## 2017-06-20  1005340300        7472.7
+## 2017-06-21   843652400        7447.8
+## 2017-06-22   789287000        7439.3
+## 2017-06-23   608960600        7424.1</code></pre>
+<p>In the call to <code>getSymbols</code>, we used argument <code>auto.assign = F</code>. This forces the function to save the data to object <code>my.df</code> and not auto-assign the data to a new object with the name of the asset. Notice the last date of the imported data is 2017-06-23, which is the last date when markets were opened in the UK at the time of the compilation of the book. The imported data includes the opening price (<code>Open</code>), maximum price (<code>High</code>), minimum (<code>Low</code>), closing price (<code>Close</code>), trading volume (<code>Volume</code>), and the adjusted price (<code>Adjusted</code>). All data is in the daily frequency, and each column shows different information about the trade prices of a stock. In <code>my.df</code>, the only column with not so obvious content is <code>Adjusted</code>. It contains closing prices adjusted to dividends, split, and inplits. These are events that can artificially change a stock price. We discussed these issues in chapter <a href="Financial-data.html#Financial-data">5</a>.</p>
 <p>Some attention is required when downloading trade data for some exchanges. Yahoo Finance has specific codes for specific markets. As an example, all tickers from the Brazilian equity market have the <code>.SA</code> text attached to their original ticker. So, stock <code>PETR4</code> becomes <code>PETR4.SA</code>. You should investigate if Yahoo Finance has a particular format for the market you are interested. You can do that by looking for the tickers in the <a href="https://finance.yahoo.com/">website</a>.</p>
 <p>While downloading data for one asset can be useful, in most data analysis cases, we will be interested in downloading and analyzing information for several stocks. To perform a batch download of stock data with <code>quantmod</code>, it is necessary to create a new <em>enviroment</em>. This process, however, is quite simple. See the next example, where we download data for Microsoft (MSFT), Google (GOOGL), JP-Morgan (JPM), and General Electric (GE): </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set tickers</span>
@@ -415,19 +414,19 @@ my.env &lt;-<span class="st"> </span><span class="kw">new.env</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print contents of MSFT</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(my.env<span class="op">$</span>MSFT))</code></pre></div>
 <pre><code>##            MSFT.Open MSFT.High MSFT.Low MSFT.Close
-## 2017-04-25     67.90     68.04    67.60      67.92
-## 2017-04-26     68.08     68.31    67.62      67.83
-## 2017-04-27     68.15     68.38    67.58      68.27
-## 2017-04-28     68.91     69.14    67.69      68.46
-## 2017-05-01     68.68     69.55    68.50      69.41
-## 2017-05-02     69.71     69.71    69.13      69.30
+## 2017-06-16     69.73     70.03    69.22      70.00
+## 2017-06-19     70.50     70.94    70.35      70.87
+## 2017-06-20     70.82     70.87    69.87      69.91
+## 2017-06-21     70.21     70.62    69.94      70.27
+## 2017-06-22     70.54     70.59    69.71      70.26
+## 2017-06-23     70.09     71.25    69.92      71.21
 ##            MSFT.Volume MSFT.Adjusted
-## 2017-04-25    30087700         67.92
-## 2017-04-26    25704400         67.83
-## 2017-04-27    33464900         68.27
-## 2017-04-28    39423500         68.46
-## 2017-05-01    31789300         69.41
-## 2017-05-02    23519500         69.30</code></pre>
+## 2017-06-16    48345100         70.00
+## 2017-06-19    23798300         70.87
+## 2017-06-20    21512200         69.91
+## 2017-06-21    19891100         70.27
+## 2017-06-22    22965700         70.26
+## 2017-06-23    26804300         71.21</code></pre>
 <p>The previous code downloads data for all tickers in <code>my.tickers</code>. The resulting <code>dataframe</code> objects are available in environment <code>my.env</code>, and we can access them using operator <code>$</code>. There are easier ways of organizing financial data for several tickers, as we will soon learn. Ideally, we should have all stocks in a long <code>dataframe</code>.</p>
 </div>
 <div id="package-batchgetsymbols" class="section level3">
@@ -450,41 +449,41 @@ l.out &lt;-<span class="st"> </span><span class="kw">BatchGetSymbols</span>(<spa
 ## Running BatchGetSymbols for:
 ##    tickers = MSFT, GOOGL, JPM, GE
 ##    Downloading data for benchmark ticker
-## Downloading Data for MSFT from yahoo (1|4) - Got it!
-## Downloading Data for GOOGL from yahoo (2|4) - Good job!
-## Downloading Data for JPM from yahoo (3|4) - Good stuff!
-## Downloading Data for GE from yahoo (4|4) - Good job!</code></pre>
+## Downloading Data for MSFT from yahoo (1|4) - Boa!
+## Downloading Data for GOOGL from yahoo (2|4) - Nice!
+## Downloading Data for JPM from yahoo (3|4) - Got it!
+## Downloading Data for GE from yahoo (4|4) - Well done!</code></pre>
 <p>The output of <code>BatchGetSymbols</code> is a <code>list</code>, where element <code>df.control</code> contains a <code>dataframe</code> with the result of the download process. The package not only downloads the data, but also keeps track of possible errors and missing values. Let’s see the content of this <code>dataframe</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print result of download process</span>
 <span class="kw">print</span>(l.out<span class="op">$</span>df.control)</code></pre></div>
 <pre><code>##   ticker   src download.status total.obs
-## 1   MSFT yahoo              OK        21
-## 2  GOOGL yahoo              OK        21
-## 3    JPM yahoo              OK        21
-## 4     GE yahoo              OK        21
+## 1   MSFT yahoo              OK        19
+## 2  GOOGL yahoo              OK        19
+## 3    JPM yahoo              OK        19
+## 4     GE yahoo              OK        19
 ##   perc.benchmark.dates threshold.decision
 ## 1                    1               KEEP
 ## 2                    1               KEEP
 ## 3                    1               KEEP
 ## 4                    1               KEEP</code></pre>
-<p>Object <code>df.control</code> shows all tickers were valid, and we got 21 observations (rows) for each.</p>
+<p>Object <code>df.control</code> shows all tickers were valid, and we got 19 observations (rows) for each.</p>
 <p>As for the actual financial data, it is contained in element <code>df.tickers</code> of <code>l.out</code>. Let’s look:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print df.tickers</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(l.out<span class="op">$</span>df.tickers))</code></pre></div>
 <pre><code>##    price.open price.high price.low price.close   volume
-## 79      29.45      29.60     29.32       29.45 39764600
-## 80      29.52      29.55     29.26       29.26 36606000
-## 81      29.29      29.31     29.02       29.08 32777900
-## 82      29.10      29.16     28.93       28.99 23929100
-## 83      29.01      29.17     28.93       28.94 23695700
-## 84      29.01      29.05     28.91       28.99 31475900
+## 71      28.98      29.01     28.62       29.00 81565600
+## 72      28.96      29.00     28.74       28.80 30504700
+## 73      28.71      28.72     28.08       28.13 47542900
+## 74      28.18      28.19     27.65       27.78 33758100
+## 75      27.77      27.83     27.54       27.55 36384600
+## 76      27.79      27.79     27.50       27.57 30501100
 ##    price.adjusted   ref.date ticker
-## 79          29.45 2017-04-25     GE
-## 80          29.26 2017-04-26     GE
-## 81          29.08 2017-04-27     GE
-## 82          28.99 2017-04-28     GE
-## 83          28.94 2017-05-01     GE
-## 84          28.99 2017-05-02     GE</code></pre>
+## 71          29.00 2017-06-16     GE
+## 72          28.80 2017-06-19     GE
+## 73          28.13 2017-06-20     GE
+## 74          27.78 2017-06-21     GE
+## 75          27.55 2017-06-22     GE
+## 76          27.57 2017-06-23     GE</code></pre>
 <p>As expected, the information about prices and volume is there. Notice it also includes a column, called <code>ticker</code>, containing the symbols of the stocks. Later, in chapter <a href="programming.html#programming">9</a>, we will use this column to make calculations for each stock in our dataset.</p>
 <p>Another useful function of <code>BatchGetSymbols</code> is <code>GetSP500Stocks</code>, which imports the current composition of the SP500 index, including the tickers of the stocks. So, by using <code>GetSP500Stocks</code> and <code>BatchGetSymbols</code> together, you can easily download a large amount of stock data for the US market. Consider the following chunk of code, where we performed such operation:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(BatchGetSymbols)
@@ -598,38 +597,38 @@ my.df &lt;-<span class="st"> </span><span class="kw">tq_get</span>(my.ticker,
                 <span class="dt">to =</span> last.date)
 
 <span class="kw">print</span>(<span class="kw">tail</span>(my.df))</code></pre></div>
-<pre><code>## # A tibble: 6 × 7
+<pre><code>## # A tibble: 6 x 7
 ##         date   open   high    low  close   volume adjusted
 ##       &lt;date&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1 2017-04-25 143.91 144.90 143.87 144.53 18290300   144.53
-## 2 2017-04-26 144.47 144.60 143.38 143.68 19769400   143.68
-## 3 2017-04-27 143.92 144.16 143.31 143.79 14106100   143.79
-## 4 2017-04-28 144.09 144.30 143.27 143.65 20763500   143.65
-## 5 2017-05-01 145.10 147.20 144.96 146.58 33424500   146.58
-## 6 2017-05-02 147.54 148.09 146.84 147.51 40290100   147.51</code></pre>
+## 1 2017-06-16 143.78 144.50 142.20 142.27 50361100   142.27
+## 2 2017-06-19 143.66 146.74 143.66 146.34 32541400   146.34
+## 3 2017-06-20 146.87 146.87 144.94 145.01 24900100   145.01
+## 4 2017-06-21 145.52 146.07 144.61 145.87 21265800   145.87
+## 5 2017-06-22 145.77 146.70 145.12 145.63 19106300   145.63
+## 6 2017-06-23 145.13 147.16 145.11 146.28 33917600   146.28</code></pre>
 <p>As we can see, the price data is the same as using <code>quantmod</code> and <code>BatchGetSymbols</code>. In fact, the origin of it is the same, Yahoo Finance. One interesting aspect of <code>tidyquant</code> is the same function, <code>tq_get</code>, can be used to download other financial information from different sources, such as Google Finance, Morning Star, FRED, and Oanda. For example, we can download key financial ratios from Morning Star by setting <code>get='key.ratios'</code> in <code>tq_get</code>. </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get key financial rations of AAPL</span>
 df.key.ratios &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">&quot;AAPL&quot;</span>,<span class="dt">get =</span> <span class="st">&quot;key.ratios&quot;</span>)
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(df.key.ratios)           </code></pre></div>
-<pre><code>## # A tibble: 7 × 2
+<pre><code>## # A tibble: 7 x 2
 ##             section               data
 ##               &lt;chr&gt;             &lt;list&gt;
-## 1        Financials &lt;tibble [150 × 5]&gt;
-## 2     Profitability &lt;tibble [170 × 5]&gt;
-## 3            Growth &lt;tibble [160 × 5]&gt;
-## 4         Cash Flow  &lt;tibble [50 × 5]&gt;
-## 5  Financial Health &lt;tibble [240 × 5]&gt;
-## 6 Efficiency Ratios  &lt;tibble [80 × 5]&gt;
-## 7  Valuation Ratios  &lt;tibble [40 × 5]&gt;</code></pre>
+## 1        Financials &lt;tibble [150 x 5]&gt;
+## 2     Profitability &lt;tibble [170 x 5]&gt;
+## 3            Growth &lt;tibble [160 x 5]&gt;
+## 4         Cash Flow  &lt;tibble [50 x 5]&gt;
+## 5  Financial Health &lt;tibble [240 x 5]&gt;
+## 6 Efficiency Ratios  &lt;tibble [80 x 5]&gt;
+## 7  Valuation Ratios  &lt;tibble [40 x 5]&gt;</code></pre>
 <p>Object <code>df.key.ratios</code> offers fundamental information about Apple. In this case, the output is an object of class <code>tibble</code>, a special type of <code>dataframe</code>. Column <code>data</code> in <code>df.key.ratios</code> is a <code>list-column</code>, allowing objects other than single values to take an element in the table. Its behaviour is the same as for other <code>list</code> objects. For example, we can look into the profitability section with the following notation:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get profitability table</span>
 df.profitability &lt;-<span class="st"> </span>df.key.ratios<span class="op">$</span>data[[<span class="dv">2</span>]]
 
 <span class="co"># print it</span>
 <span class="kw">print</span>(<span class="kw">tail</span>(df.profitability))</code></pre></div>
-<pre><code>## # A tibble: 6 × 5
+<pre><code>## # A tibble: 6 x 5
 ##     sub.section group          category       date  value
 ##           &lt;chr&gt; &lt;dbl&gt;             &lt;chr&gt;     &lt;date&gt;  &lt;dbl&gt;
 ## 1 Profitability    32 Interest Coverage 2011-09-01     NA
@@ -641,7 +640,7 @@ df.profitability &lt;-<span class="st"> </span>df.key.ratios<span class="op">$</
 <p>A novel and noteworthy aspect of <code>tidyquant</code> is the access to information about US stock exchanges using function <code>tq_exchange</code>. Look at the next example, where we access information about all stocks traded in AMEX. </p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get stocks in AMEX</span>
 <span class="kw">print</span>(<span class="kw">head</span>(<span class="kw">tq_exchange</span>(<span class="st">&#39;AMEX&#39;</span>)))</code></pre></div>
-<pre><code>## # A tibble: 6 × 7
+<pre><code>## # A tibble: 6 x 7
 ##   symbol
 ##    &lt;chr&gt;
 ## 1   XXII
@@ -664,18 +663,18 @@ df.profitability &lt;-<span class="st"> </span>df.key.ratios<span class="op">$</
 <p>Let’s get information for <code>&quot;DOWJONES&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get components of &quot;DOWJONES&quot;</span>
 <span class="kw">print</span>(<span class="kw">tq_index</span>(<span class="st">&quot;DOWJONES&quot;</span>))</code></pre></div>
-<pre><code>## # A tibble: 65 × 2
+<pre><code>## # A tibble: 65 x 2
 ##    symbol                      company
 ##     &lt;chr&gt;                        &lt;chr&gt;
-## 1     MMM                           3M
-## 2     ALK             ALASKA AIR GROUP
-## 3     AAL AMERICAN AIRLINES GROUP INC.
-## 4     AEP      AMERICAN ELECTRIC POWER
-## 5     AXP             AMERICAN EXPRESS
-## 6     AWK         AMERICAN WATER WORKS
-## 7    AAPL                        APPLE
-## 8     CAR            AVIS BUDGET GROUP
-## 9     CAT                  CATERPILLAR
+##  1    MMM                           3M
+##  2    ALK             ALASKA AIR GROUP
+##  3    AAL AMERICAN AIRLINES GROUP INC.
+##  4    AEP      AMERICAN ELECTRIC POWER
+##  5    AXP             AMERICAN EXPRESS
+##  6    AWK         AMERICAN WATER WORKS
+##  7   AAPL                        APPLE
+##  8    CAR            AVIS BUDGET GROUP
+##  9    CAT                  CATERPILLAR
 ## 10    CNP           CENTERPOINT ENERGY
 ## # ... with 55 more rows</code></pre>
 <p>These functions are useful because they give the user access to the current tickers for each market. By using functions <code>tq_exchange</code> or <code>tq_index</code> with <code>tq_get</code>, downloading comprehensive information for American stock exchanges becomes very easy. </p>
@@ -694,7 +693,7 @@ my.type.market &lt;-<span class="st"> &#39;equity&#39;</span>
 <span class="co"># get available dates from ftp</span>
 df.available.dates &lt;-<span class="st"> </span><span class="kw">ghfd_get_ftp_contents</span>(my.type.market)</code></pre></div>
 <pre><code>## 
-## Reading ftp contents for equity (attempt = 1|10)</code></pre>
+## Reading ftp contents for equity(trades) (attempt = 1|10)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set last date</span>
 last.date &lt;-<span class="st"> </span><span class="kw">max</span>(df.available.dates<span class="op">$</span>dates)
 
@@ -708,42 +707,43 @@ my.df &lt;-<span class="st"> </span><span class="kw">ghfd_get_HF_data</span>(<sp
 <pre><code>## 
 ## Running ghfd_get_HF_Data for:
 ##    type.market = equity
+##    type.data = trades
 ##    my.assets = PETR4, VALE5
 ##    type.output = agg
 ##       agg.diff = 5 min
-## Reading ftp contents for equity (attempt = 1|10)
-##    Found  550  files in ftp
-##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-04-26
-##    First date to download:  2017-04-26
-##    Last date to download:   2017-04-26
-## Downloading ftp files/NEG_20170426.zip (1|1) Attempt 1
-##    -&gt; Reading files - Imported  869951 lines, 433 unique tickers
-##    -&gt; Processing file - Found 64945 lines for 2 selected tickers
-##    -&gt; Aggregation resulted in dataframe with 165 rows</code></pre>
+## Reading ftp contents for equity(trades) (attempt = 1|10)
+##    Found  528  files in ftp
+##    First available date in ftp:  2015-06-01
+##    Last available date in ftp:   2017-06-23
+##    First date to download:  2017-06-23
+##    Last date to download:   2017-06-23
+## Downloading ftp files/NEG_20170623.zip (1|1) Attempt 1
+##    -&gt; Reading files - Imported  696040 lines, 424 unique tickers
+##    -&gt; Processing file - Found 48880 lines for 2 selected tickers
+##    -&gt; Aggregation resulted in dataframe with 46 rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print results</span>
 <span class="kw">print</span>(<span class="kw">head</span>(my.df))</code></pre></div>
 <pre><code>##   InstrumentSymbol SessionDate       TradeDateTime n.trades
-## 1            PETR4  2017-04-26 2017-04-26 10:05:00      314
-## 2            PETR4  2017-04-26 2017-04-26 10:10:00      207
-## 3            PETR4  2017-04-26 2017-04-26 10:15:00      273
-## 4            PETR4  2017-04-26 2017-04-26 10:20:00      267
-## 5            PETR4  2017-04-26 2017-04-26 10:25:00      245
-## 6            PETR4  2017-04-26 2017-04-26 10:30:00      430
-##   last.price weighted.price    period.ret period.ret.volat
-## 1      14.20       14.17837  0.0028248588     0.0004373366
-## 2      14.22       14.21401  0.0007037298     0.0003708157
-## 3      14.18       14.21541 -0.0035137034     0.0003747119
-## 4      14.14       14.14605 -0.0028208745     0.0003976880
-## 5      14.13       14.12624 -0.0007072136     0.0003367954
-## 6      14.18       14.17620  0.0035385704     0.0003493024
-##   sum.qtd sum.vol n.buys n.sells Tradetime
-## 1  554100 7856221    136     178  10:05:00
-## 2  343300 4879665    111      96  10:10:00
-## 3  526400 7482957    129     144  10:15:00
-## 4  461500 6528396     97     170  10:20:00
-## 5  365900 5168790     88     157  10:25:00
-## 6  571600 8103092    221     209  10:30:00</code></pre>
+## 1            PETR4  2017-06-23 2017-06-23 15:05:00      368
+## 2            PETR4  2017-06-23 2017-06-23 15:10:00      571
+## 3            PETR4  2017-06-23 2017-06-23 15:15:00      456
+## 4            PETR4  2017-06-23 2017-06-23 15:20:00      408
+## 5            PETR4  2017-06-23 2017-06-23 15:25:00      433
+## 6            PETR4  2017-06-23 2017-06-23 15:30:00      673
+##   last.price weighted.price   period.ret period.ret.volat
+## 1      12.14       12.11225  0.002477291     0.0003258349
+## 2      12.12       12.12501 -0.001647446     0.0003625336
+## 3      12.07       12.08281 -0.003303055     0.0003560332
+## 4      12.03       12.03987 -0.003314002     0.0004242634
+## 5      12.00       11.99876 -0.002493766     0.0003612732
+## 6      11.98       11.97870 -0.001666667     0.0003840556
+##   sum.qtd  sum.vol n.buys n.sells Tradetime
+## 1  560800  6792542    182     186  15:05:00
+## 2  928300 11255626    364     207  15:10:00
+## 3  682400  8245303    166     290  15:15:00
+## 4  848900 10220633    125     283  15:20:00
+## 5  603800  7244844    204     229  15:25:00
+## 6 1167800 13988691    309     364  15:30:00</code></pre>
 <p>The output of <code>ghfd_get_HF_data</code> is a <code>dataframe</code> with several columns, such as time frame, last price, volatility, number of buyer/seller initiated trades, among other information. The user can also download raw data, without aggregation, by setting option <code>type.output='raw'</code>. Let’s give it a try:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GetHFData)
 
@@ -754,7 +754,7 @@ my.type.market &lt;-<span class="st"> &#39;equity&#39;</span>
 <span class="co"># get available dates from ftp</span>
 df.available.dates &lt;-<span class="st"> </span><span class="kw">ghfd_get_ftp_contents</span>(my.type.market)</code></pre></div>
 <pre><code>## 
-## Reading ftp contents for equity (attempt = 1|10)</code></pre>
+## Reading ftp contents for equity(trades) (attempt = 1|10)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set last date</span>
 last.date &lt;-<span class="st"> </span><span class="kw">max</span>(df.available.dates<span class="op">$</span>dates)
 
@@ -767,40 +767,42 @@ my.df &lt;-<span class="st"> </span><span class="kw">ghfd_get_HF_data</span>(<sp
 <pre><code>## 
 ## Running ghfd_get_HF_Data for:
 ##    type.market = equity
+##    type.data = trades
 ##    my.assets = PETR4, VALE5
 ##    type.output = raw
-## Reading ftp contents for equity (attempt = 1|10)
-##    Found  550  files in ftp
-##    First available date in ftp:  2015-03-02
-##    Last available date in ftp:   2017-04-26
-##    First date to download:  2017-04-26
-##    Last date to download:   2017-04-26
-## Downloading ftp files/NEG_20170426.zip (1|1) Attempt 1
-##    -&gt; Reading files - Imported  869951 lines, 433 unique tickers
-##    -&gt; Processing file - Found 64945 lines for 2 selected tickers</code></pre>
+## Reading ftp contents for equity(trades) (attempt = 1|10)
+##    Found  528  files in ftp
+##    First available date in ftp:  2015-06-01
+##    Last available date in ftp:   2017-06-23
+##    First date to download:  2017-06-23
+##    Last date to download:   2017-06-23
+## Downloading ftp files/NEG_20170623.zip (1|1) Attempt 1
+##    -&gt; Reading files - Imported  696040 lines, 424 unique tickers
+##    -&gt; Processing file - Found 48880 lines for 2 selected tickers
+##    -&gt; Aggregation resulted in dataframe with 18366 rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print results</span>
 <span class="kw">print</span>(<span class="kw">head</span>(my.df))</code></pre></div>
 <pre><code>##   SessionDate InstrumentSymbol TradePrice TradedQuantity
-## 1  2017-04-26            PETR4      14.16           4000
-## 2  2017-04-26            PETR4      14.16           2000
-## 3  2017-04-26            PETR4      14.16            100
-## 4  2017-04-26            PETR4      14.16           5000
-## 5  2017-04-26            PETR4      14.16            300
-## 6  2017-04-26            PETR4      14.16           1000
+## 1  2017-06-23            PETR4      12.11           2500
+## 2  2017-06-23            PETR4      12.11            100
+## 3  2017-06-23            PETR4      12.11           1900
+## 4  2017-06-23            PETR4      12.11           1000
+## 5  2017-06-23            PETR4      12.11           1000
+## 6  2017-06-23            PETR4      12.11           1000
 ##      Tradetime CrossTradeIndicator BuyMember SellMember
-## 1 10:07:12.379                   0       386         59
-## 2 10:07:12.379                   0       174        386
-## 3 10:07:12.379                   0       114        147
-## 4 10:07:12.379                   0       386        147
-## 5 10:07:12.379                   0        15        147
-## 6 10:07:12.379                   0         3         39
+## 1 10:07:15.438                   0        72        174
+## 2 10:07:15.438                   0         3         72
+## 3 10:07:15.438                   0         3          3
+## 4 10:07:15.438                   0        72        120
+## 5 10:07:15.438                   0        72        238
+## 6 10:07:15.438                   0        72          3
 ##         TradeDateTime TradeSign
-## 1 2017-04-26 10:07:12        -1
-## 2 2017-04-26 10:07:12        -1
-## 3 2017-04-26 10:07:12        -1
-## 4 2017-04-26 10:07:12        -1
-## 5 2017-04-26 10:07:12        -1
-## 6 2017-04-26 10:07:12        -1</code></pre>
+## 1 2017-06-23 10:07:15        -1
+## 2 2017-06-23 10:07:15        -1
+## 3 2017-06-23 10:07:15        -1
+## 4 2017-06-23 10:07:15        -1
+## 5 2017-06-23 10:07:15        -1
+## 6 2017-06-23 10:07:15        -1</code></pre>
 <p>In the chapter about research scripts, we will use this package for studying the intraday pattern of liquidity in the stock market. More details about the package can be found in <span class="citation">Perlin and Ramos (<a href="#ref-gethfdata">2016</a>)</span>.</p>
 </div>
 <div id="package-ustyc" class="section level3">
@@ -878,12 +880,12 @@ my.df &lt;-<span class="st"> </span><span class="kw">Quandl</span>(<span class="
 
 <span class="kw">print</span>(<span class="kw">tail</span>(my.df))</code></pre></div>
 <pre><code>##            Date    Value
-## 4518 2000-01-10 274.3301
-## 4519 2000-01-07 274.1764
-## 4520 2000-01-06 269.9777
-## 4521 2000-01-05 271.3069
-## 4522 2000-01-04 273.2482
-## 4523 2000-01-03 280.2000</code></pre>
+## 4555 2000-01-10 274.3301
+## 4556 2000-01-07 274.1764
+## 4557 2000-01-06 269.9777
+## 4558 2000-01-05 271.3069
+## 4559 2000-01-04 273.2482
+## 4560 2000-01-03 280.2000</code></pre>
 <p>Notice how we used <code>type = 'raw'</code> in the inputs of <code>Quandl</code>. This option forces the function to output a <code>dataframe</code>. Other options include the output of objects of type <code>ts</code>, <code>zoo</code>, <code>xts</code> and <code>timeSeries</code>. If using <code>Quandl</code> will become part of your data analysis routine, I strongly recommend reading the help manual of the package. Several parameters can be passed to function <code>Quandl</code>, including the choice for applying transformations in the resulting dataset. You can find more details about using <code>Quandl</code> in R from its <a href="https://docs.quandl.com/docs/r">website</a>.</p>
 </div>
 <div id="package-rbitcoin" class="section level3">
@@ -913,52 +915,52 @@ my.l &lt;-<span class="st"> </span><span class="kw">market.api.process</span>(<s
 ## [1] &quot;EUR&quot;
 ## 
 ## $timestamp
-## [1] &quot;2017-05-03 16:09:00 BRT&quot;
+## [1] &quot;2017-06-26 09:37:01 CEST&quot;
 ## 
 ## $market_timestamp
 ## [1] NA
 ## 
 ## $trades
 ##                      date    price     amount
-##    1: 2017-05-03 18:27:12 1357.833 0.11047009
-##    2: 2017-05-03 18:27:12 1357.822 1.16512991
-##    3: 2017-05-03 18:27:19 1359.356 0.06720000
-##    4: 2017-05-03 18:27:26 1358.060 0.20211374
-##    5: 2017-05-03 18:27:30 1357.833 0.04000000
+##    1: 2017-06-26 07:17:03 2134.730 0.07370000
+##    2: 2017-06-26 07:17:07 2135.831 0.21773877
+##    3: 2017-06-26 07:17:07 2135.831 0.31155322
+##    4: 2017-06-26 07:17:11 2135.831 0.20000000
+##    5: 2017-06-26 07:17:11 2134.750 0.00050000
 ##   ---                                        
-##  996: 2017-05-03 19:08:51 1362.975 0.08250000
-##  997: 2017-05-03 19:08:51 1362.975 0.08081592
-##  998: 2017-05-03 19:08:51 1362.989 0.09412579
-##  999: 2017-05-03 19:08:51 1362.990 9.82505829
-## 1000: 2017-05-03 19:08:56 1362.289 0.32110000
+##  996: 2017-06-26 07:37:31 2179.010 0.00820005
+##  997: 2017-06-26 07:37:31 2179.010 0.10689569
+##  998: 2017-06-26 07:37:31 2179.010 0.05344784
+##  999: 2017-06-26 07:37:34 2179.011 0.40255451
+## 1000: 2017-06-26 07:37:36 2179.121 0.02671749
 ##                       tid type
-##    1:                  NA  ask
+##    1:                  NA  bid
 ##    2:                  NA  ask
-##    3:                  NA  bid
+##    3:                  NA  ask
 ##    4:                  NA  ask
 ##    5:                  NA  ask
 ##   ---                         
-##  996:                  NA  bid
-##  997:                  NA  bid
-##  998:                  NA  bid
-##  999:                  NA  bid
-## 1000: 1493838536818543405  ask</code></pre>
+##  996:                  NA  ask
+##  997:                  NA  ask
+##  998:                  NA  ask
+##  999:                  NA  ask
+## 1000: 1498462656224412603  ask</code></pre>
 <p>The output of <code>market.api.process</code> is a <code>list</code> object with information about Bitcoin in the <code>'kraken'</code> market. The actual trades are available in the <code>trade</code> slot of <code>my.l</code>. Let’s have a look at its content:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">tail</span>(my.l<span class="op">$</span>trades))</code></pre></div>
 <pre><code>##                   date    price     amount
-## 1: 2017-05-03 19:08:42 1362.975 0.03668408
-## 2: 2017-05-03 19:08:51 1362.975 0.08250000
-## 3: 2017-05-03 19:08:51 1362.975 0.08081592
-## 4: 2017-05-03 19:08:51 1362.989 0.09412579
-## 5: 2017-05-03 19:08:51 1362.990 9.82505829
-## 6: 2017-05-03 19:08:56 1362.289 0.32110000
+## 1: 2017-06-26 07:37:31 2179.010 0.01000000
+## 2: 2017-06-26 07:37:31 2179.010 0.00820005
+## 3: 2017-06-26 07:37:31 2179.010 0.10689569
+## 4: 2017-06-26 07:37:31 2179.010 0.05344784
+## 5: 2017-06-26 07:37:34 2179.011 0.40255451
+## 6: 2017-06-26 07:37:36 2179.121 0.02671749
 ##                    tid type
-## 1:                  NA  bid
-## 2:                  NA  bid
-## 3:                  NA  bid
-## 4:                  NA  bid
-## 5:                  NA  bid
-## 6: 1493838536818543405  ask</code></pre>
+## 1:                  NA  ask
+## 2:                  NA  ask
+## 3:                  NA  ask
+## 4:                  NA  ask
+## 5:                  NA  ask
+## 6: 1498462656224412603  ask</code></pre>
 <p>It includes price and time information for the past 1000 trades. The package also includes functions for looking into the order book of each market and managing Bitcoin wallets. More details about the functionalities of the package are found in its <a href="https://github.com/jangorecki/Rbitcoin">website</a>.</p>
 </div>
 <div id="other-packages" class="section level3">
@@ -995,7 +997,7 @@ Figure 7.2: Finding xpath from website
 
 <span class="co"># set url and xpath</span>
 my.url &lt;-<span class="st"> &#39;https://en.wikipedia.org/wiki/List_of_S%26P_500_companies&#39;</span>
-my.xpath &lt;-<span class="st"> &#39;//*[@id=&quot;mw-content-text&quot;]/table[1]&#39;</span>
+my.xpath &lt;-<span class="st"> &#39;//*[@id=&quot;mw-content-text&quot;]/div/table[1]&#39;</span>
 
 <span class="co"># get nodes from html</span>
 out.nodes &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(<span class="kw">read_html</span>(my.url),
@@ -1126,8 +1128,9 @@ s.setAttribute('data-timestamp', +new Date());
         </div>
       </div>
 <a href="importing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Figures.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="Figures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -1167,7 +1170,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(script.src))
       script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);
